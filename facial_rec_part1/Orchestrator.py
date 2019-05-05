@@ -13,6 +13,10 @@ weight_checkpoint_path = "celeba_weights/weights.ckpt"
 reader = DataReader() 
 modelEngine = ModelEngine()
 
+
+#create new model 
+model = modelEngine.CreateModel(output_dimension=40, input_dimension=(218, 178, 3), lossType=keras.losses.binary_crossentropy)
+
 #train celeb_a if no weights exist for it 
 if (not reader.weights_exist(weight_checkpoint_path)):
 
@@ -23,11 +27,8 @@ if (not reader.weights_exist(weight_checkpoint_path)):
     celeba_training_generator = DataGenerator(celeba_partition['train'], celeba_labels, **settings.celeba_params)
     celeba_validation_generator = DataGenerator(celeba_partition['validation'], celeba_labels, **settings.kdef_params)
 
-    #create new model 
-    model = modelEngine.CreateModel(output_dimension=40, input_dimension=(218, 178, 3), lossType=keras.losses.binary_crossentropy)
-
     #train model
-    modelEngine.fit_with_save(celeba_training_generator, None, checkpointPath=weight_checkpoint_path)
+    modelEngine.fit_with_save(model, celeba_training_generator, None, checkpointPath=weight_checkpoint_path)
 
 #read kdef
 (kdef_partition, kdef_labels) = reader.read_kdef()
@@ -36,7 +37,7 @@ if (not reader.weights_exist(weight_checkpoint_path)):
 training_generator = DataGenerator(kdef_partition['train'], kdef_labels, **settings.celeba_params)
 validation_generator = DataGenerator(kdef_partition['validation'], kdef_labels, **settings.kdef_params)
 
-kdef_model = modelEngine.copy_new_from_existing()
+kdef_model = modelEngine.new_from_existing(model, )
 
 
 
