@@ -4,7 +4,8 @@ from DataReader import DataReader
 import tensorflow as tf 
 
 class ModelEngine():
-                
+
+              
         def CreateModel(self, output_dimension, input_dimension, lossType):
 
                 #model
@@ -24,7 +25,7 @@ class ModelEngine():
                             tf.keras.layers.Flatten(),
                             tf.keras.layers.Dense(output_dimension, activation=tf.nn.softmax)])
 
-                model.compile(optimizer=tf.keras.optimizers.Adam, 
+                model.compile(optimizer='adam', 
                               loss=lossType,
                               metrics=['accuracy'])
 
@@ -45,23 +46,21 @@ class ModelEngine():
                     use_multiprocessing=True,
                     workers=6)
 
-        def new_from_existing(self, old_model, output_dimension, num_classes, lossType, activationType, weights_path=None):
+        def new_from_existing(self, old_model, weights_path, num_classes, lossType, activationType):
 
                 layers = old_model.layers[-3].output 
                 model2 = tf.keras.Model(input=old_model.get_input_at(0), output=[layers])
 
-                if (not weights_path is None):
-                        model2.load_weights(weights_path, by_name=True)
+                model2.load_weights(weights_path, by_name=True)
                 
                 second_layers = model2.layers[-1].output
 
                 second_layers = tf.keras.layers.Flatten()(second_layers) 
                 second_layers = tf.keras.layers.Dense(num_classes, activation=activationType)
 
-
                 model3 = tf.keras.Model(input=model2.get_input_at(0), output=[second_layers])
 
-                model3.compile(optimizer=tf.keras.optimizers.Adam, 
+                model3.compile(optimizer='adam', 
                               loss=lossType,
                               metrics=['accuracy'])
 

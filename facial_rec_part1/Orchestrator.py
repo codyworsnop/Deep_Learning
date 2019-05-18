@@ -3,6 +3,8 @@ import numpy as np
 from ImageDataGenerator import DataGenerator
 from DataReader import DataReader
 from ModelEngine import ModelEngine
+from Proxy import Proxy as LogProxy
+
 import ModelSettings as settings
 from tensorflow import keras
 
@@ -10,9 +12,8 @@ from tensorflow import keras
 weight_checkpoint_path = "celeba_weights/weights.ckpt"
 
 #read kdef / celeb a
-reader = DataReader() 
-modelEngine = ModelEngine()
-
+reader = LogProxy(DataReader())
+modelEngine = LogProxy(ModelEngine())
 
 #create new model 
 model = modelEngine.CreateModel(output_dimension=40, input_dimension=(218, 178, 3), lossType=keras.losses.binary_crossentropy)
@@ -34,11 +35,9 @@ if (not reader.weights_exist(weight_checkpoint_path)):
 (kdef_partition, kdef_labels) = reader.read_kdef()
 
 #kdef generators
-training_generator = DataGenerator(kdef_partition['train'], kdef_labels, **settings.celeba_params)
-validation_generator = DataGenerator(kdef_partition['validation'], kdef_labels, **settings.kdef_params)
+training_generator = LogProxy(DataGenerator(kdef_partition['train'], kdef_labels, **settings.celeba_params))
+validation_generator = LogProxy(DataGenerator(kdef_partition['validation'], kdef_labels, **settings.kdef_params))
 
-kdef_model = modelEngine.new_from_existing(model, )
-
-
+kdef_model = modelEngine.new_from_existing(model, weight_checkpoint_path, 3, keras.losses.mean_squared_error, keras.activations.relu)
 
 
