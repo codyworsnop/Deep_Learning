@@ -7,9 +7,10 @@ from Proxy import Proxy as LogProxy
 
 import ModelSettings as settings
 from tensorflow import keras
+import tensorflow as tf
 
-#constants - wow it's like 135
-weight_checkpoint_path = "celeba_weights/weights.ckpt"
+#constants
+weight_checkpoint_path = "weights.hdf5"
 
 #read kdef / celeb a
 reader = LogProxy(DataReader())
@@ -22,11 +23,12 @@ model = modelEngine.CreateModel(output_dimension=40, input_dimension=(218, 178, 
 if (not reader.weights_exist(weight_checkpoint_path)):
 
     #read celeb_a
-    (celeba_partition, celeba_labels) = reader.read_kdef()
+    (celeba_partition, celeba_labels) = reader.read_celeb_a()
 
     #celeb a generators
-    celeba_training_generator = DataGenerator(celeba_partition['train'], celeba_labels, **settings.celeba_params)
-    celeba_validation_generator = DataGenerator(celeba_partition['validation'], celeba_labels, **settings.kdef_params)
+    #[:int(len(celeba_partition['train']) * .10)]
+    celeba_training_generator = DataGenerator(celeba_partition['train'][:int(len(celeba_partition['train']) * .01)], celeba_labels, **settings.celeba_params)
+    celeba_validation_generator = DataGenerator(celeba_partition['validation'], celeba_labels, **settings.celeba_params)
 
     #train model
     modelEngine.fit_with_save(model, celeba_training_generator, None, checkpointPath=weight_checkpoint_path)
@@ -35,9 +37,12 @@ if (not reader.weights_exist(weight_checkpoint_path)):
 (kdef_partition, kdef_labels) = reader.read_kdef()
 
 #kdef generators
-training_generator = LogProxy(DataGenerator(kdef_partition['train'], kdef_labels, **settings.celeba_params))
-validation_generator = LogProxy(DataGenerator(kdef_partition['validation'], kdef_labels, **settings.kdef_params))
+training_generator = DataGenerator(kdef_partition['train'], kdef_labels, **settings.kdef_params)
+validation_generator = DataGenerator(kdef_partition['validation'], kdef_labels, **settings.kdef_params)
 
-kdef_model = modelEngine.new_from_existing(model, weight_checkpoint_path, 3, keras.losses.mean_squared_error, keras.activations.relu)
+kdef_model = modelEngine.new_from_existing(model, weight_checkpoint_path, 3, keras.losses.mean_squared_error, keras.activations.sigmoid)
+kdef_model.fit_generator(generator=training_generator,
+                    validation_data=validation_generator,
+                    epochs=1)
 
 

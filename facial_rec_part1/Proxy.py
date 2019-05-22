@@ -1,6 +1,6 @@
 from Logger import Logger
 
-# The purpose of this proxy is to allow for an dynamic proxy interceptor to catch method calls between the Orchestrator and 
+# The purpose of this proxy is to allow for a dynamic proxy interception of any generic class to catch method calls between the Orchestrator and 
 # supporting classes. This allows for run-time logging without explicitly calling the logging class, along with other cool 
 # overrides that will allow for changing parameters to fit that of passed models dynamically at run-time if needed.
 #see https://stackoverflow.com/questions/1466676/create-a-wrapper-class-to-call-a-pre-and-post-function-around-existing-functions

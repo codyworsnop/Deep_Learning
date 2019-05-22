@@ -13,11 +13,21 @@ class Logger():
         self.LogDirectory = logDirectory
         self.AppendDateTime = appendDateTime
 
-        if (appendDateTime):
-            self.LogFileName = logFileName + '-' + datetime.now().strftime("%m-%d-%Y-%H:%M:%S")
-
         if (not os.path.isdir(LogDirectory)):
             os.mkdir(LogDirectory)
+        
+        if (os.path.exists(logDirectory + logFileName)):
+            self.LogFileName = logFileName
+
+        elif (appendDateTime):
+
+            f = open(LogDirectory + logFileName, 'a+')
+            f.write("Log file creation" + '\n')
+            f.close()
+
+            self.LogFileName = logFileName + '-' + \
+                datetime.now().strftime("%m-%d-%Y-%H:%M:%S")
+
 
     def WriteToLog(self, message):
 

@@ -41,7 +41,7 @@ class DataReader():
 
             labels[imagePath] = float(trustworthiness), float(dominance), float(attractiveness)
 
-        return ({ 'train' : images, 'validation' : images }, labels)
+        return ({ 'train' : images[:int(len(images) * 0.70)], 'validation' : images[int(len(images) * .71) : int(len(images) * .90)] }, labels)
 
     def read_celeb_a(self):
 
@@ -78,6 +78,5 @@ class DataReader():
         return ({ 'train' : images[:int(len(images) * .70)], 'validation': images[int(len(images) * .71) : int(len(images) * .90)] }, labels_dict)
 
     def weights_exist(self, file_path):
-        path_dir = file_path.rsplit('/', 1)[0]
-        return os.path.isdir(path_dir)
+        return os.path.exists(file_path)
 
