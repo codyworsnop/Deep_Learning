@@ -4,14 +4,15 @@ import cv2
 
 class DataGenerator(keras.utils.Sequence):
 
-    def __init__(self, image_names, labels, dimension, batch_size=32, n_channels=3, n_classes=10, shuffle=True):
-        self.dimension = dimension
-        self.batch_size = batch_size
+    def __init__(self, image_names, labels, modelSettings):
+        self.dimension = modelSettings['dimension'] 
+        self.batch_size = modelSettings['batch_size']
         self.labels = labels
         self.image_names = image_names
-        self.n_channels = n_channels
-        self.n_classes = n_classes
-        self.shuffle = shuffle
+        self.n_channels = modelSettings['n_channels']
+        self.n_classes = modelSettings['n_classes']
+        self.shuffle = modelSettings['shuffle']
+        self.labelDataType = modelSettings['labelDataType']
         self.on_epoch_end()
 
 
@@ -24,21 +25,20 @@ class DataGenerator(keras.utils.Sequence):
     def __data_generation(self, image_names):
 
         # Initialization
-        X = np.empty((self.batch_size, *self.dimension, self.n_channels))
-        y = np.empty((self.batch_size, self.n_classes), dtype=bool)
+        X = np.empty((self.batch_size, *self.dimension, self.n_channels), dtype=np.uint8)
+        y = np.empty((self.batch_size, self.n_classes), dtype=self.labelDataType)
 
         # Generate data
         for index, image_name in enumerate(image_names):
 
             image = cv2.imread(image_name, cv2.IMREAD_COLOR)
-
-            X[index,] = np.resize(image, (self.dimension[0], self.dimension[1], self.n_channels))
+            X[index] = image#np.resize(image, (self.dimension[0], self.dimension[1], self.n_channels))
             y[index] = self.labels[image_name]
 
         return X, y
 
     def __len__(self):
-        
+
         'Denotes the number of batches per epoch'
         return int(np.floor(len(self.image_names) / self.batch_size))
 

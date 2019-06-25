@@ -4,11 +4,16 @@ import numpy as np
 import glob
 import os
 
+from Logger import Logger
+
 classes = { 'T':0, 'D':1, 'A':2 }
 number_of_Classes = 3 
 BaseDirectory = os.getcwd() 
 
 class DataReader():
+
+    def __init__(self):
+        self.Logger = Logger('./logs/', 'log')
 
     def find(self, name, path):
         for root, directory, files in os.walk(path):
@@ -35,8 +40,11 @@ class DataReader():
             #split the csv
             imageName, _, _, _, _, trustworthiness, dominance, attractiveness = line.rstrip('\n').split(',')
             imageName = imageName.upper()
+            imagePath, _ = self.find(imageName, BaseDirectory)
 
-            imagePath, _ = self.find(imageName, BaseDirectory + '/KDEF')
+            if (imagePath == None):
+                self.Logger.Error("The image path was None while reading kdef data")
+
             images.append(imagePath)
 
             labels[imagePath] = float(trustworthiness), float(dominance), float(attractiveness)
