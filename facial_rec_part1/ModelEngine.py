@@ -25,27 +25,30 @@ class ModelEngine():
                         tf.keras.layers.Dense(1024, activation=tf.nn.relu),
                         tf.keras.layers.Dense(modelSettings['n_classes'], activation=modelSettings['output_activation'])])
 
-                metrics = Metrics()
-
+                model.summary()
                 model.compile(tf.keras.optimizers.Adam(lr=modelSettings['learningRate']), 
                               loss=modelSettings['lossType'],
-                              metrics=['accuracy', metrics.trust, metrics.dom, metrics.attr])
+                              metrics=['accuracy'])
 
                 return model
 
         def fit_with_save(self, model, training_generator, validation_generator, numberOfEpochs=1, checkpointPath="weights.h5", saveWeightsOnly=True):
 
-                tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir='./logs', 
-                                                                      histogram_freq=0, 
-                                                                      batch_size=32, 
-                                                                      write_graph=True, 
-                                                                      write_grads=True, 
-                                                                      write_images=False)
+               # tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir='./logs', 
+               #                                                       histogram_freq=0, 
+               #                                                       batch_size=32, 
+               #                                                       write_graph=True, 
+               #                                                       write_grads=True, 
+               #                                                       write_images=False)
+               
+                callbackMetrics = Metrics(validation_generator)
 
                 model.fit_generator(generator=training_generator,
-                    validation_data=validation_generator,
-                    epochs=numberOfEpochs)
-                    callbacks=[tensorboard_callback])
+                                    validation_data=validation_generator,
+                                    epochs=numberOfEpochs,
+                                    callbacks=[callbackMetrics],
+                                    workers=6,
+                                    use_multiprocessing=False)
 
                 model.save_weights(checkpointPath)
 
@@ -67,6 +70,6 @@ class ModelEngine():
 
                 model3.compile(tf.keras.optimizers.Adam(lr=learningRate),
                               loss=lossType,
-                              metrics=metrics)
+                              metrics=['accuracy'])
 
                 return model3 

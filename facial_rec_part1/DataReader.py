@@ -87,4 +87,3 @@ class DataReader():
 
     def weights_exist(self, file_path):
         return os.path.exists(file_path)
-

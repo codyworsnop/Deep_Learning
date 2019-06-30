@@ -32,8 +32,10 @@ class DataGenerator(keras.utils.Sequence):
         for index, image_name in enumerate(image_names):
 
             image = cv2.imread(image_name, cv2.IMREAD_COLOR)
-            X[index] = image#np.resize(image, (self.dimension[0], self.dimension[1], self.n_channels))
-            y[index] = self.labels[image_name]
+
+            if (image is not None):
+                X[index] = np.resize(image, (self.dimension[0], self.dimension[1], self.n_channels))
+                y[index] = self.labels[image_name]
 
         return X, y
 
@@ -54,4 +56,10 @@ class DataGenerator(keras.utils.Sequence):
         # Generate data
         X, y = self.__data_generation(image_names_temp)
 
+    #    self.ShowImage(X[0])
         return X, y
+
+
+    def ShowImage(self, image):
+        cv2.imshow('image', image)
+        cv2.waitKey(0)

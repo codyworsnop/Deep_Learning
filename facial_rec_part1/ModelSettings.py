@@ -2,7 +2,7 @@
 from tensorflow import keras
 
 kdef_params = { 
-                'dimension': (762, 562),# (218,178),
+                'dimension': (218, 178),
                 'batch_size': 8, 
                 'n_classes': 3,
                 'n_channels': 3,
