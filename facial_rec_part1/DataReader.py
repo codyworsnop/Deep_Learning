@@ -43,8 +43,9 @@ class DataReader():
             imagePath, _ = self.find(imageName, BaseDirectory)
 
             if (imagePath == None):
-                self.Logger.Error("The image path was None while reading kdef data")
-
+                self.Logger.Error("The image path was None while reading kdef data: " + str(imageName))
+                continue
+            
             images.append(imagePath)
 
             labels[imagePath] = float(trustworthiness), float(dominance), float(attractiveness)

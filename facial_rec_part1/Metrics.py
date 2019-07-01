@@ -5,10 +5,12 @@ trust_predictions = []
 
 class Metrics(keras.callbacks.Callback):
 
-    def __init__(self, val_data, batch_size = 8):
+    def __init__(self, val_data, modelSettings):
         super().__init__()
         self.validation_data = val_data
-        self.batch_size = batch_size
+        self.batch_size = modelSettings['batch_size']
+        self.labelDataType = modelSettings['labelDataType']
+        self.n_classes = modelSettings['n_classes']
 
     def on_train_begin(self, logs={}):
         print(self.validation_data)
@@ -18,26 +20,25 @@ class Metrics(keras.callbacks.Callback):
         
     def on_epoch_end(self, epoch, logs={}):
         batches = len(self.validation_data)
-        total = batches * self.batch_size
-        
-        val_pred = np.zeros((total,1))
-        val_true = np.zeros((total))
-        X = np.empty((self.batch_size, *self.dimension, self.n_channels), dtype=np.uint8)
-        y = np.empty((self.batch_size, self.n_classes), dtype=self.labelDataType)
-        
+        trust_diff_sum = 0
+      
         for batch in range(batches):
-            xVal, yVal = self.validation_data.__getitem__(batch)
-            val_pred[batch * self.batch_size : (batch+1) * self.batch_size] = np.asarray(self.model.predict(xVal)).round()
-            val_true[batch * self.batch_size : (batch+1) * self.batch_size] = yVal
-            
-        val_pred = np.squeeze(val_pred)
-     #   _val_f1 = f1_score(val_true, val_pred)
-     #   _val_precision = precision_score(val_true, val_pred)
-     #   _val_recall = recall_score(val_true, val_pred)
-        
-      #  self.val_f1s.append(_val_f1)
-      #  self.val_recalls.append(_val_recall)
-      #  self.val_precisions.append(_val_precision)
+
+            print ("validating kdef accuracy. Batch " + str(batch) + " of " + str(batches))
+
+            x_val, y_val = self.validation_data.__getitem__(batch)
+            pred = self.model.predict(x_val)
+
+            print ("yval: " + str(y_val[0]))
+            print ("pred: " + str(pred[0]))
+            diff = np.abs(np.subtract(np.abs(y_val), np.abs(pred)))
+            trust_diff_sum = np.sum(diff, axis=0)
+
+        mean = trust_diff_sum / batches
+
+        print ('\nTrust mean diff: ' + str(mean[0]))
+        print ('Dominance mean diff: ' + str(mean[1]))
+        print ('Attractiveness mean diff: ' + str(mean[2]))
      
         
         return

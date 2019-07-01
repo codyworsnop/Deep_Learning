@@ -2,7 +2,6 @@ import numpy as np
 from ImageDataGenerator import DataGenerator
 from DataReader import DataReader
 import tensorflow as tf 
-from Metrics import Metrics
 
 class ModelEngine():
               
@@ -32,21 +31,12 @@ class ModelEngine():
 
                 return model
 
-        def fit_with_save(self, model, training_generator, validation_generator, numberOfEpochs=1, checkpointPath="weights.h5", saveWeightsOnly=True):
-
-               # tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir='./logs', 
-               #                                                       histogram_freq=0, 
-               #                                                       batch_size=32, 
-               #                                                       write_graph=True, 
-               #                                                       write_grads=True, 
-               #                                                       write_images=False)
-               
-                callbackMetrics = Metrics(validation_generator)
+        def fit_with_save(self, model, training_generator, validation_generator, modelSettings, numberOfEpochs=1, callbacks=[], checkpointPath="weights.h5", saveWeightsOnly=True):
 
                 model.fit_generator(generator=training_generator,
                                     validation_data=validation_generator,
                                     epochs=numberOfEpochs,
-                                    callbacks=[callbackMetrics],
+                                    callbacks=callbacks,
                                     workers=6,
                                     use_multiprocessing=False)
 
