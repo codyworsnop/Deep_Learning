@@ -40,7 +40,7 @@ class DataReader():
             #split the csv
             imageName, _, _, _, _, trustworthiness, dominance, attractiveness = line.rstrip('\n').split(',')
             imageName = imageName.upper()
-            imagePath, _ = self.find(imageName, BaseDirectory)
+            imagePath, _ = self.find(imageName, BaseDirectory + '/KDEF/')
 
             if (imagePath == None):
                 self.Logger.Error("The image path was None while reading kdef data: " + str(imageName))

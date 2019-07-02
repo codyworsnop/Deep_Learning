@@ -41,7 +41,7 @@ if (not reader.weights_exist(weight_checkpoint_path)):
     celeba_validation_generator = DataGenerator(celeba_partition['validation'], celeba_labels, settings.celeba_params)
 
     #train model
-    modelEngine.fit_with_save(model, celeba_training_generator, celeba_validation_generator, settings.celeba_params, numberOfEpochs=1, checkpointPath=weight_checkpoint_path)
+    modelEngine.fit_with_save(model, celeba_training_generator, celeba_validation_generator, settings.celeba_params)
 
 #read kdef
 (kdef_partition, kdef_labels) = reader.read_kdef()
@@ -52,8 +52,8 @@ validation_generator = DataGenerator(kdef_partition['validation'], kdef_labels, 
 
 kdef_metrics = Metrics(validation_generator, settings.kdef_params)
 
-kdef_model = modelEngine.new_from_existing(model, weight_checkpoint_path, 3, keras.losses.mean_squared_error, None, learningRate=0.00001)
-modelEngine.fit_with_save(kdef_model, training_generator, validation_generator, settings.kdef_params, numberOfEpochs=100, callbacks=[kdef_metrics], checkpointPath="./kdef_weights.h5")
+kdef_model = modelEngine.new_from_existing(model, settings.kdef_params, weight_checkpoint_path)
+modelEngine.fit_with_save(kdef_model, training_generator, validation_generator, settings.kdef_params, callbacks=[kdef_metrics])
 
 #test model on kdef data, lower learning rate with adam, 10e-5 learning rate, accuracy write own 
 

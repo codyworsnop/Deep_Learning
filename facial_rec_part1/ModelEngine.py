@@ -31,18 +31,18 @@ class ModelEngine():
 
                 return model
 
-        def fit_with_save(self, model, training_generator, validation_generator, modelSettings, numberOfEpochs=1, callbacks=[], checkpointPath="weights.h5", saveWeightsOnly=True):
+        def fit_with_save(self, model, training_generator, validation_generator, modelSettings, callbacks=[]):
 
                 model.fit_generator(generator=training_generator,
                                     validation_data=validation_generator,
-                                    epochs=numberOfEpochs,
+                                    epochs=modelSettings['number_of_epochs'],
                                     callbacks=callbacks,
                                     workers=6,
                                     use_multiprocessing=False)
 
-                model.save_weights(checkpointPath)
+                model.save_weights(modelSettings['weight_path'])
 
-        def new_from_existing(self, old_model, weights_path, num_classes, lossType, activationType, learningRate=0.001, metrics=['accuracy']):
+        def new_from_existing(self, old_model, modelSettings, weights_path):
 
                 old_model.summary()
                 layers = old_model.layers[-4].output 
@@ -53,13 +53,13 @@ class ModelEngine():
                 second_layers = model2.layers[-1].output
                 
                 second_layers = tf.keras.layers.Flatten()(second_layers) 
-                second_layers = tf.keras.layers.Dense(num_classes, activation=activationType)(second_layers)
+                second_layers = tf.keras.layers.Dense(modelSettings['n_classes'], activation=modelSettings['output_activation'])(second_layers)
 
                 model3 = tf.keras.Model(inputs=model2.get_input_at(0), outputs=[second_layers])
                 model3.summary()
 
-                model3.compile(tf.keras.optimizers.Adam(lr=learningRate),
-                              loss=lossType,
+                model3.compile(tf.keras.optimizers.Adam(lr=modelSettings['learningRate']),
+                              loss=modelSettings['lossType'],
                               metrics=['accuracy'])
 
                 return model3 

@@ -13,6 +13,8 @@ class DataGenerator(keras.utils.Sequence):
         self.n_classes = modelSettings['n_classes']
         self.shuffle = modelSettings['shuffle']
         self.labelDataType = modelSettings['labelDataType']
+        self.weight_path = modelSettings['weight_path']
+        self.num_epochs = modelSettings['number_of_epochs']
         self.on_epoch_end()
 
 
