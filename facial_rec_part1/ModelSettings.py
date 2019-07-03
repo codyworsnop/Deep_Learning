@@ -9,10 +9,10 @@ kdef_params = {
                 'shuffle': True,
                 'labelDataType': float,
                 'lossType': keras.losses.mean_squared_error,
-                'learningRate': 0.001, 
+                'learningRate': 0.0005, 
                 'output_activation': None,
                 'weight_path': "./weights.h5",
-                'number_of_epochs': 10,
+                'number_of_epochs': 100,
                 }
 
 celeba_params = { 
@@ -26,5 +26,5 @@ celeba_params = {
                     'learningRate': 0.001, 
                     'output_activation': keras.activations.sigmoid,
                     'weight_path': "./weights.h5",
-                    'number_of_epochs': 1,
+                    'number_of_epochs': 200,
                 }

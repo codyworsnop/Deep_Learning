@@ -13,47 +13,46 @@ import tensorflow as tf
 from Metrics import Metrics
 import cv2
 
+class Orchestrator():
+    
+    def __init__(self):
+        self.reader = LogProxy(DataReader())
+        self.modelEngine = ModelEngine()
+
+        self.weight_checkpoint_path = "./weights.h5"
+
+    def SetupAndTrain(self, model, features, labels, settings, shouldGenerateNew = False): 
+
+            callbacks = []
+
+            #celeb a generators
+            #[:int(len(celeba_partition['train']) * .10)]
+            training_gen = DataGenerator(features['train'], labels, settings)
+            validation_gen = DataGenerator(features['validation'], labels, settings)
+
+            #train model
+            if (shouldGenerateNew):
+                callbacks = [Metrics(validation_gen, settings)]
+                model = self.modelEngine.new_from_existing(model, settings)
+
+            self.modelEngine.fit_with_save(model, training_gen, validation_gen, settings, callbacks)
+
+    def Run(self):
+
+        #create new model 
+        celeb_a_model = self.modelEngine.CreateModel(settings.celeba_params)
+
+         #train celeb_a if no weights exist for it 
+        if (not self.reader.weights_exist(self.weight_checkpoint_path)):
+
+            #train celeb_a
+            (celeba_partition, celeba_labels) = self.reader.read_celeb_a()
+            self.SetupAndTrain(celeb_a_model, celeba_partition, celeba_labels, settings.celeba_params)
+
+        #train kdef
+        (kdef_partition, kdef_labels) = self.reader.read_kdef()
+        self.SetupAndTrain(celeb_a_model, kdef_partition, kdef_labels, settings.kdef_params, True)
 
 
-tf.enable_eager_execution()
-
-#constants
-weight_checkpoint_path = "./weights.h5"
-
-Logger = Logger('./logs/', 'log')
-
-#read kdef / celeb a
-reader = LogProxy(DataReader())
-modelEngine = ModelEngine()
-
-#create new model 
-model = modelEngine.CreateModel(settings.celeba_params)
-
-#train celeb_a if no weights exist for it 
-if (not reader.weights_exist(weight_checkpoint_path)):
-
-    #read celeb_a
-    (celeba_partition, celeba_labels) = reader.read_celeb_a()
-
-    #celeb a generators
-    #[:int(len(celeba_partition['train']) * .10)]
-    celeba_training_generator = DataGenerator(celeba_partition['train'], celeba_labels, settings.celeba_params)
-    celeba_validation_generator = DataGenerator(celeba_partition['validation'], celeba_labels, settings.celeba_params)
-
-    #train model
-    modelEngine.fit_with_save(model, celeba_training_generator, celeba_validation_generator, settings.celeba_params)
-
-#read kdef
-(kdef_partition, kdef_labels) = reader.read_kdef()
-
-#kdef generators
-training_generator = DataGenerator(kdef_partition['train'], kdef_labels, settings.kdef_params)
-validation_generator = DataGenerator(kdef_partition['validation'], kdef_labels, settings.kdef_params)
-
-kdef_metrics = Metrics(validation_generator, settings.kdef_params)
-
-kdef_model = modelEngine.new_from_existing(model, settings.kdef_params, weight_checkpoint_path)
-modelEngine.fit_with_save(kdef_model, training_generator, validation_generator, settings.kdef_params, callbacks=[kdef_metrics])
-
-#test model on kdef data, lower learning rate with adam, 10e-5 learning rate, accuracy write own 
-
+orchestrator = Orchestrator()
+orchestrator.Run()

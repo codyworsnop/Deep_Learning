@@ -2,6 +2,7 @@ import numpy as np
 from ImageDataGenerator import DataGenerator
 from DataReader import DataReader
 import tensorflow as tf 
+import multiprocessing
 
 class ModelEngine():
               
@@ -37,19 +38,19 @@ class ModelEngine():
                                     validation_data=validation_generator,
                                     epochs=modelSettings['number_of_epochs'],
                                     callbacks=callbacks,
-                                    workers=6,
+                                    workers=multiprocessing.cpu_count(),
                                     use_multiprocessing=False)
 
                 model.save_weights(modelSettings['weight_path'])
 
-        def new_from_existing(self, old_model, modelSettings, weights_path):
+        def new_from_existing(self, old_model, modelSettings):
 
                 old_model.summary()
                 layers = old_model.layers[-4].output 
                 model2 = tf.keras.Model(inputs=old_model.get_input_at(0), outputs=[layers])
                 model2.summary()
                 
-                model2.load_weights(weights_path, by_name=True)
+                model2.load_weights(modelSettings['weight_path'], by_name=True)
                 second_layers = model2.layers[-1].output
                 
                 second_layers = tf.keras.layers.Flatten()(second_layers) 
