@@ -6,8 +6,10 @@ from ModelEngine import ModelEngine
 from Proxy import Proxy as LogProxy
 from Logger import Logger
 from Metrics import Metrics
+from DataAnalytics import DataAnalytics
 
 import ModelSettings as settings
+
 from tensorflow import keras
 import tensorflow as tf
 from Metrics import Metrics
@@ -54,5 +56,18 @@ class Orchestrator():
         self.SetupAndTrain(celeb_a_model, kdef_partition, kdef_labels, settings.kdef_params, True)
 
 
-orchestrator = Orchestrator()
-orchestrator.Run()
+reader = DataReader()
+(kdef_partition, kdef_labels) = reader.read_kdef()
+
+flattened_kdef = []
+values = kdef_labels.values()
+for value in values:
+    for item in value:
+        flattened_kdef.append(item)
+
+dataAnalytics = DataAnalytics(7)
+mean, minVal, maxVal, distribution = dataAnalytics.RunAll(flattened_kdef)
+
+a = 3
+#orchestrator = Orchestrator()
+#orchestrator.Run()
