@@ -1,0 +1,1153 @@
+﻿image (KDEF name),"Gender (0 = female, 1 = male)",Identity,Emotion,Viewpoint,Trustworthiness,Dominance,Attractiveness
+AF01ANHR.jpg,0,F01,Anger,Three quarters,2.56,5.06,3.63
+AF01ANFR.jpg,0,F01,Anger,Full profile,3.31,4.69,3.56
+AF01ANS.jpg,0,F01,Anger,Frontal,2.69,4.75,3.5
+AF01DIHR.jpg,0,F01,Disgust,Three quarters,3.56,3.88,3.13
+AF01DIFR.jpg,0,F01,Disgust,Full profile,3.31,3.69,2.19
+AF01DIS.jpg,0,F01,Disgust,Frontal,3.75,3.94,3
+AF01AFHR.jpg,0,F01,Fear,Three quarters,4,3.13,3.13
+AF01AFFR.jpg,0,F01,Fear,Full profile,3.56,2.69,3.44
+AF01AFS.jpg,0,F01,Fear,Frontal,3.75,2.31,3.5
+AF01HAHR.jpg,0,F01,Happy,Three quarters,5.38,2.44,4.44
+AF01HAFR.jpg,0,F01,Happy,Full profile,4.88,2.44,3.81
+AF01HAS.jpg,0,F01,Happy,Frontal,6.25,2.19,5.19
+AF01NEHR.jpg,0,F01,Neutral,Three quarters,4.44,4.5,4.56
+AF01NEFR.jpg,0,F01,Neutral,Full profile,4.06,4.13,3.13
+AF01NES.jpg,0,F01,Neutral,Frontal,4.13,3.88,4.5
+AF01SAHR.jpg,0,F01,Sad,Three quarters,3.88,2.44,3.25
+AF01SAFR.jpg,0,F01,Sad,Full profile,3.88,2.38,2.69
+AF01SAS.jpg,0,F01,Sad,Frontal,3.81,2.25,3.25
+AF02ANHL.jpg,0,F02,Anger,Three quarters,3.06,3.81,3
+AF02ANFL.jpg,0,F02,Anger,Full profile,2.88,4.38,2.75
+AF02ANS.jpg,0,F02,Anger,Frontal,2.56,4,2.88
+AF02DIHL.jpg,0,F02,Disgust,Three quarters,2.69,2.75,2.56
+AF02DIFL.jpg,0,F02,Disgust,Full profile,3.44,2.94,2.56
+AF02DIS.jpg,0,F02,Disgust,Frontal,2.94,2.69,2.31
+AF02AFHL.jpg,0,F02,Fear,Three quarters,3.06,2.75,3.69
+AF02AFFL.jpg,0,F02,Fear,Full profile,3.56,2.31,3.13
+AF02AFS.jpg,0,F02,Fear,Frontal,3.56,2.63,3.63
+AF02HAHL.jpg,0,F02,Happy,Three quarters,5.56,2.06,4.44
+AF02HAFL.jpg,0,F02,Happy,Full profile,5.25,2.13,3.56
+AF02HAS.jpg,0,F02,Happy,Frontal,6,1.81,4.81
+AF02NEHL.jpg,0,F02,Neutral,Three quarters,3.75,3.88,4.44
+AF02NEFL.jpg,0,F02,Neutral,Full profile,3.81,3.56,3.13
+AF02NES.jpg,0,F02,Neutral,Frontal,4,4.38,3.81
+AF02SAHL.jpg,0,F02,Sad,Three quarters,3.25,2.13,3.13
+AF02SAFL.jpg,0,F02,Sad,Full profile,3.19,2.75,2.69
+AF02SAS.jpg,0,F02,Sad,Frontal,3.44,2.31,3.56
+AF03ANHR.jpg,0,F03,Anger,Three quarters,3.06,4.69,2.44
+AF03ANFR.jpg,0,F03,Anger,Full profile,3.13,4.13,2.25
+AF03ANS.jpg,0,F03,Anger,Frontal,2.81,3.75,2.31
+AF03DIHR.jpg,0,F03,Disgust,Three quarters,2.69,3.81,2.25
+AF03DIFR.jpg,0,F03,Disgust,Full profile,3.13,3.56,1.94
+AF03DIS.jpg,0,F03,Disgust,Frontal,2.94,4.13,1.81
+AF03AFHR.jpg,0,F03,Fear,Three quarters,3.19,3.19,2.44
+AF03AFFR.jpg,0,F03,Fear,Full profile,3.75,3.06,2.06
+AF03AFS.jpg,0,F03,Fear,Frontal,3.44,2.69,2.06
+AF03HAHR.jpg,0,F03,Happy,Three quarters,4.5,2.75,3.25
+AF03HAFR.jpg,0,F03,Happy,Full profile,4.75,2.75,3.25
+AF03HAS.jpg,0,F03,Happy,Frontal,4.75,2.69,3.38
+AF03NEHR.jpg,0,F03,Neutral,Three quarters,3.81,4.5,3.06
+AF03NEFR.jpg,0,F03,Neutral,Full profile,3.5,3.88,2.56
+AF03NES.jpg,0,F03,Neutral,Frontal,4.19,4.5,3.06
+AF03SAHR.jpg,0,F03,Sad,Three quarters,3.63,2.75,2.06
+AF03SAFR.jpg,0,F03,Sad,Full profile,3.19,3.44,2.5
+AF03SAS.jpg,0,F03,Sad,Frontal,3.13,2.75,2.13
+AF04ANHL.jpg,0,F04,Anger,Three quarters,2.75,4.75,2.44
+AF04ANFL.jpg,0,F04,Anger,Full profile,2.88,4.06,2.06
+AF04ANS.jpg,0,F04,Anger,Frontal,2.5,5.5,2.31
+AF04DIHL.jpg,0,F04,Disgust,Three quarters,3.19,3.88,2.38
+AF04DIFL.jpg,0,F04,Disgust,Full profile,3,2.75,2
+AF04DIS.jpg,0,F04,Disgust,Frontal,2.81,3.5,2.25
+AF04AFHL.jpg,0,F04,Fear,Three quarters,3.75,3.25,2.63
+AF04AFFL.jpg,0,F04,Fear,Full profile,3.44,3.81,2.31
+AF04AFS.jpg,0,F04,Fear,Frontal,3.56,3.25,2.56
+AF04HAHL.jpg,0,F04,Happy,Three quarters,5.13,2.25,3.06
+AF04HAFL.jpg,0,F04,Happy,Full profile,4.19,2,2.63
+BF04HAS.jpg,0,F04,Happy,Frontal,5.38,2.19,3.38
+AF04NEHL.jpg,0,F04,Neutral,Three quarters,3.25,4.44,3.13
+AF04NEFL.jpg,0,F04,Neutral,Full profile,3.75,4,2.69
+AF04NES.jpg,0,F04,Neutral,Frontal,3.19,4.25,2.94
+AF04SAHL.jpg,0,F04,Sad,Three quarters,3.19,3.19,2.56
+AF04SAFL.jpg,0,F04,Sad,Full profile,3,3.38,2.06
+AF04SAS.jpg,0,F04,Sad,Frontal,3.5,2.63,3
+AF05ANHR.jpg,0,F05,Anger,Three quarters,3.06,5.13,4.06
+AF05ANFR.jpg,0,F05,Anger,Full profile,3.69,4.5,3.5
+AF05ANS.jpg,0,F05,Anger,Frontal,2.44,5.06,3.38
+AF05DIHR.jpg,0,F05,Disgust,Three quarters,3.19,3.81,3.19
+AF05DIFR.jpg,0,F05,Disgust,Full profile,3.31,4.19,3.31
+AF05DIS.jpg,0,F05,Disgust,Frontal,2.69,3.44,2.69
+AF05AFHR.jpg,0,F05,Fear,Three quarters,3.69,3.56,4.31
+AF05AFFR.jpg,0,F05,Fear,Full profile,4.19,3.06,4.5
+AF05AFS.jpg,0,F05,Fear,Frontal,3.38,4.06,3.69
+AF05HAHR.jpg,0,F05,Happy,Three quarters,5.56,2.75,4.25
+AF05HAFR.jpg,0,F05,Happy,Full profile,5.94,2.38,4.63
+AF05HAS.jpg,0,F05,Happy,Frontal,6.25,2.25,5.06
+AF05NEHR.jpg,0,F05,Neutral,Three quarters,4.75,3.19,4.38
+AF05NEFR.jpg,0,F05,Neutral,Full profile,5.13,3.31,4.25
+AF05NES.jpg,0,F05,Neutral,Frontal,4.5,3.69,4.69
+AF05SAHR.jpg,0,F05,Sad,Three quarters,3.75,2.19,4.31
+AF05SAFR.jpg,0,F05,Sad,Full profile,4.25,3.31,3.75
+AF05SAS.jpg,0,F05,Sad,Frontal,3.81,2.31,3.69
+AF06ANHL.jpg,0,F06,Anger,Three quarters,3.31,3.69,2.63
+AF06ANFL.jpg,0,F06,Anger,Full profile,3.44,4.19,2.5
+AF06ANS.jpg,0,F06,Anger,Frontal,3.38,3.31,2.5
+AF06DIHL.jpg,0,F06,Disgust,Three quarters,3.38,2.5,2.25
+AF06DIFL.jpg,0,F06,Disgust,Full profile,3.25,2,2.06
+AF06DIS.jpg,0,F06,Disgust,Frontal,3.06,1.88,1.88
+AF06AFHL.jpg,0,F06,Fear,Three quarters,3.25,1.94,2.69
+AF06AFFL.jpg,0,F06,Fear,Full profile,3.69,2.06,3
+AF06AFS.jpg,0,F06,Fear,Frontal,2.88,1.88,1.81
+AF06HAHL.jpg,0,F06,Happy,Three quarters,5.56,2.19,3.63
+AF06HAFL.jpg,0,F06,Happy,Full profile,5.5,2.81,4.06
+AF06HAS.jpg,0,F06,Happy,Frontal,5.88,2.25,4.25
+AF06NEHL.jpg,0,F06,Neutral,Three quarters,5.06,3.63,3.94
+AF06NEFL.jpg,0,F06,Neutral,Full profile,4.13,3.13,4.13
+AF06NES.jpg,0,F06,Neutral,Frontal,5.06,3.75,4.25
+AF06SAHL.jpg,0,F06,Sad,Three quarters,3.69,2.19,1.94
+AF06SAFL.jpg,0,F06,Sad,Full profile,3.75,2.19,2.88
+AF06SAS.jpg,0,F06,Sad,Frontal,3.69,1.88,2.69
+AF07ANHR.jpg,0,F07,Anger,Three quarters,2.69,4.31,3.31
+AF07ANFR.jpg,0,F07,Anger,Full profile,3.69,3.94,3.19
+AF07ANS.jpg,0,F07,Anger,Frontal,2.44,4.44,2.5
+AF07DIHR.jpg,0,F07,Disgust,Three quarters,3.31,3.5,2.75
+AF07DIFR.jpg,0,F07,Disgust,Full profile,3.44,3.5,2.81
+AF07DIS.jpg,0,F07,Disgust,Frontal,3.25,3,2.75
+AF07AFHR.jpg,0,F07,Fear,Three quarters,3.44,3.31,3.31
+AF07AFFR.jpg,0,F07,Fear,Full profile,3.56,3.31,3.06
+AF07AFS.jpg,0,F07,Fear,Frontal,3.63,2.88,3.19
+AF07HAHR.jpg,0,F07,Happy,Three quarters,5.75,2.69,4.81
+AF07HAFR.jpg,0,F07,Happy,Full profile,5.75,2.06,4.56
+AF07HAS.jpg,0,F07,Happy,Frontal,5.75,2.69,4.44
+AF07NEHR.jpg,0,F07,Neutral,Three quarters,4.5,3.63,4.63
+AF07NEFR.jpg,0,F07,Neutral,Full profile,4.69,3.88,4.44
+AF07NES.jpg,0,F07,Neutral,Frontal,4.5,3.38,4.31
+AF07SAHR.jpg,0,F07,Sad,Three quarters,4.25,2.38,3.19
+AF07SAFR.jpg,0,F07,Sad,Full profile,4,2.69,2.75
+AF07SAS.jpg,0,F07,Sad,Frontal,3.88,2,3.19
+AF09ANHL.jpg,0,F09,Anger,Three quarters,3.19,5.06,3.81
+AF09ANFL.jpg,0,F09,Anger,Full profile,3,4.69,2.88
+AF09ANS.jpg,0,F09,Anger,Frontal,2.75,4.75,3.5
+AF09DIHL.jpg,0,F09,Disgust,Three quarters,3.5,3.81,2.63
+AF09DIFL.jpg,0,F09,Disgust,Full profile,3.19,3.81,2.5
+AF09DIS.jpg,0,F09,Disgust,Frontal,2.88,3.63,2.56
+AF09AFHL.jpg,0,F09,Fear,Three quarters,4,2.63,3.5
+AF09AFFL.jpg,0,F09,Fear,Full profile,3.63,2.81,3.06
+AF09AFS.jpg,0,F09,Fear,Frontal,3.69,2.75,3.81
+AF09HAHL.jpg,0,F09,Happy,Three quarters,5.13,2.5,4.13
+AF09HAFL.jpg,0,F09,Happy,Full profile,5.38,2.31,4.19
+AF09HAS.jpg,0,F09,Happy,Frontal,5.44,2.31,5.06
+AF09NEHL.jpg,0,F09,Neutral,Three quarters,4.19,4.25,4.56
+AF09NEFL.jpg,0,F09,Neutral,Full profile,3.88,4.06,4.38
+AF09NES.jpg,0,F09,Neutral,Frontal,3.75,4.5,4.81
+AF09SAHL.jpg,0,F09,Sad,Three quarters,4,2.63,3.94
+AF09SAFL.jpg,0,F09,Sad,Full profile,3.5,3.31,3.13
+AF09SAS.jpg,0,F09,Sad,Frontal,3.81,2.19,3.69
+AF11ANHR.jpg,0,F11,Anger,Three quarters,3.5,3.81,3.63
+AF11ANFR.jpg,0,F11,Anger,Full profile,3.56,3.94,3.31
+AF11ANS.jpg,0,F11,Anger,Frontal,3.44,3.69,3.13
+AF11DIHR.jpg,0,F11,Disgust,Three quarters,3.19,2.88,2.56
+AF11DIFR.jpg,0,F11,Disgust,Full profile,3.31,3.69,2.63
+AF11DIS.jpg,0,F11,Disgust,Frontal,3.38,2.5,2.56
+AF11AFHR.jpg,0,F11,Fear,Three quarters,4.5,2.44,3.75
+AF11AFFR.jpg,0,F11,Fear,Full profile,3.38,2.38,3.13
+AF11AFS.jpg,0,F11,Fear,Frontal,4.06,2.13,3.44
+AF11HAHR.jpg,0,F11,Happy,Three quarters,5.63,2.38,4.94
+AF11HAFR.jpg,0,F11,Happy,Full profile,6.13,2.19,4.38
+AF11HAS.jpg,0,F11,Happy,Frontal,5.88,2.13,4.88
+AF11NEHR.jpg,0,F11,Neutral,Three quarters,4.63,4.13,4.63
+AF11NEFR.jpg,0,F11,Neutral,Full profile,3.94,3.38,3.69
+AF11NES.jpg,0,F11,Neutral,Frontal,3.88,4.88,4.25
+AF11SAHR.jpg,0,F11,Sad,Three quarters,4,2.38,3.06
+AF11SAFR.jpg,0,F11,Sad,Full profile,3.81,2.38,3.31
+AF11SAS.jpg,0,F11,Sad,Frontal,4.44,2.06,4
+AF12ANHL.jpg,0,F12,Anger,Three quarters,3.25,3.94,3
+AF12ANFL.jpg,0,F12,Anger,Full profile,3.25,3.81,2.56
+AF12ANS.jpg,0,F12,Anger,Frontal,3.5,4.25,2.44
+AF12DIHL.jpg,0,F12,Disgust,Three quarters,3.19,3.56,2.19
+AF12DIFL.jpg,0,F12,Disgust,Full profile,3.25,3.38,2.13
+AF12DIS.jpg,0,F12,Disgust,Frontal,2.31,3.31,2
+AF12AFHL.jpg,0,F12,Fear,Three quarters,3.75,2.56,2.69
+AF12AFFL.jpg,0,F12,Fear,Full profile,3.63,2.69,2.88
+AF12AFS.jpg,0,F12,Fear,Frontal,3.25,2.25,1.88
+BF12HAHL.jpg,0,F12,Happy,Three quarters,5,2.63,2.94
+AF12HAFL.jpg,0,F12,Happy,Full profile,5.06,2.38,3.38
+AF12HAS.jpg,0,F12,Happy,Frontal,4.63,2.81,2.69
+AF12NEHL.jpg,0,F12,Neutral,Three quarters,3.63,4.75,3.06
+AF12NEFL.jpg,0,F12,Neutral,Full profile,3.5,4.56,3.38
+AF12NES.jpg,0,F12,Neutral,Frontal,3.13,4.56,2.38
+AF12SAHL.jpg,0,F12,Sad,Three quarters,3.56,4.19,3
+AF12SAFL.jpg,0,F12,Sad,Full profile,3,3.69,2.75
+AF12SAS.jpg,0,F12,Sad,Frontal,3.13,3.69,2.5
+AF13ANHR.jpg,0,F13,Anger,Three quarters,3.38,3.88,3
+AF13ANFR.jpg,0,F13,Anger,Full profile,3.5,3.31,2.94
+AF13ANS.jpg,0,F13,Anger,Frontal,3.25,3.25,3.38
+AF13DIHR.jpg,0,F13,Disgust,Three quarters,3.75,3.38,3.94
+AF13DIFR.jpg,0,F13,Disgust,Full profile,3.31,3.56,3.06
+AF13DIS.jpg,0,F13,Disgust,Frontal,3.13,3.06,3.06
+AF13AFHR.jpg,0,F13,Fear,Three quarters,5,2.75,4.75
+AF13AFFR.jpg,0,F13,Fear,Full profile,4.38,2.38,4.06
+AF13AFS.jpg,0,F13,Fear,Frontal,4.19,1.88,4.38
+AF13HAHR.jpg,0,F13,Happy,Three quarters,6.06,2,4.94
+AF13HAFR.jpg,0,F13,Happy,Full profile,5.75,2.06,4.63
+AF13HAS.jpg,0,F13,Happy,Frontal,5.69,2.19,4.81
+AF13NEHR.jpg,0,F13,Neutral,Three quarters,5.38,3.06,5.5
+AF13NEFR.jpg,0,F13,Neutral,Full profile,4.38,3.25,5.06
+AF13NES.jpg,0,F13,Neutral,Frontal,5,3.19,5.13
+AF13SAHR.jpg,0,F13,Sad,Three quarters,4.38,2.13,4.25
+AF13SAFR.jpg,0,F13,Sad,Full profile,4.06,1.75,3.69
+AF13SAS.jpg,0,F13,Sad,Frontal,4.63,2.13,4.19
+AF14ANHL.jpg,0,F14,Anger,Three quarters,3.13,4.5,3.44
+AF14ANFL.jpg,0,F14,Anger,Full profile,3.25,4.38,3.44
+AF14ANS.jpg,0,F14,Anger,Frontal,2.63,5,2.81
+AF14DIHL.jpg,0,F14,Disgust,Three quarters,3.25,3.81,2.69
+AF14DIFL.jpg,0,F14,Disgust,Full profile,3.5,3.88,2.94
+AF14DIS.jpg,0,F14,Disgust,Frontal,2.88,2.81,2.88
+AF14AFHL.jpg,0,F14,Fear,Three quarters,3.75,2.06,2.81
+AF14AFFL.jpg,0,F14,Fear,Full profile,4,2.13,2.94
+AF14AFS.jpg,0,F14,Fear,Frontal,3.94,1.81,2.94
+AF14HAHL.jpg,0,F14,Happy,Three quarters,5.69,2.38,3.94
+AF14HAFL.jpg,0,F14,Happy,Full profile,5.5,2.25,4.25
+AF14HAS.jpg,0,F14,Happy,Frontal,5.44,2.38,3.81
+AF14NEHL.jpg,0,F14,Neutral,Three quarters,3.25,4.75,3.38
+AF14NEFL.jpg,0,F14,Neutral,Full profile,4.13,4.5,4
+AF14NES.jpg,0,F14,Neutral,Frontal,3.19,4.5,2.81
+AF14SAHL.jpg,0,F14,Sad,Three quarters,4.31,3.13,3.44
+AF14SAFL.jpg,0,F14,Sad,Full profile,3.38,3.63,3.31
+AF14SAS.jpg,0,F14,Sad,Frontal,3.81,2.5,2.81
+AF15ANHR.jpg,0,F15,Anger,Three quarters,2.75,4.63,2.81
+AF15ANFR.jpg,0,F15,Anger,Full profile,3.19,3.69,2.19
+AF15ANS.jpg,0,F15,Anger,Frontal,3,4.31,2.69
+AF15DIHR.jpg,0,F15,Disgust,Three quarters,2.81,3.75,2.5
+AF15DIFR.jpg,0,F15,Disgust,Full profile,3.69,3.69,2.31
+AF15DIS.jpg,0,F15,Disgust,Frontal,2.5,3.44,2.25
+AF15AFHR.jpg,0,F15,Fear,Three quarters,3.06,2.63,2.5
+AF15AFFR.jpg,0,F15,Fear,Full profile,3.19,2.25,2.38
+AF15AFS.jpg,0,F15,Fear,Frontal,3.13,3.19,2.63
+AF15HAHR.jpg,0,F15,Happy,Three quarters,5.25,1.88,3.75
+AF15HAFR.jpg,0,F15,Happy,Full profile,5.38,2.13,2.94
+AF15HAS.jpg,0,F15,Happy,Frontal,5.31,1.88,4.06
+AF15NEHR.jpg,0,F15,Neutral,Three quarters,4.69,3.94,4.25
+AF15NEFR.jpg,0,F15,Neutral,Full profile,3.38,3.56,3.5
+AF15NES.jpg,0,F15,Neutral,Frontal,3.63,3.5,3.44
+AF15SAHR.jpg,0,F15,Sad,Three quarters,3.38,2.69,2.94
+AF15SAFR.jpg,0,F15,Sad,Full profile,3.19,2.69,2.56
+AF15SAS.jpg,0,F15,Sad,Frontal,3.38,2.06,2.94
+AF16ANHL.jpg,0,F16,Anger,Three quarters,2.5,4.88,2
+AF16ANFL.jpg,0,F16,Anger,Full profile,2.81,4.5,1.94
+AF16ANS.jpg,0,F16,Anger,Frontal,2.56,4.69,2.06
+AF16DIHL.jpg,0,F16,Disgust,Three quarters,2.69,3.56,1.63
+AF16DIFL.jpg,0,F16,Disgust,Full profile,3.19,3.44,1.94
+AF16DIS.jpg,0,F16,Disgust,Frontal,2.5,3.63,1.69
+AF16AFHL.jpg,0,F16,Fear,Three quarters,3.25,1.94,2.63
+AF16AFFL.jpg,0,F16,Fear,Full profile,3.44,2.38,1.88
+AF16AFS.jpg,0,F16,Fear,Frontal,3.69,2.56,1.88
+AF16HAHL.jpg,0,F16,Happy,Three quarters,3.44,2.44,2.38
+AF16HAFL.jpg,0,F16,Happy,Full profile,3.69,3.06,2.44
+AF16HAS.jpg,0,F16,Happy,Frontal,4.25,2.5,2.56
+AF16NEHL.jpg,0,F16,Neutral,Three quarters,2.63,4.94,2.56
+AF16NEFL.jpg,0,F16,Neutral,Full profile,3.38,4.5,2.38
+AF16NES.jpg,0,F16,Neutral,Frontal,2.94,5,2.13
+AF16SAHL.jpg,0,F16,Sad,Three quarters,2.81,2.69,1.88
+AF16SAFL.jpg,0,F16,Sad,Full profile,3.5,2.31,2
+AF16SAS.jpg,0,F16,Sad,Frontal,3.5,2.75,2
+AF17ANHR.jpg,0,F17,Anger,Three quarters,3.19,4.75,2.75
+AF17ANFR.jpg,0,F17,Anger,Full profile,3.13,4.44,2.31
+AF17ANS.jpg,0,F17,Anger,Frontal,3.31,4.31,2.75
+AF17DIHR.jpg,0,F17,Disgust,Three quarters,3.31,2.75,1.81
+AF17DIFR.jpg,0,F17,Disgust,Full profile,2.69,2.88,1.94
+AF17DIS.jpg,0,F17,Disgust,Frontal,3.44,2.69,2
+AF17AFHR.jpg,0,F17,Fear,Three quarters,3.63,2.13,2.25
+AF17AFFR.jpg,0,F17,Fear,Full profile,3.25,2.06,2.13
+AF17AFS.jpg,0,F17,Fear,Frontal,4.44,2,3
+AF17HAHR.jpg,0,F17,Happy,Three quarters,5.81,2.19,3.94
+AF17HAFR.jpg,0,F17,Happy,Full profile,5.56,2.06,3.63
+AF17HAS.jpg,0,F17,Happy,Frontal,6.06,1.88,3.81
+AF17NEHR.jpg,0,F17,Neutral,Three quarters,4.69,3.56,3.63
+AF17NEFR.jpg,0,F17,Neutral,Full profile,3.75,3.25,3.44
+AF17NES.jpg,0,F17,Neutral,Frontal,4.06,4.63,3.94
+AF17SAHR.jpg,0,F17,Sad,Three quarters,3.44,1.88,2.25
+AF17SAFR.jpg,0,F17,Sad,Full profile,3.5,1.63,2.5
+AF17SAS.jpg,0,F17,Sad,Frontal,3.56,2,2.31
+AF19ANHL.jpg,0,F19,Anger,Three quarters,2.69,4.38,2.88
+AF19ANFL.jpg,0,F19,Anger,Full profile,3.25,4.56,3
+AF19ANS.jpg,0,F19,Anger,Frontal,3,4,3.13
+AF19DIHL.jpg,0,F19,Disgust,Three quarters,3.25,2.5,2.56
+AF19DIFL.jpg,0,F19,Disgust,Full profile,2.94,2.88,2.94
+AF19DIS.jpg,0,F19,Disgust,Frontal,2.94,3.13,2.25
+AF19AFHL.jpg,0,F19,Fear,Three quarters,4.13,2.25,3.19
+AF19AFFL.jpg,0,F19,Fear,Full profile,4.31,2.19,3.13
+AF19AFS.jpg,0,F19,Fear,Frontal,4.25,2,3.31
+AF19HAHL.jpg,0,F19,Happy,Three quarters,5.63,2,4.31
+AF19HAFL.jpg,0,F19,Happy,Full profile,5.75,2.06,4
+AF19HAS.jpg,0,F19,Happy,Frontal,6.06,1.94,4.88
+AF19NEHL.jpg,0,F19,Neutral,Three quarters,4.56,3.38,4.25
+AF19NEFL.jpg,0,F19,Neutral,Full profile,4.38,3.88,3.88
+AF19NES.jpg,0,F19,Neutral,Frontal,4.69,3.31,4.06
+AF19SAHL.jpg,0,F19,Sad,Three quarters,3.75,2,2.88
+AF19SAFL.jpg,0,F19,Sad,Full profile,4.06,2.25,3.44
+AF19SAS.jpg,0,F19,Sad,Frontal,3.88,2.06,3.25
+AF20ANHR.jpg,0,F20,Anger,Three quarters,3.31,4.44,3.5
+AF20ANFR.jpg,0,F20,Anger,Full profile,3.06,5.06,3.06
+AF20ANS.jpg,0,F20,Anger,Frontal,3.13,5.13,3.13
+AF20DIHR.jpg,0,F20,Disgust,Three quarters,3.06,3.81,3.06
+AF20DIFR.jpg,0,F20,Disgust,Full profile,3.13,3.38,2.69
+AF20DIS.jpg,0,F20,Disgust,Frontal,3.06,3.56,3.13
+AF20AFHR.jpg,0,F20,Fear,Three quarters,3.38,4.19,3.94
+AF20AFFR.jpg,0,F20,Fear,Full profile,3.94,3.31,3.13
+AF20AFS.jpg,0,F20,Fear,Frontal,3.5,2.81,4
+AF20HAHR.jpg,0,F20,Happy,Three quarters,4.94,2.13,5
+AF20HAFR.jpg,0,F20,Happy,Full profile,5.13,2.75,4.38
+AF20HAS.jpg,0,F20,Happy,Frontal,5.88,2,4.88
+AF20NEHR.jpg,0,F20,Neutral,Three quarters,3.75,4.44,4.63
+AF20NEFR.jpg,0,F20,Neutral,Full profile,3.56,4.38,3.81
+AF20NES.jpg,0,F20,Neutral,Frontal,3.81,4.63,4.63
+AF20SAHR.jpg,0,F20,Sad,Three quarters,3.81,2.31,3.69
+AF20SAFR.jpg,0,F20,Sad,Full profile,3.69,2.81,3.5
+AF20SAS.jpg,0,F20,Sad,Frontal,4.13,2.38,3.88
+AF21ANHL.jpg,0,F21,Anger,Three quarters,2.75,5.13,3.06
+AF21ANFL.jpg,0,F21,Anger,Full profile,2.88,4.81,2.38
+AF21ANS.jpg,0,F21,Anger,Frontal,2.38,5.75,2.94
+AF21DIHL.jpg,0,F21,Disgust,Three quarters,3.13,2.94,2.5
+AF21DIFL.jpg,0,F21,Disgust,Full profile,3.31,3,2.06
+AF21DIS.jpg,0,F21,Disgust,Frontal,2.63,3.44,2.69
+AF21AFHL.jpg,0,F21,Fear,Three quarters,3.69,2.31,3.13
+AF21AFFL.jpg,0,F21,Fear,Full profile,3.75,2.13,3.06
+AF21AFS.jpg,0,F21,Fear,Frontal,3.38,1.88,3.25
+AF21HAHL.jpg,0,F21,Happy,Three quarters,5.63,1.94,2.88
+AF21HAFL.jpg,0,F21,Happy,Full profile,5.5,1.94,3.5
+AF21HAS.jpg,0,F21,Happy,Frontal,5.75,1.69,3.31
+AF21NEHL.jpg,0,F21,Neutral,Three quarters,3.56,4,3.75
+AF21NEFL.jpg,0,F21,Neutral,Full profile,3.56,3.81,2.94
+AF21NES.jpg,0,F21,Neutral,Frontal,3.56,4.5,3.5
+AF21SAHL.jpg,0,F21,Sad,Three quarters,4.25,1.94,2.69
+AF21SAFL.jpg,0,F21,Sad,Full profile,3.75,1.88,2.69
+AF21SAS.jpg,0,F21,Sad,Frontal,3.38,2.31,3.19
+AF22ANHR.jpg,0,F22,Anger,Three quarters,3.5,4.5,2.88
+AF22ANFR.jpg,0,F22,Anger,Full profile,3.31,4.81,2.75
+AF22ANS.jpg,0,F22,Anger,Frontal,3.06,4.81,2.56
+AF22DIHR.jpg,0,F22,Disgust,Three quarters,3.19,3,2.56
+AF22DIFR.jpg,0,F22,Disgust,Full profile,3.13,2.75,2.31
+AF22DIS.jpg,0,F22,Disgust,Frontal,3.06,2.56,1.94
+AF22AFHR.jpg,0,F22,Fear,Three quarters,4.06,2.63,3.31
+AF22AFFR.jpg,0,F22,Fear,Full profile,4.06,2.38,2.88
+AF22AFS.jpg,0,F22,Fear,Frontal,3.88,2.06,2.63
+AF22HAHR.jpg,0,F22,Happy,Three quarters,5.44,2.5,3.5
+AF22HAFR.jpg,0,F22,Happy,Full profile,5.38,2.25,3.31
+AF22HAS.jpg,0,F22,Happy,Frontal,5.81,2.44,4
+AF22NEHR.jpg,0,F22,Neutral,Three quarters,4.44,4.25,3.63
+AF22NEFR.jpg,0,F22,Neutral,Full profile,3.5,3.69,3.19
+AF22NES.jpg,0,F22,Neutral,Frontal,3.75,3.5,3.31
+AF22SAHR.jpg,0,F22,Sad,Three quarters,4.38,1.94,3.13
+AF22SAFR.jpg,0,F22,Sad,Full profile,4.31,2.25,2.75
+AF22SAS.jpg,0,F22,Sad,Frontal,4,2,3.13
+AF23ANHL.jpg,0,F23,Anger,Three quarters,2.31,5.5,3
+AF23ANFL.jpg,0,F23,Anger,Full profile,2.5,5.38,3.19
+AF23ANS.jpg,0,F23,Anger,Frontal,2.44,5.13,2.88
+AF23DIHL.jpg,0,F23,Disgust,Three quarters,2.25,4.38,3
+AF23DIFL.jpg,0,F23,Disgust,Full profile,3.06,4.06,3
+AF23DIS.jpg,0,F23,Disgust,Frontal,2.19,4.88,2.38
+AF23AFHL.jpg,0,F23,Fear,Three quarters,3.75,3.81,3.25
+AF23AFFL.jpg,0,F23,Fear,Full profile,3.44,4.06,3.75
+AF23AFS.jpg,0,F23,Fear,Frontal,3.5,3.94,3.69
+AF23HAHL.jpg,0,F23,Happy,Three quarters,4.63,3.56,4.13
+AF23HAFL.jpg,0,F23,Happy,Full profile,4.44,3.13,4.5
+AF23HAS.jpg,0,F23,Happy,Frontal,4.69,3.44,4.88
+AF23NEHL.jpg,0,F23,Neutral,Three quarters,4,4.88,5.19
+AF23NEFL.jpg,0,F23,Neutral,Full profile,4,4.5,4.13
+AF23NES.jpg,0,F23,Neutral,Frontal,3.44,4.94,4.94
+AF23SAHL.jpg,0,F23,Sad,Three quarters,3.5,3.44,4.25
+AF23SAFL.jpg,0,F23,Sad,Full profile,3.63,3.94,3.63
+AF23SAS.jpg,0,F23,Sad,Frontal,3.88,3.69,3.31
+AF24ANHR.jpg,0,F24,Anger,Three quarters,3,4.56,2.56
+AF24ANFR.jpg,0,F24,Anger,Full profile,3.06,4.44,2.56
+AF24ANS.jpg,0,F24,Anger,Frontal,2.81,4,2.13
+AF24DIHR.jpg,0,F24,Disgust,Three quarters,2.88,3.5,2.5
+AF24DIFR.jpg,0,F24,Disgust,Full profile,3.06,3.06,2.13
+AF24DIS.jpg,0,F24,Disgust,Frontal,3,3.63,2.19
+AF24AFHR.jpg,0,F24,Fear,Three quarters,4.19,2.38,2.69
+AF24AFFR.jpg,0,F24,Fear,Full profile,3.5,2.69,2.69
+AF24AFS.jpg,0,F24,Fear,Frontal,3.19,2.5,2.75
+AF24HAHR.jpg,0,F24,Happy,Three quarters,5.5,2.06,3.75
+AF24HAFR.jpg,0,F24,Happy,Full profile,5.69,2.25,3.63
+AF24HAS.jpg,0,F24,Happy,Frontal,5.69,2.13,3.31
+AF24NEHR.jpg,0,F24,Neutral,Three quarters,4.88,2.75,3.31
+AF24NEFR.jpg,0,F24,Neutral,Full profile,3.81,3.63,3.38
+AF24NES.jpg,0,F24,Neutral,Frontal,3.88,3.19,2.75
+AF24SAHR.jpg,0,F24,Sad,Three quarters,4.06,2.5,3.38
+AF24SAFR.jpg,0,F24,Sad,Full profile,4.06,2.5,2.81
+AF24SAS.jpg,0,F24,Sad,Frontal,3.75,2.63,3
+AF25ANHL.jpg,0,F25,Anger,Three quarters,2.63,4.56,2.5
+AF25ANFL.jpg,0,F25,Anger,Full profile,3.19,4.19,3
+AF25ANS.jpg,0,F25,Anger,Frontal,2.31,4.69,2.69
+AF25DIHL.jpg,0,F25,Disgust,Three quarters,3.44,2.63,3.19
+AF25DIFL.jpg,0,F25,Disgust,Full profile,3.44,3.38,3.5
+AF25DIS.jpg,0,F25,Disgust,Frontal,3.31,2.38,3.06
+AF25AFHL.jpg,0,F25,Fear,Three quarters,3.38,2.69,3
+AF25AFFL.jpg,0,F25,Fear,Full profile,3.19,2.94,3.5
+AF25AFS.jpg,0,F25,Fear,Frontal,2.94,2.88,3.38
+AF25HAHL.jpg,0,F25,Happy,Three quarters,5.31,2.38,4.25
+AF25HAFL.jpg,0,F25,Happy,Full profile,5.56,2.13,4.5
+AF25HAS.jpg,0,F25,Happy,Frontal,6.19,2.25,4.81
+AF25NEHL.jpg,0,F25,Neutral,Three quarters,3.88,3.5,3.56
+AF25NEFL.jpg,0,F25,Neutral,Full profile,3.75,3.69,4.13
+AF25NES.jpg,0,F25,Neutral,Frontal,3.19,4.63,4.19
+AF25SAHL.jpg,0,F25,Sad,Three quarters,3.19,2.44,3.88
+AF25SAFL.jpg,0,F25,Sad,Full profile,3.63,3.25,3.63
+AF25SAS.jpg,0,F25,Sad,Frontal,3.5,3.38,3.56
+AF26ANHR.jpg,0,F26,Anger,Three quarters,3.5,4.81,3.31
+AF26ANFR.jpg,0,F26,Anger,Full profile,3.25,4.31,2.69
+AF26ANS.jpg,0,F26,Anger,Frontal,2.88,5.13,2.81
+AF26DIHR.jpg,0,F26,Disgust,Three quarters,3.44,2.63,2.75
+AF26DIFR.jpg,0,F26,Disgust,Full profile,3.5,3.44,2.88
+AF26DIS.jpg,0,F26,Disgust,Frontal,3.06,2.69,2.25
+AF26AFHR.jpg,0,F26,Fear,Three quarters,3.69,3.31,3.56
+AF26AFFR.jpg,0,F26,Fear,Full profile,3.38,3.38,3
+AF26AFS.jpg,0,F26,Fear,Frontal,3.81,2.94,3.13
+AF26HAHR.jpg,0,F26,Happy,Three quarters,5.81,1.88,4.19
+AF26HAFR.jpg,0,F26,Happy,Full profile,5,2,3.94
+AF26HAS.jpg,0,F26,Happy,Frontal,6.13,1.94,4.31
+AF26NEHR.jpg,0,F26,Neutral,Three quarters,4.94,3.69,3.75
+AF26NEFR.jpg,0,F26,Neutral,Full profile,4.56,3.81,3.31
+AF26NES.jpg,0,F26,Neutral,Frontal,4.5,4.38,3.88
+AF26SAHR.jpg,0,F26,Sad,Three quarters,3.25,2,2.94
+AF26SAFR.jpg,0,F26,Sad,Full profile,3.5,2.25,3
+AF26SAS.jpg,0,F26,Sad,Frontal,3.44,2.13,2.5
+AF27ANHL.jpg,0,F27,Anger,Three quarters,3.25,3.88,3.5
+AF27ANFL.jpg,0,F27,Anger,Full profile,3.38,4.06,2.94
+AF27ANS.jpg,0,F27,Anger,Frontal,3.69,3.94,3.5
+AF27DIHL.jpg,0,F27,Disgust,Three quarters,3.19,3.38,2.5
+AF27DIFL.jpg,0,F27,Disgust,Full profile,3.06,3.44,3.25
+AF27DIS.jpg,0,F27,Disgust,Frontal,3,3.44,2.44
+AF27AFHL.jpg,0,F27,Fear,Three quarters,4.31,2.69,3.44
+AF27AFFL.jpg,0,F27,Fear,Full profile,4.13,2.75,3.94
+AF27AFS.jpg,0,F27,Fear,Frontal,3.31,2.69,2.81
+AF27HAHL.jpg,0,F27,Happy,Three quarters,5.69,1.88,4.44
+AF27HAFL.jpg,0,F27,Happy,Full profile,5.56,1.94,3.69
+AF27HAS.jpg,0,F27,Happy,Frontal,5.94,1.81,4.25
+AF27NEHL.jpg,0,F27,Neutral,Three quarters,4.63,4,3.94
+AF27NEFL.jpg,0,F27,Neutral,Full profile,4,4.06,4.06
+AF27NES.jpg,0,F27,Neutral,Frontal,3.81,3.88,4.13
+AF27SAHL.jpg,0,F27,Sad,Three quarters,3.63,2.88,3.69
+AF27SAFL.jpg,0,F27,Sad,Full profile,3.94,3.69,3.56
+AF27SAS.jpg,0,F27,Sad,Frontal,3.63,3.38,3
+AF28ANHR.jpg,0,F28,Anger,Three quarters,2.69,4.13,2.81
+AF28ANFR.jpg,0,F28,Anger,Full profile,2.63,4.25,3.13
+AF28ANS.jpg,0,F28,Anger,Frontal,3.13,2.94,2.88
+AF28DIHR.jpg,0,F28,Disgust,Three quarters,3.63,2.88,2.88
+AF28DIFR.jpg,0,F28,Disgust,Full profile,3.69,2.88,2.94
+AF28DIS.jpg,0,F28,Disgust,Frontal,3.56,2.13,2.69
+AF28AFHR.jpg,0,F28,Fear,Three quarters,3.81,2.38,3.13
+AF28AFFR.jpg,0,F28,Fear,Full profile,3.63,2,2.81
+AF28AFS.jpg,0,F28,Fear,Frontal,3.63,1.81,2.81
+AF28HAHR.jpg,0,F28,Happy,Three quarters,5,2.38,4.44
+AF28HAFR.jpg,0,F28,Happy,Full profile,5.5,2.13,4.13
+AF28HAS.jpg,0,F28,Happy,Frontal,5.94,2.69,4.25
+AF28NEHR.jpg,0,F28,Neutral,Three quarters,4.06,4.06,3.81
+AF28NEFR.jpg,0,F28,Neutral,Full profile,3.88,4.38,4
+AF28NES.jpg,0,F28,Neutral,Frontal,3.75,4.38,3.44
+AF28SAHR.jpg,0,F28,Sad,Three quarters,3.94,2.56,3.56
+AF28SAFR.jpg,0,F28,Sad,Full profile,4.25,2.69,3.94
+AF28SAS.jpg,0,F28,Sad,Frontal,3.19,2.5,3.13
+AF29ANHL.jpg,0,F29,Anger,Three quarters,2.5,4.88,2.88
+AF29ANFL.jpg,0,F29,Anger,Full profile,3.13,4.38,2.75
+AF29ANS.jpg,0,F29,Anger,Frontal,3.13,4.81,2.63
+AF29DIHL.jpg,0,F29,Disgust,Three quarters,3.56,3,3.25
+AF29DIFL.jpg,0,F29,Disgust,Full profile,3.5,2.63,2.69
+AF29DIS.jpg,0,F29,Disgust,Frontal,3.56,3.31,3.06
+AF29AFHL.jpg,0,F29,Fear,Three quarters,3.88,2.19,3.5
+AF29AFFL.jpg,0,F29,Fear,Full profile,3.5,2.06,2.5
+AF29AFS.jpg,0,F29,Fear,Frontal,3.63,2.19,3.06
+AF29HAHL.jpg,0,F29,Happy,Three quarters,6.06,2,4.56
+AF29HAFL.jpg,0,F29,Happy,Full profile,5.63,2.25,4.19
+AF29HAS.jpg,0,F29,Happy,Frontal,5.75,2.25,4.25
+AF29NEHL.jpg,0,F29,Neutral,Three quarters,4.5,4.13,4.06
+AF29NEFL.jpg,0,F29,Neutral,Full profile,4.56,3.44,4.25
+AF29NES.jpg,0,F29,Neutral,Frontal,4.31,4.13,4.63
+AF29SAHL.jpg,0,F29,Sad,Three quarters,3.56,2.5,3.5
+AF29SAFL.jpg,0,F29,Sad,Full profile,3.63,3,3.25
+AF29SAS.jpg,0,F29,Sad,Frontal,3.81,2.38,3
+AF30ANHR.jpg,0,F30,Anger,Three quarters,3.19,4.56,2.94
+AF30ANFR.jpg,0,F30,Anger,Full profile,3.06,4.19,3.13
+AF30ANS.jpg,0,F30,Anger,Frontal,2.69,4.31,2.94
+AF30DIHR.jpg,0,F30,Disgust,Three quarters,3.19,3.69,2.81
+AF30DIFR.jpg,0,F30,Disgust,Full profile,3.38,3.69,3.56
+AF30DIS.jpg,0,F30,Disgust,Frontal,3,3.25,3.06
+AF30AFHR.jpg,0,F30,Fear,Three quarters,4,2.56,3
+AF30AFFR.jpg,0,F30,Fear,Full profile,4.06,2.81,3.44
+AF30AFS.jpg,0,F30,Fear,Frontal,3.81,2.69,3.31
+AF30HAHR.jpg,0,F30,Happy,Three quarters,4.75,2.38,4
+AF30HAFR.jpg,0,F30,Happy,Full profile,6,2.19,4.38
+AF30HAS.jpg,0,F30,Happy,Frontal,5.81,1.88,3.94
+AF30NEHR.jpg,0,F30,Neutral,Three quarters,4.38,3.75,4.5
+AF30NEFR.jpg,0,F30,Neutral,Full profile,4.56,3.06,5.13
+AF30NES.jpg,0,F30,Neutral,Frontal,4.5,3.69,4.44
+AF30SAHR.jpg,0,F30,Sad,Three quarters,3.5,1.94,2.38
+AF30SAFR.jpg,0,F30,Sad,Full profile,3.44,2.81,3.38
+AF30SAS.jpg,0,F30,Sad,Frontal,3.19,2.19,2.81
+AF31ANHL.jpg,0,F31,Anger,Three quarters,3.06,3.63,2.19
+AF31ANFL.jpg,0,F31,Anger,Full profile,3,3.31,2.94
+AF31ANS.jpg,0,F31,Anger,Frontal,2.5,4.13,2.5
+AF31DIHL.jpg,0,F31,Disgust,Three quarters,3.25,3.25,2.63
+AF31DIFL.jpg,0,F31,Disgust,Full profile,3.44,3.56,2.63
+BF31DIS.jpg,0,F31,Disgust,Frontal,3.13,2.5,2.56
+AF31AFHL.jpg,0,F31,Fear,Three quarters,4.25,2.69,2.88
+AF31AFFL.jpg,0,F31,Fear,Full profile,3.88,2.81,2.44
+AF31AFS.jpg,0,F31,Fear,Frontal,3.56,2.19,3.13
+AF31HAHL.jpg,0,F31,Happy,Three quarters,4.25,2.06,3
+AF31HAFL.jpg,0,F31,Happy,Full profile,3.94,2.13,3.31
+AF31HAS.jpg,0,F31,Happy,Frontal,4.5,2.19,3.63
+AF31NEHL.jpg,0,F31,Neutral,Three quarters,4.13,3.69,3.63
+AF31NEFL.jpg,0,F31,Neutral,Full profile,4,3.69,3.81
+AF31NES.jpg,0,F31,Neutral,Frontal,4,4.44,3.31
+AF31SAHL.jpg,0,F31,Sad,Three quarters,3.75,2.38,3.25
+AF31SAFL.jpg,0,F31,Sad,Full profile,3.31,2.94,2.81
+AF31SAS.jpg,0,F31,Sad,Frontal,3.81,3,3.38
+AF32ANHR.jpg,0,F32,Anger,Three quarters,3.13,4.69,3.5
+AF32ANFR.jpg,0,F32,Anger,Full profile,3.38,4.63,3.5
+AF32ANS.jpg,0,F32,Anger,Frontal,2.69,4.88,3.06
+AF32DIHR.jpg,0,F32,Disgust,Three quarters,3.44,2.69,2.63
+AF32DIFR.jpg,0,F32,Disgust,Full profile,3.13,3.81,2.94
+AF32DIS.jpg,0,F32,Disgust,Frontal,2.75,3,2.44
+AF32AFHR.jpg,0,F32,Fear,Three quarters,3.31,2.44,2.56
+AF32AFFR.jpg,0,F32,Fear,Full profile,4.38,2.31,3.19
+AF32AFS.jpg,0,F32,Fear,Frontal,3.69,2.38,3.19
+AF32HAHR.jpg,0,F32,Happy,Three quarters,5.44,1.94,4
+AF32HAFR.jpg,0,F32,Happy,Full profile,5.75,2,4.75
+AF32HAS.jpg,0,F32,Happy,Frontal,5.81,2.13,4.31
+AF32NEHR.jpg,0,F32,Neutral,Three quarters,4.31,3.94,4.25
+AF32NEFR.jpg,0,F32,Neutral,Full profile,4.06,4.19,4
+AF32NES.jpg,0,F32,Neutral,Frontal,3.56,4.69,3.69
+AF32SAHR.jpg,0,F32,Sad,Three quarters,4.13,2.44,3.5
+AF32SAFR.jpg,0,F32,Sad,Full profile,3.56,2.19,3.13
+AF32SAS.jpg,0,F32,Sad,Frontal,3.81,2,3.13
+AF33ANHL.jpg,0,F33,Anger,Three quarters,2.5,4.88,2.56
+AF33ANFL.jpg,0,F33,Anger,Full profile,2.69,4.5,2.81
+AF33ANS.jpg,0,F33,Anger,Frontal,1.81,5.5,2.75
+AF33DIHL.jpg,0,F33,Disgust,Three quarters,2.81,3.06,2.88
+AF33DIFL.jpg,0,F33,Disgust,Full profile,3.19,3.25,2.69
+AF33DIS.jpg,0,F33,Disgust,Frontal,2.25,2.94,2.31
+AF33AFHL.jpg,0,F33,Fear,Three quarters,3.13,3.69,2.63
+AF33AFFL.jpg,0,F33,Fear,Full profile,3.31,3.06,3
+AF33AFS.jpg,0,F33,Fear,Frontal,2.94,2.94,2.44
+AF33HAHL.jpg,0,F33,Happy,Three quarters,5.06,3,3.81
+AF33HAFL.jpg,0,F33,Happy,Full profile,5.63,2.25,4.13
+AF33HAS.jpg,0,F33,Happy,Frontal,5.31,2.31,3.94
+AF33NEHL.jpg,0,F33,Neutral,Three quarters,2.56,4.69,3.38
+AF33NEFL.jpg,0,F33,Neutral,Full profile,3.5,4.19,3.88
+AF33NES.jpg,0,F33,Neutral,Frontal,2.38,4.63,2.69
+AF33SAHL.jpg,0,F33,Sad,Three quarters,3.06,2.31,2.94
+AF33SAFL.jpg,0,F33,Sad,Full profile,2.94,3.13,3.06
+AF33SAS.jpg,0,F33,Sad,Frontal,3.13,2.75,2.88
+AF34ANHR.jpg,0,F34,Anger,Three quarters,3.88,4.19,3.56
+AF34ANFR.jpg,0,F34,Anger,Full profile,3.25,3.56,2.75
+AF34ANS.jpg,0,F34,Anger,Frontal,3.13,4.13,3.06
+AF34DIHR.jpg,0,F34,Disgust,Three quarters,2.94,2.38,2.88
+AF34DIFR.jpg,0,F34,Disgust,Full profile,3.44,2.25,2.69
+AF34DIS.jpg,0,F34,Disgust,Frontal,3.19,3,2.56
+AF34AFHR.jpg,0,F34,Fear,Three quarters,4.13,2.63,3
+AF34AFFR.jpg,0,F34,Fear,Full profile,3.63,2.38,3.31
+AF34AFS.jpg,0,F34,Fear,Frontal,4,2.44,3.44
+AF34HAHR.jpg,0,F34,Happy,Three quarters,5.69,1.88,4.5
+AF34HAFR.jpg,0,F34,Happy,Full profile,5.25,2.19,4.25
+AF34HAS.jpg,0,F34,Happy,Frontal,5.94,2.06,4.38
+AF34NEHR.jpg,0,F34,Neutral,Three quarters,4.94,3.63,4.63
+AF34NEFR.jpg,0,F34,Neutral,Full profile,4.38,4.19,3.69
+AF34NES.jpg,0,F34,Neutral,Frontal,4.31,3.81,3.56
+AF34SAHR.jpg,0,F34,Sad,Three quarters,3.69,3.13,3.69
+AF34SAFR.jpg,0,F34,Sad,Full profile,4,2.94,3.44
+AF34SAS.jpg,0,F34,Sad,Frontal,3.75,2.75,3.13
+AF35ANHL.jpg,0,F35,Anger,Three quarters,2.63,4.13,1.88
+AF35ANFL.jpg,0,F35,Anger,Full profile,3.06,4.13,1.88
+AF35ANS.jpg,0,F35,Anger,Frontal,2.31,4.31,1.81
+AF35DIHL.jpg,0,F35,Disgust,Three quarters,3.31,3.5,2.13
+AF35DIFL.jpg,0,F35,Disgust,Full profile,3.19,3.5,2.25
+AF35DIS.jpg,0,F35,Disgust,Frontal,2.94,3.13,1.94
+AF35AFHL.jpg,0,F35,Fear,Three quarters,4.13,3.13,2.56
+AF35AFFL.jpg,0,F35,Fear,Full profile,4.13,3.06,2.25
+AF35AFS.jpg,0,F35,Fear,Frontal,3.38,3.06,2.38
+AF35HAHL.jpg,0,F35,Happy,Three quarters,5,2.5,3.38
+AF35HAFL.jpg,0,F35,Happy,Full profile,5.38,2.25,3.38
+AF35HAS.jpg,0,F35,Happy,Frontal,5.63,2.06,3.31
+AF35NEHL.jpg,0,F35,Neutral,Three quarters,4.06,4.19,2.94
+AF35NEFL.jpg,0,F35,Neutral,Full profile,3.81,3.75,3.25
+AF35NES.jpg,0,F35,Neutral,Frontal,3.88,4,2.94
+AF35SAHL.jpg,0,F35,Sad,Three quarters,3.38,2.5,2.63
+AF35SAFL.jpg,0,F35,Sad,Full profile,3.56,2.44,2.31
+AF35SAS.jpg,0,F35,Sad,Frontal,2.94,2.63,2.31
+AM01ANHR.jpg,1,M01,Anger,Three quarters,2.56,5.25,1.94
+AM01ANFR.jpg,1,M01,Anger,Full profile,2.75,3.94,2.5
+AM01ANS.jpg,1,M01,Anger,Frontal,2.75,5.31,2.5
+AM01DIHR.jpg,1,M01,Disgust,Three quarters,3.38,3.75,2.06
+AM01DIFR.jpg,1,M01,Disgust,Full profile,3.19,3.31,2.06
+AM01DIS.jpg,1,M01,Disgust,Frontal,2.69,3.31,2
+AM01AFHR.jpg,1,M01,Fear,Three quarters,3.81,3,2.75
+AM01AFFR.jpg,1,M01,Fear,Full profile,3.19,2.75,2.13
+AM01AFS.jpg,1,M01,Fear,Frontal,3.13,2.69,2.25
+AM01HAHR.jpg,1,M01,Happy,Three quarters,4.88,2.63,2.75
+AM01HAFR.jpg,1,M01,Happy,Full profile,4.94,2.56,2.75
+AM01HAS.jpg,1,M01,Happy,Frontal,5.31,2.69,2.81
+AM01NEHR.jpg,1,M01,Neutral,Three quarters,3.44,4.44,3.25
+AM01NEFR.jpg,1,M01,Neutral,Full profile,3.13,4,2.44
+AM01NES.jpg,1,M01,Neutral,Frontal,3.19,4.81,2.44
+AM01SAHR.jpg,1,M01,Sad,Three quarters,2.94,2.81,2
+AM01SAFR.jpg,1,M01,Sad,Full profile,3.13,2.75,1.69
+AM01SAS.jpg,1,M01,Sad,Frontal,3.25,3.13,2.13
+AM02ANHL.jpg,1,M02,Anger,Three quarters,2.38,4.94,1.94
+AM02ANFL.jpg,1,M02,Anger,Full profile,2.56,3.94,1.81
+AM02ANS.jpg,1,M02,Anger,Frontal,1.94,5.06,1.81
+AM02DIHL.jpg,1,M02,Disgust,Three quarters,2.38,3.13,1.81
+AM02DIFL.jpg,1,M02,Disgust,Full profile,2.25,3.81,1.81
+AM02DIS.jpg,1,M02,Disgust,Frontal,2.75,3.25,1.75
+AM02AFHL.jpg,1,M02,Fear,Three quarters,2.69,3.63,1.75
+AM02AFFL.jpg,1,M02,Fear,Full profile,2.69,3.38,1.94
+AM02AFS.jpg,1,M02,Fear,Frontal,2.88,3.63,1.75
+BM02HAHL.jpg,1,M02,Happy,Three quarters,4.38,3.13,2.5
+AM02HAFL.jpg,1,M02,Happy,Full profile,4.75,2.5,3
+AM02HAS.jpg,1,M02,Happy,Frontal,4.25,2.63,2.75
+AM02NEHL.jpg,1,M02,Neutral,Three quarters,3.5,3.88,2.31
+AM02NEFL.jpg,1,M02,Neutral,Full profile,3.5,4.13,2.06
+AM02NES.jpg,1,M02,Neutral,Frontal,2.56,5.06,2.06
+AM02SAHL.jpg,1,M02,Sad,Three quarters,3.06,2.56,1.94
+AM02SAFL.jpg,1,M02,Sad,Full profile,3,3.69,2
+AM02SAS.jpg,1,M02,Sad,Frontal,3.38,3.13,2.06
+AM03ANHR.jpg,1,M03,Anger,Three quarters,2.31,4.06,1.44
+AM03ANFR.jpg,1,M03,Anger,Full profile,2.13,3.25,1.31
+AM03ANS.jpg,1,M03,Anger,Frontal,2.06,4.13,1.75
+AM03DIHR.jpg,1,M03,Disgust,Three quarters,2.5,2.63,1.44
+AM03DIFR.jpg,1,M03,Disgust,Full profile,2.19,2.75,1.56
+AM03DIS.jpg,1,M03,Disgust,Frontal,1.88,2.75,1.38
+AM03AFHR.jpg,1,M03,Fear,Three quarters,3.13,2.69,2.06
+AM03AFFR.jpg,1,M03,Fear,Full profile,2.94,2.88,1.94
+AM03AFS.jpg,1,M03,Fear,Frontal,2.56,2.75,1.5
+AM03HAHR.jpg,1,M03,Happy,Three quarters,3.56,2.25,2.06
+AM03HAFR.jpg,1,M03,Happy,Full profile,4.44,2.13,2.13
+AM03HAS.jpg,1,M03,Happy,Frontal,4,2.5,2
+AM03NEHR.jpg,1,M03,Neutral,Three quarters,3.06,3.69,2.13
+AM03NEFR.jpg,1,M03,Neutral,Full profile,2.88,3.38,2.06
+AM03NES.jpg,1,M03,Neutral,Frontal,2.06,4.94,1.88
+AM03SAHR.jpg,1,M03,Sad,Three quarters,2.63,1.75,1.69
+AM03SAFR.jpg,1,M03,Sad,Full profile,3,1.94,1.75
+BM03SAS.jpg,1,M03,Sad,Frontal,2.63,2,1.69
+AM04ANHL.jpg,1,M04,Anger,Three quarters,2.69,3.5,1.81
+AM04ANFL.jpg,1,M04,Anger,Full profile,3.13,3.94,1.88
+AM04ANS.jpg,1,M04,Anger,Frontal,2.31,3.44,1.88
+AM04DIHL.jpg,1,M04,Disgust,Three quarters,3,2.44,1.88
+AM04DIFL.jpg,1,M04,Disgust,Full profile,3.31,2.38,2.25
+AM04DIS.jpg,1,M04,Disgust,Frontal,3.19,2.38,2
+AM04AFHL.jpg,1,M04,Fear,Three quarters,3.31,2.56,1.88
+AM04AFFL.jpg,1,M04,Fear,Full profile,3.44,2.56,1.75
+AM04AFS.jpg,1,M04,Fear,Frontal,2.88,1.88,2
+AM04HAHL.jpg,1,M04,Happy,Three quarters,5.44,2.38,2.81
+AM04HAFL.jpg,1,M04,Happy,Full profile,5,2.19,2.56
+AM04HAS.jpg,1,M04,Happy,Frontal,5.63,2.31,2.56
+AM04NEHL.jpg,1,M04,Neutral,Three quarters,4.06,3.63,2.44
+AM04NEFL.jpg,1,M04,Neutral,Full profile,3.69,3.56,2.19
+AM04NES.jpg,1,M04,Neutral,Frontal,3.38,3.31,2.5
+AM04SAHL.jpg,1,M04,Sad,Three quarters,2.63,2.19,2
+AM04SAFL.jpg,1,M04,Sad,Full profile,3.19,2.81,1.88
+AM04SAS.jpg,1,M04,Sad,Frontal,3.25,1.94,1.94
+AM05ANHR.jpg,1,M05,Anger,Three quarters,3.13,3.94,2.19
+AM05ANFR.jpg,1,M05,Anger,Full profile,2.5,3.88,2
+AM05ANS.jpg,1,M05,Anger,Frontal,2.69,4.38,2.31
+AM05DIHR.jpg,1,M05,Disgust,Three quarters,2.63,3,1.69
+AM05DIFR.jpg,1,M05,Disgust,Full profile,2.69,2.63,2
+AM05DIS.jpg,1,M05,Disgust,Frontal,2.44,3.06,1.88
+AM05AFHR.jpg,1,M05,Fear,Three quarters,3.13,2.19,2.44
+AM05AFFR.jpg,1,M05,Fear,Full profile,3.25,2.38,2.06
+AM05AFS.jpg,1,M05,Fear,Frontal,3.44,2.19,2.5
+AM05HAHR.jpg,1,M05,Happy,Three quarters,5.25,2.13,3.31
+AM05HAFR.jpg,1,M05,Happy,Full profile,4.94,2.19,2.69
+AM05HAS.jpg,1,M05,Happy,Frontal,5.56,2.19,3.38
+AM05NEHR.jpg,1,M05,Neutral,Three quarters,3.31,3.38,2.94
+AM05NEFR.jpg,1,M05,Neutral,Full profile,3.5,3.06,2
+AM05NES.jpg,1,M05,Neutral,Frontal,3.38,3.94,3
+AM05SAHR.jpg,1,M05,Sad,Three quarters,3.06,1.69,2.63
+AM05SAFR.jpg,1,M05,Sad,Full profile,3.25,2.19,2.13
+AM05SAS.jpg,1,M05,Sad,Frontal,3.31,2.31,2.44
+AM06ANHL.jpg,1,M06,Anger,Three quarters,2.06,5.13,1.88
+AM06ANFL.jpg,1,M06,Anger,Full profile,2.19,5,2
+AM06ANS.jpg,1,M06,Anger,Frontal,2.13,5.38,1.94
+AM06DIHL.jpg,1,M06,Disgust,Three quarters,3.56,2.94,2
+AM06DIFL.jpg,1,M06,Disgust,Full profile,2.88,3.31,2.13
+AM06DIS.jpg,1,M06,Disgust,Frontal,2.31,2.88,1.56
+AM06AFHL.jpg,1,M06,Fear,Three quarters,3.19,3,2.69
+AM06AFFL.jpg,1,M06,Fear,Full profile,3.75,2.44,2.38
+AM06AFS.jpg,1,M06,Fear,Frontal,3.81,2.44,2.44
+AM06HAHL.jpg,1,M06,Happy,Three quarters,5.44,3.13,3
+AM06HAFL.jpg,1,M06,Happy,Full profile,5.13,2.94,3.19
+AM06HAS.jpg,1,M06,Happy,Frontal,4.88,2.25,3.19
+AM06NEHL.jpg,1,M06,Neutral,Three quarters,3.81,4.81,2.56
+AM06NEFL.jpg,1,M06,Neutral,Full profile,3.56,4.69,2.81
+AM06NES.jpg,1,M06,Neutral,Frontal,3.44,4.06,2.75
+AM06SAHL.jpg,1,M06,Sad,Three quarters,4,3.06,2.69
+AM06SAFL.jpg,1,M06,Sad,Full profile,3.31,2.88,2.19
+AM06SAS.jpg,1,M06,Sad,Frontal,3.31,2.13,2.19
+AM07ANHR.jpg,1,M07,Anger,Three quarters,2.25,4.5,1.63
+AM07ANFR.jpg,1,M07,Anger,Full profile,2.31,4.75,1.56
+AM07ANS.jpg,1,M07,Anger,Frontal,1.94,4.06,1.75
+AM07DIHR.jpg,1,M07,Disgust,Three quarters,2.13,3.31,1.63
+AM07DIFR.jpg,1,M07,Disgust,Full profile,2.44,3.19,1.31
+AM07DIS.jpg,1,M07,Disgust,Frontal,2.75,3.25,1.5
+AM07AFHR.jpg,1,M07,Fear,Three quarters,2.69,3.44,1.75
+AM07AFFR.jpg,1,M07,Fear,Full profile,2.88,3.38,1.44
+AM07AFS.jpg,1,M07,Fear,Frontal,3,3.81,1.81
+AM07HAHR.jpg,1,M07,Happy,Three quarters,4.69,2.31,2.44
+AM07HAFR.jpg,1,M07,Happy,Full profile,4.31,2.19,2.19
+AM07HAS.jpg,1,M07,Happy,Frontal,5.06,2.38,2.75
+AM07NEHR.jpg,1,M07,Neutral,Three quarters,3.25,4.44,2.19
+AM07NEFR.jpg,1,M07,Neutral,Full profile,3.13,3.44,1.94
+AM07NES.jpg,1,M07,Neutral,Frontal,2.94,5.06,2.06
+AM07SAHR.jpg,1,M07,Sad,Three quarters,3,2.69,1.94
+AM07SAFR.jpg,1,M07,Sad,Full profile,2.94,2.25,1.75
+AM07SAS.jpg,1,M07,Sad,Frontal,3.06,3.25,2
+AM08ANHL.jpg,1,M08,Anger,Three quarters,2.81,4.38,2.5
+AM08ANFL.jpg,1,M08,Anger,Full profile,2.94,4.25,2.25
+AM08ANS.jpg,1,M08,Anger,Frontal,2.63,4.94,2.31
+AM08DIHL.jpg,1,M08,Disgust,Three quarters,2.75,3.06,1.81
+AM08DIFL.jpg,1,M08,Disgust,Full profile,3.5,2.25,2.44
+AM08DIS.jpg,1,M08,Disgust,Frontal,3.06,3.13,2.31
+AM08AFHL.jpg,1,M08,Fear,Three quarters,3.75,1.94,2.69
+AM08AFFL.jpg,1,M08,Fear,Full profile,3.88,2.13,2.31
+AM08AFS.jpg,1,M08,Fear,Frontal,2.75,2,2.44
+AM08HAHL.jpg,1,M08,Happy,Three quarters,5,2.69,3.56
+AM08HAFL.jpg,1,M08,Happy,Full profile,4.81,2.44,3.13
+BM08HAS.jpg,1,M08,Happy,Frontal,5.69,3.13,3.94
+AM08NEHL.jpg,1,M08,Neutral,Three quarters,4.63,4.44,4
+AM08NEFL.jpg,1,M08,Neutral,Full profile,4.75,3.75,3.5
+AM08NES.jpg,1,M08,Neutral,Frontal,3.94,4.31,3.75
+AM08SAHL.jpg,1,M08,Sad,Three quarters,3.06,1.81,2.19
+AM08SAFL.jpg,1,M08,Sad,Full profile,2.94,2.56,2.13
+AM08SAS.jpg,1,M08,Sad,Frontal,2.81,2.56,2.5
+AM09ANHR.jpg,1,M09,Anger,Three quarters,2.56,5.19,1.5
+AM09ANFR.jpg,1,M09,Anger,Full profile,2.44,4.5,1.5
+AM09ANS.jpg,1,M09,Anger,Frontal,2.25,5.88,1.63
+AM09DIHR.jpg,1,M09,Disgust,Three quarters,3.13,3.31,1.56
+AM09DIFR.jpg,1,M09,Disgust,Full profile,2.38,3.31,1.56
+AM09DIS.jpg,1,M09,Disgust,Frontal,2.44,3.5,1.56
+AM09AFHR.jpg,1,M09,Fear,Three quarters,3.75,2.31,2
+AM09AFFR.jpg,1,M09,Fear,Full profile,3.56,2.38,1.56
+AM09AFS.jpg,1,M09,Fear,Frontal,3.56,2.56,1.94
+AM09HAHR.jpg,1,M09,Happy,Three quarters,4.81,3.19,2.44
+AM09HAFR.jpg,1,M09,Happy,Full profile,4.81,3.19,2.31
+AM09HAS.jpg,1,M09,Happy,Frontal,4.88,3.19,2.19
+AM09NEHR.jpg,1,M09,Neutral,Three quarters,3.63,4.31,2.63
+AM09NEFR.jpg,1,M09,Neutral,Full profile,3.81,4.44,2.06
+AM09NES.jpg,1,M09,Neutral,Frontal,3.81,4.75,2
+AM09SAHR.jpg,1,M09,Sad,Three quarters,3.69,4,1.88
+AM09SAFR.jpg,1,M09,Sad,Full profile,3.31,3.81,1.94
+AM09SAS.jpg,1,M09,Sad,Frontal,3.63,4,1.88
+AM10ANHL.jpg,1,M10,Anger,Three quarters,2.75,4.13,1.69
+AM10ANFL.jpg,1,M10,Anger,Full profile,2.88,3.69,2
+AM10ANS.jpg,1,M10,Anger,Frontal,2.88,4.75,1.94
+AM10DIHL.jpg,1,M10,Disgust,Three quarters,2.69,3.44,1.88
+AM10DIFL.jpg,1,M10,Disgust,Full profile,2.44,3.06,2
+AM10DIS.jpg,1,M10,Disgust,Frontal,2.88,4,1.5
+AM10AFHL.jpg,1,M10,Fear,Three quarters,3.5,2.88,2.06
+AM10AFFL.jpg,1,M10,Fear,Full profile,3.25,2.44,2.25
+AM10AFS.jpg,1,M10,Fear,Frontal,3.25,2.31,1.81
+AM10HAHL.jpg,1,M10,Happy,Three quarters,4.94,2.38,3
+AM10HAFL.jpg,1,M10,Happy,Full profile,5.31,2.63,3
+AM10HAS.jpg,1,M10,Happy,Frontal,5.63,2.94,2.69
+AM10NEHL.jpg,1,M10,Neutral,Three quarters,4.38,4.44,3.19
+AM10NEFL.jpg,1,M10,Neutral,Full profile,4.63,3.56,2.44
+AM10NES.jpg,1,M10,Neutral,Frontal,3.75,4.25,2.94
+AM10SAHL.jpg,1,M10,Sad,Three quarters,3.75,3.44,2.25
+AM10SAFL.jpg,1,M10,Sad,Full profile,3.44,2.44,2.38
+AM10SAS.jpg,1,M10,Sad,Frontal,3.63,3.69,2.38
+AM11ANHR.jpg,1,M11,Anger,Three quarters,2.56,4.75,1.81
+AM11ANFR.jpg,1,M11,Anger,Full profile,3.06,4.25,1.81
+AM11ANS.jpg,1,M11,Anger,Frontal,2.94,4.75,1.75
+AM11DIHR.jpg,1,M11,Disgust,Three quarters,2.81,2.75,2.25
+AM11DIFR.jpg,1,M11,Disgust,Full profile,2.88,2.69,2
+AM11DIS.jpg,1,M11,Disgust,Frontal,3.06,2.19,1.75
+AM11AFHR.jpg,1,M11,Fear,Three quarters,3.06,2.19,2.13
+AM11AFFR.jpg,1,M11,Fear,Full profile,3.25,2.44,2.19
+AM11AFS.jpg,1,M11,Fear,Frontal,3.25,2.88,2.06
+AM11HAHR.jpg,1,M11,Happy,Three quarters,4.88,2.81,2.75
+AM11HAFR.jpg,1,M11,Happy,Full profile,4.38,2.63,2.81
+AM11HAS.jpg,1,M11,Happy,Frontal,5.56,3,2.81
+AM11NEHR.jpg,1,M11,Neutral,Three quarters,4.38,4.5,2.63
+AM11NEFR.jpg,1,M11,Neutral,Full profile,3.56,4.56,2.56
+AM11NES.jpg,1,M11,Neutral,Frontal,3.81,4.13,2.38
+AM11SAHR.jpg,1,M11,Sad,Three quarters,3.75,1.94,2
+AM11SAFR.jpg,1,M11,Sad,Full profile,3.75,2.75,2.13
+AM11SAS.jpg,1,M11,Sad,Frontal,3.75,2.44,1.69
+AM12ANHL.jpg,1,M12,Anger,Three quarters,2.56,4.75,2.38
+AM12ANFL.jpg,1,M12,Anger,Full profile,3.06,4.06,2.06
+BM12ANS.jpg,1,M12,Anger,Frontal,3.19,4.81,2.31
+AM12DIHL.jpg,1,M12,Disgust,Three quarters,3.38,2.94,2
+AM12DIFL.jpg,1,M12,Disgust,Full profile,3.06,3.06,2.06
+AM12DIS.jpg,1,M12,Disgust,Frontal,3.38,3.5,2.25
+AM12AFHL.jpg,1,M12,Fear,Three quarters,3.44,2.31,2.19
+AM12AFFL.jpg,1,M12,Fear,Full profile,3.69,2.44,2.13
+AM12AFS.jpg,1,M12,Fear,Frontal,3.06,2.13,2.25
+AM12HAHL.jpg,1,M12,Happy,Three quarters,5.75,2.38,3.63
+AM12HAFL.jpg,1,M12,Happy,Full profile,5.81,3,3.19
+AM12HAS.jpg,1,M12,Happy,Frontal,5.81,3.06,3.38
+AM12NEHL.jpg,1,M12,Neutral,Three quarters,4.5,4.5,3.75
+AM12NEFL.jpg,1,M12,Neutral,Full profile,3.88,4.25,3.13
+BM12NES.jpg,1,M12,Neutral,Frontal,4.31,4.06,3.44
+AM12SAHL.jpg,1,M12,Sad,Three quarters,3.88,3.13,2.81
+AM12SAFL.jpg,1,M12,Sad,Full profile,3.88,2.94,2.44
+BM12SAS.jpg,1,M12,Sad,Frontal,3.25,2,2.5
+AM13ANHR.jpg,1,M13,Anger,Three quarters,3.25,4.5,1.88
+AM13ANFR.jpg,1,M13,Anger,Full profile,2.81,4.5,2.13
+AM13ANS.jpg,1,M13,Anger,Frontal,1.81,3.94,2.06
+AM13DIHR.jpg,1,M13,Disgust,Three quarters,2.81,3.38,2.06
+AM13DIFR.jpg,1,M13,Disgust,Full profile,3.25,3.56,2
+AM13DIS.jpg,1,M13,Disgust,Frontal,2.88,2.88,2
+AM13AFHR.jpg,1,M13,Fear,Three quarters,3.69,2.63,2.13
+AM13AFFR.jpg,1,M13,Fear,Full profile,3.31,3.19,2.13
+AM13AFS.jpg,1,M13,Fear,Frontal,3,2.25,1.81
+AM13HAHR.jpg,1,M13,Happy,Three quarters,4.63,2.88,2.88
+AM13HAFR.jpg,1,M13,Happy,Full profile,5.31,2.38,2.69
+AM13HAS.jpg,1,M13,Happy,Frontal,4.69,2.44,2.75
+AM13NEHR.jpg,1,M13,Neutral,Three quarters,4.5,3.63,2.69
+AM13NEFR.jpg,1,M13,Neutral,Full profile,4,3.81,2.44
+AM13NES.jpg,1,M13,Neutral,Frontal,3.5,3.69,2.44
+AM13SAHR.jpg,1,M13,Sad,Three quarters,3,2.38,2.06
+AM13SAFR.jpg,1,M13,Sad,Full profile,3,2,2.19
+AM13SAS.jpg,1,M13,Sad,Frontal,3.5,1.88,2.06
+AM14ANHL.jpg,1,M14,Anger,Three quarters,3.13,5.25,3
+AM14ANFL.jpg,1,M14,Anger,Full profile,3.13,4.31,2.63
+AM14ANS.jpg,1,M14,Anger,Frontal,3.06,4.88,2.63
+AM14DIHL.jpg,1,M14,Disgust,Three quarters,3.5,3.81,2.44
+AM14DIFL.jpg,1,M14,Disgust,Full profile,3,3.94,2.06
+AM14DIS.jpg,1,M14,Disgust,Frontal,3.13,3.94,2.63
+AM14AFHL.jpg,1,M14,Fear,Three quarters,3.88,2.13,2.63
+AM14AFFL.jpg,1,M14,Fear,Full profile,3.5,2.5,2.56
+AM14AFS.jpg,1,M14,Fear,Frontal,3.44,2,2.88
+AM14HAHL.jpg,1,M14,Happy,Three quarters,5.13,2.13,3.63
+AM14HAFL.jpg,1,M14,Happy,Full profile,5.06,2.5,3.38
+AM14HAS.jpg,1,M14,Happy,Frontal,5.56,2.63,3.94
+AM14NEHL.jpg,1,M14,Neutral,Three quarters,4.19,3.81,3.94
+AM14NEFL.jpg,1,M14,Neutral,Full profile,4.38,4.19,2.88
+AM14NES.jpg,1,M14,Neutral,Frontal,4.81,3.88,3.5
+AM14SAHL.jpg,1,M14,Sad,Three quarters,4.06,2.38,3
+AM14SAFL.jpg,1,M14,Sad,Full profile,3.63,3.19,2.81
+AM14SAS.jpg,1,M14,Sad,Frontal,3.75,2.5,3.25
+AM15ANHR.jpg,1,M15,Anger,Three quarters,2.69,3.31,2.19
+AM15ANFR.jpg,1,M15,Anger,Full profile,2.94,3,1.81
+BM15ANS.jpg,1,M15,Anger,Frontal,2.19,4.06,1.94
+AM15DIHR.jpg,1,M15,Disgust,Three quarters,2.69,3.06,2
+AM15DIFR.jpg,1,M15,Disgust,Full profile,2.81,3.25,1.94
+AM15DIS.jpg,1,M15,Disgust,Frontal,2.19,2.88,1.69
+AM15AFHR.jpg,1,M15,Fear,Three quarters,3.38,3.19,2.13
+AM15AFFR.jpg,1,M15,Fear,Full profile,3,2.44,1.63
+BM15AFS.jpg,1,M15,Fear,Frontal,3,3.06,2.13
+AM15HAHR.jpg,1,M15,Happy,Three quarters,4.44,2.63,2.69
+AM15HAFR.jpg,1,M15,Happy,Full profile,4.69,2.44,2.69
+AM15HAS.jpg,1,M15,Happy,Frontal,5.38,2,2.94
+AM15NEHR.jpg,1,M15,Neutral,Three quarters,4.31,3.75,2.56
+AM15NEFR.jpg,1,M15,Neutral,Full profile,3.69,3.44,2.81
+AM15NES.jpg,1,M15,Neutral,Frontal,3.25,2.81,2.56
+AM15SAHR.jpg,1,M15,Sad,Three quarters,2.88,2.75,2.19
+AM15SAFR.jpg,1,M15,Sad,Full profile,2.88,2.63,2
+AM15SAS.jpg,1,M15,Sad,Frontal,2.88,3.13,1.94
+AM16ANHL.jpg,1,M16,Anger,Three quarters,2.63,3.44,1.94
+AM16ANFL.jpg,1,M16,Anger,Full profile,2.63,4,2.25
+AM16ANS.jpg,1,M16,Anger,Frontal,2.75,3.31,1.94
+AM16DIHL.jpg,1,M16,Disgust,Three quarters,3.25,3.5,2
+AM16DIFL.jpg,1,M16,Disgust,Full profile,2.63,3.25,1.75
+AM16DIS.jpg,1,M16,Disgust,Frontal,2.19,3.13,1.75
+AM16AFHL.jpg,1,M16,Fear,Three quarters,3.63,1.94,2.25
+AM16AFFL.jpg,1,M16,Fear,Full profile,3.56,1.63,2
+AM16AFS.jpg,1,M16,Fear,Frontal,3.5,2.44,2.13
+AM16HAHL.jpg,1,M16,Happy,Three quarters,5.44,2.44,2.81
+AM16HAFL.jpg,1,M16,Happy,Full profile,5.44,2.25,2.81
+AM16HAS.jpg,1,M16,Happy,Frontal,5.13,2.75,3.19
+AM16NEHL.jpg,1,M16,Neutral,Three quarters,3.5,4.38,2.69
+AM16NEFL.jpg,1,M16,Neutral,Full profile,3.25,4.44,2.5
+BM16NES.jpg,1,M16,Neutral,Frontal,3.25,3.88,2.56
+AM16SAHL.jpg,1,M16,Sad,Three quarters,3.69,2.31,2.38
+AM16SAFL.jpg,1,M16,Sad,Full profile,2.88,2.25,2.19
+AM16SAS.jpg,1,M16,Sad,Frontal,3,2.44,2.5
+AM17ANHR.jpg,1,M17,Anger,Three quarters,2.06,4.56,1.94
+AM17ANFR.jpg,1,M17,Anger,Full profile,2.31,4.69,1.81
+AM17ANS.jpg,1,M17,Anger,Frontal,2.44,3.88,1.88
+BM17DIHR.jpg,1,M17,Disgust,Three quarters,3,3.69,2.13
+AM17DIFR.jpg,1,M17,Disgust,Full profile,2.44,3.69,1.94
+AM17DIS.jpg,1,M17,Disgust,Frontal,3.5,2.81,2.06
+AM17AFHR.jpg,1,M17,Fear,Three quarters,3.06,2.94,2.25
+AM17AFFR.jpg,1,M17,Fear,Full profile,3.44,3.06,2.06
+AM17AFS.jpg,1,M17,Fear,Frontal,3,3.13,2.13
+AM17HAHR.jpg,1,M17,Happy,Three quarters,4.38,2.25,2.31
+AM17HAFR.jpg,1,M17,Happy,Full profile,4.19,2.31,2.06
+AM17HAS.jpg,1,M17,Happy,Frontal,5.06,2.88,2.69
+AM17NEHR.jpg,1,M17,Neutral,Three quarters,2.94,4.81,2.38
+AM17NEFR.jpg,1,M17,Neutral,Full profile,2.81,4.63,2.5
+AM17NES.jpg,1,M17,Neutral,Frontal,3.31,4.81,2.94
+AM17SAHR.jpg,1,M17,Sad,Three quarters,3.44,1.5,2
+AM17SAFR.jpg,1,M17,Sad,Full profile,2.94,1.81,2
+BM17SAS.jpg,1,M17,Sad,Frontal,3.06,1.69,2.13
+AM18ANHL.jpg,1,M18,Anger,Three quarters,2.5,4.13,1.88
+AM18ANFL.jpg,1,M18,Anger,Full profile,2.63,4.69,2.13
+AM18ANS.jpg,1,M18,Anger,Frontal,2.25,3.88,2.38
+AM18DIHL.jpg,1,M18,Disgust,Three quarters,2.69,2.63,2.06
+AM18DIFL.jpg,1,M18,Disgust,Full profile,2.63,3.13,2.38
+AM18DIS.jpg,1,M18,Disgust,Frontal,3.13,2.88,1.75
+AM18AFHL.jpg,1,M18,Fear,Three quarters,3.5,1.94,2.38
+AM18AFFL.jpg,1,M18,Fear,Full profile,3.5,2.38,2.88
+AM18AFS.jpg,1,M18,Fear,Frontal,3.75,2.5,3.06
+AM18HAHL.jpg,1,M18,Happy,Three quarters,4.69,2.19,3.44
+AM18HAFL.jpg,1,M18,Happy,Full profile,4.75,2.38,3.38
+AM18HAS.jpg,1,M18,Happy,Frontal,4.81,2.31,3.19
+AM18NEHL.jpg,1,M18,Neutral,Three quarters,3.63,4.19,2.88
+AM18NEFL.jpg,1,M18,Neutral,Full profile,3.75,4.25,3.38
+AM18NES.jpg,1,M18,Neutral,Frontal,4.13,4,3.31
+AM18SAHL.jpg,1,M18,Sad,Three quarters,3,2.5,2.56
+AM18SAFL.jpg,1,M18,Sad,Full profile,3.31,3.19,2.5
+AM18SAS.jpg,1,M18,Sad,Frontal,3.13,1.88,2.38
+AM21ANHR.jpg,1,M21,Anger,Three quarters,2.69,4.38,2.06
+AM21ANFR.jpg,1,M21,Anger,Full profile,2.38,3.94,1.81
+AM21ANS.jpg,1,M21,Anger,Frontal,2.56,4.25,1.81
+AM21DIHR.jpg,1,M21,Disgust,Three quarters,3.06,2.94,1.69
+AM21DIFR.jpg,1,M21,Disgust,Full profile,2.56,3.13,1.94
+AM21DIS.jpg,1,M21,Disgust,Frontal,2.69,2.81,2
+AM21AFHR.jpg,1,M21,Fear,Three quarters,3.19,2.75,1.94
+AM21AFFR.jpg,1,M21,Fear,Full profile,3.38,2.63,1.88
+AM21AFS.jpg,1,M21,Fear,Frontal,3.06,2.5,1.81
+AM21HAHR.jpg,1,M21,Happy,Three quarters,5.25,2.25,2.81
+AM21HAFR.jpg,1,M21,Happy,Full profile,4.69,2.5,2.38
+AM21HAS.jpg,1,M21,Happy,Frontal,4.31,2.63,2.56
+AM21NEHR.jpg,1,M21,Neutral,Three quarters,4.06,3.88,2.81
+AM21NEFR.jpg,1,M21,Neutral,Full profile,3.38,4.13,2.56
+AM21NES.jpg,1,M21,Neutral,Frontal,2.69,4.44,1.94
+AM21SAHR.jpg,1,M21,Sad,Three quarters,3.31,2.44,1.94
+AM21SAFR.jpg,1,M21,Sad,Full profile,3.31,2.63,2
+AM21SAS.jpg,1,M21,Sad,Frontal,2.88,2.13,1.88
+AM22ANHL.jpg,1,M22,Anger,Three quarters,2.69,4.06,2.25
+AM22ANFL.jpg,1,M22,Anger,Full profile,2.81,4.19,1.81
+AM22ANS.jpg,1,M22,Anger,Frontal,2.75,4.06,1.88
+AM22DIHL.jpg,1,M22,Disgust,Three quarters,2.63,3.44,1.75
+AM22DIFL.jpg,1,M22,Disgust,Full profile,3.06,2.88,1.94
+AM22DIS.jpg,1,M22,Disgust,Frontal,2.56,3.56,1.69
+AM22AFHL.jpg,1,M22,Fear,Three quarters,3.25,1.88,2.13
+AM22AFFL.jpg,1,M22,Fear,Full profile,3.5,2.38,2.38
+AM22AFS.jpg,1,M22,Fear,Frontal,3.25,1.88,2.31
+AM22HAHL.jpg,1,M22,Happy,Three quarters,4.75,2.44,3.19
+AM22HAFL.jpg,1,M22,Happy,Full profile,4.81,2.19,2.69
+AM22HAS.jpg,1,M22,Happy,Frontal,5.56,2.13,3.25
+AM22NEHL.jpg,1,M22,Neutral,Three quarters,3.69,4.44,2.56
+AM22NEFL.jpg,1,M22,Neutral,Full profile,3.81,4,2.88
+AM22NES.jpg,1,M22,Neutral,Frontal,2.94,4,2.56
+AM22SAHL.jpg,1,M22,Sad,Three quarters,3.13,2.81,2.25
+AM22SAFL.jpg,1,M22,Sad,Full profile,3.19,2.94,2.13
+AM22SAS.jpg,1,M22,Sad,Frontal,3.5,2,2.25
+AM23ANHR.jpg,1,M23,Anger,Three quarters,3,3.75,2.75
+AM23ANFR.jpg,1,M23,Anger,Full profile,2.63,4.5,2.63
+AM23ANS.jpg,1,M23,Anger,Frontal,3.13,4.13,2.81
+AM23DIHR.jpg,1,M23,Disgust,Three quarters,3.06,3.06,2.75
+AM23DIFR.jpg,1,M23,Disgust,Full profile,2.94,3.31,2.5
+AM23DIS.jpg,1,M23,Disgust,Frontal,2.81,3.56,2.56
+AM23AFHR.jpg,1,M23,Fear,Three quarters,4.13,1.94,3.25
+AM23AFFR.jpg,1,M23,Fear,Full profile,3.25,2.56,2.94
+AM23AFS.jpg,1,M23,Fear,Frontal,3.63,2.75,2.75
+AM23HAHR.jpg,1,M23,Happy,Three quarters,5.63,2.5,3.94
+AM23HAFR.jpg,1,M23,Happy,Full profile,5.38,2.88,3.75
+AM23HAS.jpg,1,M23,Happy,Frontal,6,2.88,4.19
+AM23NEHR.jpg,1,M23,Neutral,Three quarters,3.63,4.38,4
+AM23NEFR.jpg,1,M23,Neutral,Full profile,3.69,4.25,3.56
+AM23NES.jpg,1,M23,Neutral,Frontal,3.38,4.38,3.69
+AM23SAHR.jpg,1,M23,Sad,Three quarters,3.25,2.25,3.13
+AM23SAFR.jpg,1,M23,Sad,Full profile,3.25,2.75,2.75
+AM23SAS.jpg,1,M23,Sad,Frontal,3.94,2.25,2.94
+AM24ANHL.jpg,1,M24,Anger,Three quarters,3.56,4.63,2.63
+AM24ANFL.jpg,1,M24,Anger,Full profile,3.19,4.75,2.19
+AM24ANS.jpg,1,M24,Anger,Frontal,3.56,4.38,2.44
+AM24DIHL.jpg,1,M24,Disgust,Three quarters,3.13,2.69,2
+AM24DIFL.jpg,1,M24,Disgust,Full profile,2.88,3.25,2.06
+AM24DIS.jpg,1,M24,Disgust,Frontal,3.19,2.5,2.13
+AM24AFHL.jpg,1,M24,Fear,Three quarters,3.88,2.63,2.56
+AM24AFFL.jpg,1,M24,Fear,Full profile,3.25,2.88,2.38
+AM24AFS.jpg,1,M24,Fear,Frontal,3.63,2.19,2.56
+AM24HAHL.jpg,1,M24,Happy,Three quarters,5.56,2.31,3.38
+AM24HAFL.jpg,1,M24,Happy,Full profile,5.13,2.44,2.56
+AM24HAS.jpg,1,M24,Happy,Frontal,5.25,2.44,3.19
+AM24NEHL.jpg,1,M24,Neutral,Three quarters,3.81,4.63,2.81
+AM24NEFL.jpg,1,M24,Neutral,Full profile,3.5,3.75,2.63
+BM24NES.jpg,1,M24,Neutral,Frontal,4.13,3.81,3.19
+AM24SAHL.jpg,1,M24,Sad,Three quarters,3.5,2.31,2.56
+AM24SAFL.jpg,1,M24,Sad,Full profile,3.56,2.63,2.19
+AM24SAS.jpg,1,M24,Sad,Frontal,3.81,1.81,2.69
+BM25ANHR.jpg,1,M25,Anger,Three quarters,3.38,3.38,2.38
+AM25ANFR.jpg,1,M25,Anger,Full profile,3.06,3.5,2.69
+AM25ANS.jpg,1,M25,Anger,Frontal,2.69,4.94,3.13
+AM25DIHR.jpg,1,M25,Disgust,Three quarters,2.75,3.75,1.94
+AM25DIFR.jpg,1,M25,Disgust,Full profile,2.56,3.31,2.13
+AM25DIS.jpg,1,M25,Disgust,Frontal,2.94,3.06,2.31
+AM25AFHR.jpg,1,M25,Fear,Three quarters,3.25,2.25,2.81
+AM25AFFR.jpg,1,M25,Fear,Full profile,3.31,2.06,2.31
+AM25AFS.jpg,1,M25,Fear,Frontal,2.94,2.5,2.81
+AM25HAHR.jpg,1,M25,Happy,Three quarters,3.25,2.75,3.13
+AM25HAFR.jpg,1,M25,Happy,Full profile,4.88,2.25,3.56
+AM25HAS.jpg,1,M25,Happy,Frontal,4.19,2.44,3.06
+AM25NEHR.jpg,1,M25,Neutral,Three quarters,3.56,4.31,3.25
+AM25NEFR.jpg,1,M25,Neutral,Full profile,3.5,4.13,2.81
+AM25NES.jpg,1,M25,Neutral,Frontal,3.25,4.31,3.56
+AM25SAHR.jpg,1,M25,Sad,Three quarters,3.31,2.06,2.25
+AM25SAFR.jpg,1,M25,Sad,Full profile,3.38,1.81,2.06
+AM25SAS.jpg,1,M25,Sad,Frontal,2.94,2.19,2.19
+AM27ANHL.jpg,1,M27,Anger,Three quarters,2.69,4.38,1.94
+AM27ANFL.jpg,1,M27,Anger,Full profile,3.06,4.44,2.13
+AM27ANS.jpg,1,M27,Anger,Frontal,2.38,4.81,1.63
+AM27DIHL.jpg,1,M27,Disgust,Three quarters,2.94,3.31,1.63
+AM27DIFL.jpg,1,M27,Disgust,Full profile,2.56,3.69,1.81
+AM27DIS.jpg,1,M27,Disgust,Frontal,2.56,3.13,1.63
+AM27AFHL.jpg,1,M27,Fear,Three quarters,3,3.19,1.81
+AM27AFFL.jpg,1,M27,Fear,Full profile,3.38,2.5,1.69
+AM27AFS.jpg,1,M27,Fear,Frontal,3.31,2.94,1.81
+AM27HAHL.jpg,1,M27,Happy,Three quarters,4.25,2.63,2.06
+AM27HAFL.jpg,1,M27,Happy,Full profile,4.56,2.94,2.44
+AM27HAS.jpg,1,M27,Happy,Frontal,4.69,2.31,2.31
+AM27NEHL.jpg,1,M27,Neutral,Three quarters,3.69,3.5,1.75
+AM27NEFL.jpg,1,M27,Neutral,Full profile,3.75,3.44,2
+AM27NES.jpg,1,M27,Neutral,Frontal,2.88,3.81,1.81
+AM27SAHL.jpg,1,M27,Sad,Three quarters,2.63,3.88,1.88
+AM27SAFL.jpg,1,M27,Sad,Full profile,3.13,3,1.81
+AM27SAS.jpg,1,M27,Sad,Frontal,2.94,3.94,1.69
+AM28ANHR.jpg,1,M28,Anger,Three quarters,2.56,5.19,1.81
+AM28ANFR.jpg,1,M28,Anger,Full profile,2.38,4.81,2.25
+AM28ANS.jpg,1,M28,Anger,Frontal,2.31,5,1.88
+AM28DIHR.jpg,1,M28,Disgust,Three quarters,2.56,3.56,2.13
+AM28DIFR.jpg,1,M28,Disgust,Full profile,2.81,3.81,2.13
+AM28DIS.jpg,1,M28,Disgust,Frontal,2.63,3.69,1.94
+AM28AFHR.jpg,1,M28,Fear,Three quarters,3.44,2.25,2.06
+AM28AFFR.jpg,1,M28,Fear,Full profile,3.56,3.06,2.19
+AM28AFS.jpg,1,M28,Fear,Frontal,3.44,3.13,2.31
+AM28HAHR.jpg,1,M28,Happy,Three quarters,4.63,4,2.75
+AM28HAFR.jpg,1,M28,Happy,Full profile,5.44,3.13,3.5
+BM28HAS.jpg,1,M28,Happy,Frontal,5.31,3.56,3.31
+AM28NEHR.jpg,1,M28,Neutral,Three quarters,4.06,5.06,3.25
+AM28NEFR.jpg,1,M28,Neutral,Full profile,3.69,4.44,2.94
+AM28NES.jpg,1,M28,Neutral,Frontal,3.44,5.13,3.13
+AM28SAHR.jpg,1,M28,Sad,Three quarters,3.25,2.56,1.88
+AM28SAFR.jpg,1,M28,Sad,Full profile,3.25,2.63,2.38
+AM28SAS.jpg,1,M28,Sad,Frontal,3.44,2.31,1.81
+AM29ANHL.jpg,1,M29,Anger,Three quarters,2,5.81,2.06
+AM29ANFL.jpg,1,M29,Anger,Full profile,2.63,5.19,2.06
+AM29ANS.jpg,1,M29,Anger,Frontal,1.63,5.13,2.06
+AM29DIHL.jpg,1,M29,Disgust,Three quarters,2.81,4.31,2.13
+AM29DIFL.jpg,1,M29,Disgust,Full profile,2.69,4.25,2
+AM29DIS.jpg,1,M29,Disgust,Frontal,2.44,4.69,2
+AM29AFHL.jpg,1,M29,Fear,Three quarters,3.31,2.44,2.25
+AM29AFFL.jpg,1,M29,Fear,Full profile,3.25,2.94,2.19
+AM29AFS.jpg,1,M29,Fear,Frontal,3.13,2.5,2
+AM29HAHL.jpg,1,M29,Happy,Three quarters,4.88,2.56,3.06
+AM29HAFL.jpg,1,M29,Happy,Full profile,5.13,2.81,2.69
+AM29HAS.jpg,1,M29,Happy,Frontal,5.31,3.06,3.38
+AM29NEHL.jpg,1,M29,Neutral,Three quarters,3.88,4.75,2.88
+AM29NEFL.jpg,1,M29,Neutral,Full profile,3.31,4.69,2.69
+AM29NES.jpg,1,M29,Neutral,Frontal,3.69,5.06,2.88
+AM29SAHL.jpg,1,M29,Sad,Three quarters,3.38,4.25,2.5
+AM29SAFL.jpg,1,M29,Sad,Full profile,3.38,3,2.31
+AM29SAS.jpg,1,M29,Sad,Frontal,3.75,3,2.63
+AM30ANHR.jpg,1,M30,Anger,Three quarters,2.38,4.94,2.19
+AM30ANFR.jpg,1,M30,Anger,Full profile,2.88,5,1.88
+AM30ANS.jpg,1,M30,Anger,Frontal,2.19,4.88,1.94
+AM30DIHR.jpg,1,M30,Disgust,Three quarters,3.06,3.69,2.06
+AM30DIFR.jpg,1,M30,Disgust,Full profile,3.25,3.19,2.06
+AM30DIS.jpg,1,M30,Disgust,Frontal,2.75,2.44,1.75
+AM30AFHR.jpg,1,M30,Fear,Three quarters,3.5,3.19,2.38
+AM30AFFR.jpg,1,M30,Fear,Full profile,3.38,3,2.06
+AM30AFS.jpg,1,M30,Fear,Frontal,3,2.75,1.88
+AM30HAHR.jpg,1,M30,Happy,Three quarters,4.81,2.69,2.69
+AM30HAFR.jpg,1,M30,Happy,Full profile,4.5,3.31,2.75
+AM30HAS.jpg,1,M30,Happy,Frontal,4.75,2.75,2.56
+AM30NEHR.jpg,1,M30,Neutral,Three quarters,3.25,4.06,2.44
+AM30NEFR.jpg,1,M30,Neutral,Full profile,3.56,3.94,2.69
+AM30NES.jpg,1,M30,Neutral,Frontal,3.06,4,2.13
+AM30SAHR.jpg,1,M30,Sad,Three quarters,3.19,2.88,2.13
+AM30SAFR.jpg,1,M30,Sad,Full profile,3.5,3.56,2.38
+BM30SAS.jpg,1,M30,Sad,Frontal,2.88,3.19,2.13
+AM31ANHL.jpg,1,M31,Anger,Three quarters,3.13,3.88,2.13
+AM31ANFL.jpg,1,M31,Anger,Full profile,2.63,4.38,1.88
+AM31ANS.jpg,1,M31,Anger,Frontal,2.31,4.13,1.88
+AM31DIHL.jpg,1,M31,Disgust,Three quarters,2.69,3.19,1.81
+AM31DIFL.jpg,1,M31,Disgust,Full profile,2.63,2.94,1.81
+AM31DIS.jpg,1,M31,Disgust,Frontal,2.75,3.13,1.81
+AM31AFHL.jpg,1,M31,Fear,Three quarters,3.13,2.13,2.06
+AM31AFFL.jpg,1,M31,Fear,Full profile,3.19,2.25,1.88
+AM31AFS.jpg,1,M31,Fear,Frontal,3.13,2.31,1.94
+AM31HAHL.jpg,1,M31,Happy,Three quarters,4.88,2.75,2.88
+AM31HAFL.jpg,1,M31,Happy,Full profile,4.56,2.75,2.5
+AM31HAS.jpg,1,M31,Happy,Frontal,5.19,2.13,3.25
+AM31NEHL.jpg,1,M31,Neutral,Three quarters,4.13,3.81,2.88
+AM31NEFL.jpg,1,M31,Neutral,Full profile,3.69,3.69,2.63
+AM31NES.jpg,1,M31,Neutral,Frontal,4,4.13,2.81
+AM31SAHL.jpg,1,M31,Sad,Three quarters,3.5,2,2.31
+BM31SAFL.jpg,1,M31,Sad,Full profile,3.25,2,1.69
+AM31SAS.jpg,1,M31,Sad,Frontal,3.31,1.81,2.63
+AM32ANHR.jpg,1,M32,Anger,Three quarters,2.63,3.88,1.75
+AM32ANFR.jpg,1,M32,Anger,Full profile,2.69,4,2.13
+AM32ANS.jpg,1,M32,Anger,Frontal,2.38,3.25,1.94
+AM32DIHR.jpg,1,M32,Disgust,Three quarters,2.19,2.88,1.81
+AM32DIFR.jpg,1,M32,Disgust,Full profile,2.69,2.56,1.81
+AM32DIS.jpg,1,M32,Disgust,Frontal,2.25,2.5,1.56
+AM32AFHR.jpg,1,M32,Fear,Three quarters,2.56,2.56,2.06
+AM32AFFR.jpg,1,M32,Fear,Full profile,2.94,1.81,2.25
+AM32AFS.jpg,1,M32,Fear,Frontal,2.31,1.75,1.75
+BM32HAHR.jpg,1,M32,Happy,Three quarters,4.63,2.06,2.31
+AM32HAFR.jpg,1,M32,Happy,Full profile,4.5,1.81,2.81
+AM32HAS.jpg,1,M32,Happy,Frontal,3.88,1.88,2.31
+AM32NEHR.jpg,1,M32,Neutral,Three quarters,3.25,2.63,2.44
+AM32NEFR.jpg,1,M32,Neutral,Full profile,3.13,3.13,2.13
+AM32NES.jpg,1,M32,Neutral,Frontal,3.31,2.38,1.69
+AM32SAHR.jpg,1,M32,Sad,Three quarters,2.88,1.69,1.88
+AM32SAFR.jpg,1,M32,Sad,Full profile,2.88,1.81,1.94
+AM32SAS.jpg,1,M32,Sad,Frontal,3.06,1.75,1.75
+BM33ANHL.jpg,1,M33,Anger,Three quarters,2.25,2.31,1.81
+BM33ANFL.jpg,1,M33,Anger,Full profile,2.25,3.13,1.81
+AM33ANS.jpg,1,M33,Anger,Frontal,1.81,2.56,1.69
+AM33DIHL.jpg,1,M33,Disgust,Three quarters,2.25,2,1.44
+AM33DIFL.jpg,1,M33,Disgust,Full profile,2.25,3.25,1.63
+AM33DIS.jpg,1,M33,Disgust,Frontal,1.81,2,1.69
+AM33AFHL.jpg,1,M33,Fear,Three quarters,2.56,2,1.75
+BM33AFFL.jpg,1,M33,Fear,Full profile,2.25,1.94,1.75
+AM33AFS.jpg,1,M33,Fear,Frontal,1.75,1.44,1.5
+AM33HAHL.jpg,1,M33,Happy,Three quarters,2.63,2.19,2.19
+AM33HAFL.jpg,1,M33,Happy,Full profile,2.88,2.13,2.31
+AM33HAS.jpg,1,M33,Happy,Frontal,2.44,2.25,1.88
+AM33NEHL.jpg,1,M33,Neutral,Three quarters,2.31,3.44,2.38
+AM33NEFL.jpg,1,M33,Neutral,Full profile,2.5,3.63,2.31
+AM33NES.jpg,1,M33,Neutral,Frontal,2.25,3.88,2.25
+AM33SAHL.jpg,1,M33,Sad,Three quarters,2.5,2.06,1.88
+AM33SAFL.jpg,1,M33,Sad,Full profile,2.63,2.25,2
+AM33SAS.jpg,1,M33,Sad,Frontal,2.56,1.94,2
+AM34ANHR.jpg,1,M34,Anger,Three quarters,2.63,4.75,2.31
+AM34ANFR.jpg,1,M34,Anger,Full profile,2.75,4.69,2.31
+AM34ANS.jpg,1,M34,Anger,Frontal,3.19,4.75,2
+AM34DIHR.jpg,1,M34,Disgust,Three quarters,3.06,2.69,1.75
+BM34DIFR.jpg,1,M34,Disgust,Full profile,3.06,2.5,2
+AM34DIS.jpg,1,M34,Disgust,Frontal,2.75,2.69,2.06
+AM34AFHR.jpg,1,M34,Fear,Three quarters,3,3,2
+AM34AFFR.jpg,1,M34,Fear,Full profile,3.13,2.31,2.63
+AM34AFS.jpg,1,M34,Fear,Frontal,3.31,2.5,2.06
+AM34HAHR.jpg,1,M34,Happy,Three quarters,4.56,2.31,2.69
+AM34HAFR.jpg,1,M34,Happy,Full profile,5.25,2.13,3.13
+AM34HAS.jpg,1,M34,Happy,Frontal,3.81,2.44,3
+AM34NEHR.jpg,1,M34,Neutral,Three quarters,4.13,4.06,2.63
+AM34NEFR.jpg,1,M34,Neutral,Full profile,3.31,3.44,2.56
+AM34NES.jpg,1,M34,Neutral,Frontal,2.81,4.63,2.5
+AM34SAHR.jpg,1,M34,Sad,Three quarters,3.5,2.06,2.13
+AM34SAFR.jpg,1,M34,Sad,Full profile,3,2.13,1.94
+AM34SAS.jpg,1,M34,Sad,Frontal,2.5,1.88,1.88
+AM35ANHL.jpg,1,M35,Anger,Three quarters,2.94,4.31,2
+AM35ANFL.jpg,1,M35,Anger,Full profile,2.81,3.25,1.94
+AM35ANS.jpg,1,M35,Anger,Frontal,2.75,4.56,2.5
+AM35DIHL.jpg,1,M35,Disgust,Three quarters,2.88,3.13,2.13
+AM35DIFL.jpg,1,M35,Disgust,Full profile,2.88,3.13,1.94
+AM35DIS.jpg,1,M35,Disgust,Frontal,2.56,3.25,2.19
+AM35AFHL.jpg,1,M35,Fear,Three quarters,3.69,2.06,2.56
+AM35AFFL.jpg,1,M35,Fear,Full profile,3.31,2.31,2
+AM35AFS.jpg,1,M35,Fear,Frontal,3.19,2.38,2.63
+AM35HAHL.jpg,1,M35,Happy,Three quarters,4.63,2.44,2.81
+AM35HAFL.jpg,1,M35,Happy,Full profile,5.13,2.44,2.69
+AM35HAS.jpg,1,M35,Happy,Frontal,5.44,2.44,3.5
+AM35NEHL.jpg,1,M35,Neutral,Three quarters,3.13,3.88,2.44
+AM35NEFL.jpg,1,M35,Neutral,Full profile,3.25,4,2.19
+AM35NES.jpg,1,M35,Neutral,Frontal,3.31,3.88,2.75
+AM35SAHL.jpg,1,M35,Sad,Three quarters,2.94,2.31,2
+AM35SAFL.jpg,1,M35,Sad,Full profile,2.88,3,2.25
+AM35SAS.jpg,1,M35,Sad,Frontal,3.44,2.13,2.63
