@@ -55,19 +55,5 @@ class Orchestrator():
         (kdef_partition, kdef_labels) = self.reader.read_kdef()
         self.SetupAndTrain(celeb_a_model, kdef_partition, kdef_labels, settings.kdef_params, True)
 
-
-reader = DataReader()
-(kdef_partition, kdef_labels) = reader.read_kdef()
-
-flattened_kdef = []
-values = kdef_labels.values()
-for value in values:
-    for item in value:
-        flattened_kdef.append(item)
-
-dataAnalytics = DataAnalytics(7)
-mean, minVal, maxVal, distribution = dataAnalytics.RunAll(flattened_kdef)
-
-a = 3
-#orchestrator = Orchestrator()
-#orchestrator.Run()
+orchestrator = Orchestrator()
+orchestrator.Run()
