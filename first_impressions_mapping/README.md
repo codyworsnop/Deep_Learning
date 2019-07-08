@@ -8,7 +8,7 @@ The following document describes the project from a technical perspective outlin
 
 The following is an overall class flow denoting how each class is used. Each relevant class will be descibed in detail below. 
 
-![Class Flow Diagram](/documentation/ClassOverview.png)
+![Class Flow Diagram](./documentation/ClassOverview.png)
 
 ### DataReader
 
