@@ -66,6 +66,14 @@ The orchestration class organizes and runs the above classes accordingly. Most c
 
 ## Data Analysis 
 
+The following are some prelimary data analytics results on the KDEF data set. 
 
+Mean value: 3.19 
+Min value: 1.31
+Max value: 6.25
+
+A histrogram plotting kdef label distribution is given below. 
+
+![Class Flow Diagram](./documentation/KDEFDistribution.png)
 
 ## Preliminary results
