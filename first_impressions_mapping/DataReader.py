@@ -50,7 +50,7 @@ class DataReader():
 
             labels[imagePath] = float(trustworthiness), float(dominance), float(attractiveness)
 
-        return ({ 'train' : images[:int(len(images) * 0.70)], 'validation' : images[int(len(images) * .71) : int(len(images) * .90)] }, labels)
+        return ({ 'train' : images[:int(len(images) * 0.70)], 'validation' : images[int(len(images) * .71) : int(len(images) * .90)], 'test' : images[int(len(images) * .91) : int(len(images))]}, labels)
 
     def read_celeb_a(self):
 

@@ -11,8 +11,10 @@ kdef_params = {
                 'lossType': keras.losses.mean_squared_error,
                 'learningRate': 0.0005, 
                 'output_activation': None,
-                'weight_path': "./weights.h5",
-                'number_of_epochs': 100,
+                'weight_path': "./kdef_weights.h5",
+                'number_of_epochs': 1,
+                'min' : 1.00,
+                'max' : 7.00,
                 }
 
 celeba_params = { 
@@ -25,6 +27,6 @@ celeba_params = {
                     'lossType': keras.losses.binary_crossentropy,
                     'learningRate': 0.001, 
                     'output_activation': keras.activations.sigmoid,
-                    'weight_path': "./weights.h5",
-                    'number_of_epochs': 200,
+                    'weight_path': "./celeba_weights.h5",
+                    'number_of_epochs': 100,
                 }

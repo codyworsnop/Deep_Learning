@@ -19,6 +19,14 @@ class Metrics(keras.callbacks.Callback):
         self.val_precisions = []
         
     def on_epoch_end(self, epoch, logs={}):
+        
+        mean = self.calculate_mean(self.model)
+
+        print ('\nTrust mean diff: ' + str(mean[0]))
+        print ('Dominance mean diff: ' + str(mean[1]))
+        print ('Attractiveness mean diff: ' + str(mean[2]))
+     
+    def calculate_mean(self, model):
         batches = len(self.validation_data)
         trust_diff_sum = 0
       
@@ -27,7 +35,7 @@ class Metrics(keras.callbacks.Callback):
             print ("validating kdef accuracy. Batch " + str(batch) + " of " + str(batches))
 
             x_val, y_val = self.validation_data.__getitem__(batch)
-            pred = self.model.predict(x_val)
+            pred = model.predict(x_val)
 
             print ("yval: " + str(y_val[0]))
             print ("pred: " + str(pred[0]))
@@ -36,9 +44,4 @@ class Metrics(keras.callbacks.Callback):
 
         mean = trust_diff_sum / batches
 
-        print ('\nTrust mean diff: ' + str(mean[0]))
-        print ('Dominance mean diff: ' + str(mean[1]))
-        print ('Attractiveness mean diff: ' + str(mean[2]))
-     
-        
-        return
+        return mean

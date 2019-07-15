@@ -62,15 +62,15 @@ class DataAnalytics():
         plt.xticks(np.arange(min(data), max(data) + 1, (self.Max(data) - self.Min(data)) / self.Buckets))
         plt.show()
 
-reader = DataReader()
-(kdef_partition, kdef_labels) = reader.read_kdef()
+#reader = DataReader()
+#(kdef_partition, kdef_labels) = reader.read_kdef()
 
-flattened_kdef = []
-values = kdef_labels.values()
-for value in values:
-    for item in value:
-        flattened_kdef.append(item)
+#flattened_kdef = []
+#values = kdef_labels.values()
+#for value in values:
+#    for item in value:
+#        flattened_kdef.append(item)
 
-dataAnalytics = DataAnalytics(6)
-mean, minVal, maxVal, (distribution, dist_count) = dataAnalytics.RunAll(flattened_kdef)
-dataAnalytics.PlotDistribution(flattened_kdef)
+#dataAnalytics = DataAnalytics(6)
+#mean, minVal, maxVal, (distribution, dist_count) = dataAnalytics.RunAll(flattened_kdef)
+#dataAnalytics.PlotDistribution(flattened_kdef)

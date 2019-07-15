@@ -3,6 +3,7 @@ from ImageDataGenerator import DataGenerator
 from DataReader import DataReader
 import tensorflow as tf 
 import multiprocessing
+from Losses import Losess as custom_losses
 
 class ModelEngine():
               
@@ -59,8 +60,10 @@ class ModelEngine():
                 model3 = tf.keras.Model(inputs=model2.get_input_at(0), outputs=[second_layers])
                 model3.summary()
 
+                loss = custom_losses(20, modelSettings)
+
                 model3.compile(tf.keras.optimizers.Adam(lr=modelSettings['learningRate']),
-                              loss=modelSettings['lossType'],
+                              loss=loss.bucketized_MSE,
                               metrics=['accuracy'])
 
                 return model3 
