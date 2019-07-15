@@ -2,7 +2,7 @@ from tensorflow import keras
 import tensorflow as tf
 from DataReader import DataReader
 
-class Losess():
+class Losses():
 
     def __init__(self, numberOfBuckets, settings):
         self.NumberOfBuckets = numberOfBuckets
@@ -11,11 +11,12 @@ class Losess():
         self.Buckets = self.create_buckets()
 
     def bucketized_MSE(self, label, pred):
+
         bucket_index_label = self.Get_bucket_index(label)
         bucket_index_pred = self.Get_bucket_index(pred)
         bucket_index_diff = abs(bucket_index_label - bucket_index_pred)
 
-        return keras.backend.mean(keras.backend.square(pred - label), axis=-1) * bucket_index_diff
+        return keras.backend.mean(keras.backend.square(pred - label), axis=-1) * tf.to_float(bucket_index_diff)
 
     def create_buckets(self):
         stepSize = (self.Max - self.Min) / self.NumberOfBuckets
@@ -32,9 +33,13 @@ class Losess():
     def Get_bucket_index(self, value):
 
         for bucket_index, bucket_value in enumerate(self.Buckets):
+    
+            c1 = tf.greater_equal(value, bucket_value)
+            c2 = tf.less(value, self.Buckets[bucket_index + 1])
+            a = tf.logical_and(c1, c2)
 
-            tf.print(value)
-            if (value >= bucket_value and value < self.Buckets[bucket_index + 1]):
+            if (tf.cond(tf.greater(s, 0), lambda: bucket_index, lambda: -1) is not -1):
                 return bucket_index
 
-        return -1
+         #   if (value >= bucket_value and value < self.Buckets[bucket_index + 1]):
+          #      return bucket_index

@@ -14,7 +14,7 @@ from tensorflow import keras
 import tensorflow as tf
 import cv2
 
-tf.enable_eager_execution()
+#tf.enable_eager_execution()
 
 class Orchestrator():
     

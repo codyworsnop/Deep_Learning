@@ -23,7 +23,7 @@ class Proxy(object):
                     result = orig_attr(*args, **kwargs)
                 except Exception as e:
                     self.Logger.Error("Error occured while running method: " + str(e))
-                    return
+                    raise e
 
                 # prevent proxied_class from becoming unwrapped
                 if result == self.proxied_class:

@@ -3,7 +3,7 @@ from ImageDataGenerator import DataGenerator
 from DataReader import DataReader
 import tensorflow as tf 
 import multiprocessing
-from Losses import Losess as custom_losses
+from Losses import Losses as custom_losses
 
 class ModelEngine():
               
