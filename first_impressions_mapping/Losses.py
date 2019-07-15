@@ -36,9 +36,8 @@ class Losses():
     
             c1 = tf.greater_equal(value, bucket_value)
             c2 = tf.less(value, self.Buckets[bucket_index + 1])
-            a = tf.logical_and(c1, c2)
-
-            if (tf.cond(tf.greater(s, 0), lambda: bucket_index, lambda: -1) is not -1):
+            
+            if (tf.cond(tf.logical_and(c1, c2), lambda: bucket_index, lambda: -1) is not -1):
                 return bucket_index
 
          #   if (value >= bucket_value and value < self.Buckets[bucket_index + 1]):
