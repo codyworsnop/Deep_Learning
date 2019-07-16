@@ -12,7 +12,8 @@ class Losses():
     def bucketized_MSE(self, label, pred):
 
         stepSize = (self.Max - self.Min) / self.NumberOfBuckets
-        diff = label - pred
+        diff = tf.keras.backend.abs(pred - label)
         bucket_diff = diff / stepSize
-
-        return keras.backend.mean(keras.backend.square(pred - label), axis=-1) * tf.to_float(bucket_diff)
+        meaned_bucket_diff = keras.backend.abs(keras.backend.mean(bucket_diff, axis=-1))
+        
+        return keras.backend.mean(keras.backend.square(pred - label), axis=-1) * tf.to_float(meaned_bucket_diff)
