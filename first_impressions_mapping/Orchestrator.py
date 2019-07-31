@@ -8,7 +8,8 @@ from Logger import Logger
 from Metrics import Metrics
 from DataAnalytics import DataAnalytics
 
-import ModelSettings as modelSettings
+from ModelSettings import ModelParameters
+from ModelSettings import ModelParameterConstants
 
 from tensorflow import keras
 import tensorflow as tf
@@ -21,52 +22,61 @@ class Orchestrator():
     def __init__(self):
         self.reader = LogProxy(DataReader())
         self.modelEngine = ModelEngine()
+        self.modelSettings = ModelParameters() 
+        self.ParameterConstants = ModelParameterConstants()
+    
+    def SetupAndTrain(self, model, generator, features, settings, kdef=False): 
 
-    def SetupAndTrain(self, model, features, labels, settings, shouldGenerateNew = False): 
-
-            callbacks = []
-
-            #celeb a generators
-            #[:int(len(celeba_partition['train']) * .10)]
-            training_gen = DataGenerator(features['train'], labels, settings)
-            validation_gen = DataGenerator(features['validation'], labels, settings)
+            accuracy = None 
+            labels = tf.placeholder(tf.float32, [None, settings[self.ParameterConstants.NumberOfClasses]], name="predictions")
 
             #train model
-            if (shouldGenerateNew):
-                callbacks = [Metrics(validation_gen, settings)]
+            if (kdef):
                 model = self.modelEngine.new_from_existing(model, settings)
+                cost = tf.losses.mean_squared_error(labels=labels, predictions=model) 
+                accuracy = Metrics().kdef_accuracy(labels, model)
+            else:
+                cost = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=model, labels=labels))
+                accuracy = Metrics().celeba_accuracy(labels, model)
 
-            self.modelEngine.fit_with_save(model, training_gen, validation_gen, settings, callbacks)
+            self.modelEngine.fit_with_save(features, labels, accuracy, generator, cost, settings, kdef)
 
             return model
 
     def Run(self):
 
+        features = tf.placeholder(tf.float32, shape=[None, self.modelSettings.celeba_params[self.ParameterConstants.Dimension][0],
+                                                                self.modelSettings.celeba_params[self.ParameterConstants.Dimension][1], 
+                                                                self.modelSettings.celeba_params[self.ParameterConstants.NumberOfChannels]], name='features')
+
         #create new model 
-        celeb_a_model = self.modelEngine.CreateModel(modelSettings.celeba_params)
+        celeb_a_model = self.modelEngine.CreateModel(features, self.modelSettings.celeba_params)
 
          #train celeb_a if no weights exist for it 
-        if (not self.reader.weights_exist(modelSettings.celeba_params['weight_path'])):
+      #  if (not self.reader.weights_exist(self.modelSettings.celeba_params['weight_path'])):
 
             #train celeb_a
-            (celeba_partition, celeba_labels) = self.reader.read_celeb_a()
-            self.SetupAndTrain(celeb_a_model, celeba_partition, celeba_labels, modelSettings.celeba_params)
+       #     (celeba_partition, celeba_labels) = self.reader.read_celeb_a()
 
+            #[:int(len(celeba_partition['train']) * .10)]
+        #    training_gen = DataGenerator(celeba_partition['train'], celeba_labels, self.modelSettings.celeba_params)
+         #   self.SetupAndTrain(celeb_a_model, training_gen, features, self.modelSettings.celeba_params)
+    
         #train kdef
         (kdef_partition, kdef_labels) = self.reader.read_kdef()
-        kdef_model = self.SetupAndTrain(celeb_a_model, kdef_partition, kdef_labels, modelSettings.kdef_params, True)
-
-        self.Test(kdef_model, kdef_partition, kdef_labels, modelSettings.kdef_params)
+        training_gen = DataGenerator(kdef_partition['train'], kdef_labels, self.modelSettings.kdef_params)
+        kdef_model = self.SetupAndTrain(celeb_a_model, training_gen, features, self.modelSettings.kdef_params, True)
 
     def Test(self, model, features, labels, settings):
 
         test_gen = DataGenerator(features['test'], labels, settings)     
-        metrics = Metrics(test_gen, settings)
-        mean = metrics.calculate_mean(model) 
 
-        print(mean)
-   
-        
+        mean = Metrics().calculate_mean(model) 
+
+        print(mean)      
 
 orchestrator = LogProxy(Orchestrator())
 orchestrator.Run()
+
+
+#try mworks2, 4

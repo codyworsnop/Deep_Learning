@@ -63,14 +63,19 @@ class DataAnalytics():
         plt.show()
 
 #reader = DataReader()
-#(kdef_partition, kdef_labels) = reader.read_kdef()
+##(kdef_partition, kdef_labels) = reader.read_kdef()
 
-#flattened_kdef = []
+flattened_kdef_1 = []
+flattened_kdef_2 = []
+flattened_kdef_3 = []
 #values = kdef_labels.values()
 #for value in values:
-#    for item in value:
-#        flattened_kdef.append(item)
+#        flattened_kdef_1.append(value[0])
+#        flattened_kdef_2.append(value[1])
+#        flattened_kdef_3.append(value[2])
 
 #dataAnalytics = DataAnalytics(6)
-#mean, minVal, maxVal, (distribution, dist_count) = dataAnalytics.RunAll(flattened_kdef)
-#dataAnalytics.PlotDistribution(flattened_kdef)
+#mean, minVal, maxVal, (distribution, dist_count) = dataAnalytics.RunAll(flattened_kdef_1)
+#dataAnalytics.PlotDistribution(flattened_kdef_1)
+#dataAnalytics.PlotDistribution(flattened_kdef_2)
+#dataAnalytics.PlotDistribution(flattened_kdef_3)

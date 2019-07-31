@@ -17,3 +17,5 @@ class Losses():
         meaned_bucket_diff = keras.backend.abs(keras.backend.mean(bucket_diff, axis=-1))
         
         return keras.backend.mean(keras.backend.square(pred - label), axis=-1) * tf.to_float(meaned_bucket_diff)
+
+#try mean, then sum 

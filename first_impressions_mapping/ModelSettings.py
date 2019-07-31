@@ -1,32 +1,53 @@
 
+import tensorflow as tf 
 from tensorflow import keras
 
-kdef_params = { 
-                'dimension': (218, 178),
-                'batch_size': 8, 
-                'n_classes': 3,
-                'n_channels': 3,
-                'shuffle': True,
-                'labelDataType': float,
-                'lossType': keras.losses.mean_squared_error,
-                'learningRate': 0.0005, 
-                'output_activation': None,
-                'weight_path': "./kdef_weights.h5",
-                'number_of_epochs': 1,
-                'min' : 1.00,
-                'max' : 7.00,
-                }
+class ModelParameters():
 
-celeba_params = { 
+    kdef_params = { 
                     'dimension': (218,178),
-                    'batch_size': 64, 
-                    'n_classes': 40,
+                    'batch_size': 8, 
+                    'n_classes': 3,
                     'n_channels': 3,
                     'shuffle': True,
-                    'labelDataType': bool,    
-                    'lossType': keras.losses.binary_crossentropy,
-                    'learningRate': 0.001, 
-                    'output_activation': keras.activations.sigmoid,
-                    'weight_path': "./celeba_weights.h5",
-                    'number_of_epochs': 100,
-                }
+                    'labelDataType': float,
+                    'lossType': tf.losses.mean_squared_error,
+                    'learningRate': 0.0005, 
+                    'output_activation': None,
+                    'weight_path': "./kdef_weights.ckpt",
+                    'number_of_epochs': 1,
+                    'min' : 1.00,
+                    'max' : 7.00,
+                    'dropout_rate' : 0.8
+                    }
+
+    celeba_params = { 
+                        'dimension': (218,178),
+                        'batch_size': 64, 
+                        'n_classes': 40,
+                        'n_channels': 3,
+                        'shuffle': True,
+                        'labelDataType': float,    
+                        'lossType': keras.losses.binary_crossentropy,
+                        'learningRate': 0.001, 
+                        'output_activation': tf.nn.sigmoid,
+                        'weight_path': "./celeba_weights.ckpt",
+                        'number_of_epochs': 100,
+                        'dropout_rate' : 0.8,
+                    }
+
+class ModelParameterConstants():
+    Dimension = 'dimension'
+    BatchSize = 'batch_size'
+    NumberOfClasses = 'n_classes'
+    NumberOfChannels = 'n_channels'
+    ShouldShuffle = 'shuffle'
+    LabelDataType = 'labelDataType'
+    LossType = 'lossType'
+    LearningRate = 'learningRate'
+    OutputActivation = 'output_activation'
+    WeightPath = 'weight_path'
+    NumberOfEpochs = 'number_of_epochs'
+    DatasetRangeMinimum = 'min'
+    DatasetRangeMaximum = 'max'
+    DropoutRate = 'dropout_rate'

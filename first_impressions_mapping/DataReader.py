@@ -41,6 +41,7 @@ class DataReader():
             imageName, _, _, _, _, trustworthiness, dominance, attractiveness = line.rstrip('\n').split(',')
             imageName = imageName.upper()
             imagePath, _ = self.find(imageName, BaseDirectory + '/KDEF/')
+           # imagePath, _ = self.find(imageName, BaseDirectory)
 
             if (imagePath == None):
                 self.Logger.Error("The image path was None while reading kdef data: " + str(imageName))
@@ -71,15 +72,16 @@ class DataReader():
             images.append(imagePath)
 
             #extract features
-            line = line.split(' ', 1)[1]
-            
-            for label in line.split(' '):
+            line = line.strip().split(' ')[1:]
+
+            #labels.append([int(x) for x in line[1:]])
+            for label in line:
             
                 if (label == '-1' or label == '-1\n'):
-                    labels.append(False)      
+                    labels.append(0)      
 
                 elif (label == '1' or label == '1\n'):
-                    labels.append(True)
+                    labels.append(1)
 
             labels_dict[imagePath] = labels
             labels = []

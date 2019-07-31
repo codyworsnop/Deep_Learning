@@ -27,7 +27,7 @@ class DataGenerator(keras.utils.Sequence):
     def __data_generation(self, image_names):
 
         # Initialization
-        X = np.empty((self.batch_size, *self.dimension, self.n_channels), dtype=np.uint8)
+        X = np.empty((self.batch_size, *self.dimension, self.n_channels), dtype=float)
         y = np.empty((self.batch_size, self.n_classes), dtype=self.labelDataType)
 
         # Generate data
@@ -60,8 +60,3 @@ class DataGenerator(keras.utils.Sequence):
 
     #    self.ShowImage(X[0])
         return X, y
-
-
-    def ShowImage(self, image):
-        cv2.imshow('image', image)
-        cv2.waitKey(0)
