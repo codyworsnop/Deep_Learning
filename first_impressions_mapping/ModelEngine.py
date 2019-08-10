@@ -5,6 +5,7 @@ import tensorflow as tf
 import multiprocessing
 from Losses import Losses as custom_losses
 from ModelSettings import ModelParameterConstants
+from ModelSettings import ModelParameters
 from Metrics import Metrics
 from tensorflow import keras
 
@@ -13,6 +14,8 @@ class ModelEngine():
               
         def __init__(self):
                 self.ParameterConstants = ModelParameterConstants() 
+                self.GlobalModelSettings = ModelParameters()           
+                self.Saveables = []
 
         def CreateModel(self, features, modelSettings):
 
@@ -48,13 +51,14 @@ class ModelEngine():
 
                 optimiser = tf.train.AdamOptimizer(learning_rate=modelSettings[self.ParameterConstants.LearningRate]).minimize(cost)
                 init_op = tf.global_variables_initializer()
-                saver = tf.train.Saver()
+                saver = tf.train.Saver(var_list=self.Saveables)
+                
                 with tf.Session() as sess:
                         
+                        sess.run(init_op)
+
                         if (restore):
-                                saver.restore(sess, modelSettings[self.ParameterConstants.WeightPath])
-                        else:
-                                sess.run(init_op)
+                                saver.restore(sess, self.GlobalModelSettings.celeba_params[self.ParameterConstants.WeightPath])
 
                         for epoch in range(modelSettings[self.ParameterConstants.NumberOfEpochs]):
                                 
@@ -118,6 +122,9 @@ class ModelEngine():
                 # initialise weights and bias for the filter
                 weights = tf.Variable(tf.truncated_normal(conv_filt_shape, stddev=0.03), name=name+'_W')
                 bias = tf.Variable(tf.truncated_normal([num_filters]), name=name+'_b')
+
+                self.Saveables.append(weights)
+                self.Saveables.append(bias)
 
                 # setup the convolutional layer operation
                 out_layer = tf.nn.conv2d(input_data, weights, [1, 1, 1, 1], padding='SAME')

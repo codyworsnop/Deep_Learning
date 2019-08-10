@@ -12,7 +12,7 @@ class ModelParameters():
                     'shuffle': True,
                     'labelDataType': float,
                     'lossType': tf.losses.mean_squared_error,
-                    'learningRate': 0.0005, 
+                    'learningRate': 0.001, 
                     'output_activation': None,
                     'weight_path': "./kdef_weights.ckpt",
                     'number_of_epochs': 1,
@@ -32,7 +32,7 @@ class ModelParameters():
                         'learningRate': 0.001, 
                         'output_activation': tf.nn.sigmoid,
                         'weight_path': "./celeba_weights.ckpt",
-                        'number_of_epochs': 100,
+                        'number_of_epochs': 1,
                         'dropout_rate' : 0.8,
                     }
 

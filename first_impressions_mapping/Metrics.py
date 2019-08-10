@@ -6,6 +6,7 @@ trust_predictions = []
 class Metrics():
     
     def kdef_accuracy(self, y, pred): 
+            
             diff = tf.abs(tf.subtract(tf.abs(y), tf.abs(pred)))
             trust_diff_sum = tf.reduce_sum(diff, axis=0)
 

@@ -11,6 +11,8 @@ from DataAnalytics import DataAnalytics
 from ModelSettings import ModelParameters
 from ModelSettings import ModelParameterConstants
 
+from Losses import Losses
+
 from tensorflow import keras
 import tensorflow as tf
 import cv2
@@ -33,6 +35,8 @@ class Orchestrator():
             #train model
             if (kdef):
                 model = self.modelEngine.new_from_existing(model, settings)
+
+                loss = Losses(20, seetings)
                 cost = tf.losses.mean_squared_error(labels=labels, predictions=model) 
                 accuracy = Metrics().kdef_accuracy(labels, model)
             else:
@@ -53,14 +57,14 @@ class Orchestrator():
         celeb_a_model = self.modelEngine.CreateModel(features, self.modelSettings.celeba_params)
 
          #train celeb_a if no weights exist for it 
-      #  if (not self.reader.weights_exist(self.modelSettings.celeba_params['weight_path'])):
+        if (not self.reader.weights_exist(self.modelSettings.celeba_params['weight_path'] + '.meta')):
 
             #train celeb_a
-       #     (celeba_partition, celeba_labels) = self.reader.read_celeb_a()
+            (celeba_partition, celeba_labels) = self.reader.read_celeb_a()
 
             #[:int(len(celeba_partition['train']) * .10)]
-        #    training_gen = DataGenerator(celeba_partition['train'], celeba_labels, self.modelSettings.celeba_params)
-         #   self.SetupAndTrain(celeb_a_model, training_gen, features, self.modelSettings.celeba_params)
+            training_gen = DataGenerator(celeba_partition['train'][:int(len(celeba_partition['train']) * .005)], celeba_labels, self.modelSettings.celeba_params)
+            self.SetupAndTrain(celeb_a_model, training_gen, features, self.modelSettings.celeba_params)
     
         #train kdef
         (kdef_partition, kdef_labels) = self.reader.read_kdef()
