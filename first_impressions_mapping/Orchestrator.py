@@ -36,14 +36,15 @@ class Orchestrator():
             if (kdef):
                 model = self.modelEngine.new_from_existing(model, settings)
 
-                loss = Losses(20, seetings)
+              #  loss = Losses(20, settings)
                 cost = tf.losses.mean_squared_error(labels=labels, predictions=model) 
-                accuracy = Metrics().kdef_accuracy(labels, model)
+                accuracy = Metrics().kdef_accuracy(labels, model, settings[self.ParameterConstants.BatchSize]) 
+
             else:
                 cost = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=model, labels=labels))
                 accuracy = Metrics().celeba_accuracy(labels, model)
 
-            self.modelEngine.fit_with_save(features, labels, accuracy, generator, cost, settings, kdef)
+            self.modelEngine.fit_with_save(features, labels, accuracy, generator, cost, settings, model, kdef)
 
             return model
 
@@ -63,7 +64,7 @@ class Orchestrator():
             (celeba_partition, celeba_labels) = self.reader.read_celeb_a()
 
             #[:int(len(celeba_partition['train']) * .10)]
-            training_gen = DataGenerator(celeba_partition['train'][:int(len(celeba_partition['train']) * .005)], celeba_labels, self.modelSettings.celeba_params)
+            training_gen = DataGenerator(celeba_partition['train'], celeba_labels, self.modelSettings.celeba_params)
             self.SetupAndTrain(celeb_a_model, training_gen, features, self.modelSettings.celeba_params)
     
         #train kdef

@@ -1,2 +1,2 @@
-model_checkpoint_path: "celeba_weights.ckpt"
-all_model_checkpoint_paths: "celeba_weights.ckpt"
+model_checkpoint_path: "kdef_weights.ckpt"
+all_model_checkpoint_paths: "kdef_weights.ckpt"

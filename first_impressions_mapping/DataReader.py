@@ -23,7 +23,10 @@ class DataReader():
         
     def find_directory(self, name, path): 
         for root, _, files in os.walk(path):
-            if name in root:
+            
+            directory = root.split('/')[-1]
+
+            if name == directory:
                 return root
     
     def read_kdef(self):
@@ -35,13 +38,17 @@ class DataReader():
         label_file = open(kdef_labels_path, 'r')
         lines = label_file.readlines()[1:]
 
+        #find kdef image directory
+        kdef_directory = self.find_directory('KDEF', BaseDirectory) 
+
+        self.Logger.Info("Reading KDEF images from: " + str(kdef_directory))
+
         for line in lines:
             
             #split the csv
             imageName, _, _, _, _, trustworthiness, dominance, attractiveness = line.rstrip('\n').split(',')
             imageName = imageName.upper()
-            imagePath, _ = self.find(imageName, BaseDirectory + '/KDEF/')
-           # imagePath, _ = self.find(imageName, BaseDirectory)
+            imagePath, _ = self.find(imageName, kdef_directory)
 
             if (imagePath == None):
                 self.Logger.Error("The image path was None while reading kdef data: " + str(imageName))

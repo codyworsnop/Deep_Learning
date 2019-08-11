@@ -27,7 +27,7 @@ class DataGenerator(keras.utils.Sequence):
     def __data_generation(self, image_names):
 
         # Initialization
-        X = np.empty((self.batch_size, *self.dimension, self.n_channels), dtype=float)
+        X = np.empty((self.batch_size, *self.dimension, self.n_channels), dtype="float32")
         y = np.empty((self.batch_size, self.n_classes), dtype=self.labelDataType)
 
         # Generate data

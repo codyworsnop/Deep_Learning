@@ -43,15 +43,17 @@ class ModelEngine():
                 wd2 = tf.Variable(tf.truncated_normal([1024, modelSettings[self.ParameterConstants.NumberOfClasses]], stddev=0.03), name='wd2')
                 bd2 = tf.Variable(tf.truncated_normal([modelSettings[self.ParameterConstants.NumberOfClasses]], stddev=0.01), name='bd2')
                 dense_layer2 = tf.matmul(dense_layer1, wd2) + bd2
-                output = tf.nn.sigmoid(dense_layer2) #modelSettings[self.ParameterConstants.OutputActivation](dense_layer2)
+                output = tf.nn.sigmoid(dense_layer2)
 
                 return output
 
-        def fit_with_save(self, x, y, accuracy, training_generator, cost, modelSettings, restore=False):
+        def fit_with_save(self, x, y, accuracy, training_generator, cost, modelSettings, model, restore=False):
 
                 optimiser = tf.train.AdamOptimizer(learning_rate=modelSettings[self.ParameterConstants.LearningRate]).minimize(cost)
                 init_op = tf.global_variables_initializer()
-                saver = tf.train.Saver(var_list=self.Saveables)
+
+                if (any(self.Saveables)):
+                        saver = tf.train.Saver(var_list=self.Saveables)
                 
                 with tf.Session() as sess:
                         
@@ -63,16 +65,17 @@ class ModelEngine():
                         for epoch in range(modelSettings[self.ParameterConstants.NumberOfEpochs]):
                                 
                                 batches = len(training_generator)
-                                avg_cost = 0
+                                epoch_avg_loss = 0
 
                                 for batch in range(batches):
                                         batch_x, batch_y = training_generator.__getitem__(batch)
-                                        _, c = sess.run([optimiser, cost], feed_dict={x: batch_x, y: batch_y})
-                                        avg_cost += c / batches
+                                        _, batch_loss = sess.run([optimiser, cost], feed_dict={x: batch_x, y: batch_y})
+                                        epoch_avg_loss += batch_loss
+     
                                         print("On batch:", batch, "of", batches, "for epoch:", (epoch + 1), "of", modelSettings[self.ParameterConstants.NumberOfEpochs], 
-                                        "accuracy: ", sess.run(accuracy, feed_dict={x: batch_x, y: batch_y}), "cost =", "{:.3f}".format(avg_cost))
+                                        "accuracy: ", sess.run(accuracy, feed_dict={x: batch_x, y: batch_y}), "cost =", "{:.3f}".format(batch_loss))
 
-                                print("Epoch:", (epoch + 1), "average cost =", "{:.3f}".format(avg_cost), "\n")
+                                print("Epoch:", (epoch + 1), "average cost =", "{:.3f}".format(epoch_avg_loss / batches), "\n")
                         
                         print("\nTraining complete!")
                         saver.save(sess,  modelSettings[self.ParameterConstants.WeightPath])     
