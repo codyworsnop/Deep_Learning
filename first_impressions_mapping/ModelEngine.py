@@ -8,6 +8,8 @@ from ModelSettings import ModelParameterConstants
 from ModelSettings import ModelParameters
 from Metrics import Metrics
 from tensorflow import keras
+from Logger import Logger
+import ApplicationConstants
 
 #some code reused from https://adventuresinmachinelearning.com/convolutional-neural-networks-tutorial-tensorflow/
 class ModelEngine():
@@ -16,7 +18,7 @@ class ModelEngine():
                 self.ParameterConstants = ModelParameterConstants() 
                 self.GlobalModelSettings = ModelParameters()           
                 self.Saveables = []
-
+                self.Logger = Logger(ApplicationConstants.LoggingFilePath, ApplicationConstants.LoggingFileName)
         def CreateModel(self, features, modelSettings):
 
                 features = tf.reshape(features, shape=[-1, modelSettings[self.ParameterConstants.Dimension][0],
@@ -49,10 +51,13 @@ class ModelEngine():
 
         def fit_with_save(self, x, y, accuracy, training_generator, cost, modelSettings, model, restore=False):
 
-                optimiser = tf.train.AdamOptimizer(learning_rate=modelSettings[self.ParameterConstants.LearningRate]).minimize(cost)
+                #optimiser = tf.train.AdamOptimizer(learning_rate=modelSettings[self.ParameterConstants.LearningRate]).minimize(cost)
+                optimiser = tf.train.RMSPropOptimizer(learning_rate=modelSettings[self.ParameterConstants.LearningRate]).minimize(cost)
+
                 init_op = tf.global_variables_initializer()
 
                 if (any(self.Saveables)):
+                        self.Logger.Info("Saving variables: " + str(self.Saveables))
                         saver = tf.train.Saver(var_list=self.Saveables)
                 
                 with tf.Session() as sess:
@@ -60,8 +65,11 @@ class ModelEngine():
                         sess.run(init_op)
 
                         if (restore):
-                                saver.restore(sess, self.GlobalModelSettings.celeba_params[self.ParameterConstants.WeightPath])
+                                weight_path = self.GlobalModelSettings.celeba_params[self.ParameterConstants.WeightPath]
+                                self.Logger.Info("Restoring model weights from " + str(weight_path))
+                                saver.restore(sess, weight_path)
 
+                        self.Logger.Info("Starting training with step size " + str(modelSettings[self.ParameterConstants.LearningRate]))
                         for epoch in range(modelSettings[self.ParameterConstants.NumberOfEpochs]):
                                 
                                 batches = len(training_generator)
@@ -73,7 +81,7 @@ class ModelEngine():
                                         epoch_avg_loss += batch_loss
      
                                         print("On batch:", batch, "of", batches, "for epoch:", (epoch + 1), "of", modelSettings[self.ParameterConstants.NumberOfEpochs], 
-                                        "accuracy: ", sess.run(accuracy, feed_dict={x: batch_x, y: batch_y}), "cost =", "{:.3f}".format(batch_loss))
+                                        "accuracy: ", sess.run(accuracy, feed_dict={x: batch_x, y: batch_y}))
 
                                 print("Epoch:", (epoch + 1), "average cost =", "{:.3f}".format(epoch_avg_loss / batches), "\n")
                         

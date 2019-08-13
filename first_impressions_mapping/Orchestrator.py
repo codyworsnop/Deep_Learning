@@ -36,7 +36,9 @@ class Orchestrator():
             if (kdef):
                 model = self.modelEngine.new_from_existing(model, settings)
 
-              #  loss = Losses(20, settings)
+                loss = Losses(20, settings)
+
+               # cost = loss.bucketized_MSE(label=labels, pred=model)
                 cost = tf.losses.mean_squared_error(labels=labels, predictions=model) 
                 accuracy = Metrics().kdef_accuracy(labels, model, settings[self.ParameterConstants.BatchSize]) 
 

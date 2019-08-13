@@ -1,0 +1,3 @@
+
+LoggingFilePath = './logs/'
+LoggingFileName = 'log'
