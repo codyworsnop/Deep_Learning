@@ -15,10 +15,10 @@ class ModelParameters():
                     'learningRate': 0.0005,
                     'output_activation': None,
                     'weight_path': "./kdef_weights.ckpt",
-                    'number_of_epochs': 1,
+                    'number_of_epochs': 10000,
                     'min' : 1.00,
                     'max' : 7.00,
-                    'dropout_rate' : 0.8
+                    'dropout_rate' : 0.5,
                     }
 
     celeba_params = { 
@@ -32,8 +32,8 @@ class ModelParameters():
                         'learningRate': 0.001, 
                         'output_activation': tf.nn.sigmoid,
                         'weight_path': "./celeba_weights.ckpt",
-                        'number_of_epochs': 100,
-                        'dropout_rate' : 0.8,
+                        'number_of_epochs': 1,
+                        'dropout_rate' : 0.5,
                     }
 
 class ModelParameterConstants():

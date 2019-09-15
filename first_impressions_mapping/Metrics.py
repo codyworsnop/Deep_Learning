@@ -7,7 +7,7 @@ class Metrics():
     
     def kdef_accuracy(self, y, pred, batch_size): 
             
-            diff = tf.abs(tf.subtract(tf.abs(y), tf.abs(pred)))
+            diff = tf.abs(tf.subtract(pred, y))
             trust_diff_sum = tf.reduce_sum(diff, axis=0)
 
             return trust_diff_sum / batch_size

@@ -27,19 +27,17 @@ class Orchestrator():
         self.modelSettings = ModelParameters() 
         self.ParameterConstants = ModelParameterConstants()
     
-    def SetupAndTrain(self, model, generator, features, settings, kdef=False): 
+    def SetupAndTrain(self, model, generator, features, settings, labels, kdef=False): 
 
             accuracy = None 
-            labels = tf.placeholder(tf.float32, [None, settings[self.ParameterConstants.NumberOfClasses]], name="predictions")
 
             #train model
             if (kdef):
                 model = self.modelEngine.new_from_existing(model, settings)
 
                 loss = Losses(20, settings)
-
-               # cost = loss.bucketized_MSE(label=labels, pred=model)
-                cost = tf.losses.mean_squared_error(labels=labels, predictions=model) 
+                cost = loss.bucketized_MSE(label=labels, pred=model)
+               # cost = tf.losses.mean_squared_error(labels=labels, predictions=model) 
                 accuracy = Metrics().kdef_accuracy(labels, model, settings[self.ParameterConstants.BatchSize]) 
 
             else:
@@ -57,33 +55,33 @@ class Orchestrator():
                                                                 self.modelSettings.celeba_params[self.ParameterConstants.NumberOfChannels]], name='features')
 
         #create new model 
-        celeb_a_model = self.modelEngine.CreateModel(features, self.modelSettings.celeba_params)
+        model = self.modelEngine.CreateModel(features, self.modelSettings.celeba_params)
 
          #train celeb_a if no weights exist for it 
         if (not self.reader.weights_exist(self.modelSettings.celeba_params['weight_path'] + '.meta')):
 
             #train celeb_a
             (celeba_partition, celeba_labels) = self.reader.read_celeb_a()
+            labels = tf.placeholder(tf.float32, [None, self.modelSettings.celeba_params[self.ParameterConstants.NumberOfClasses]], name="predictions")
 
             #[:int(len(celeba_partition['train']) * .10)]
             training_gen = DataGenerator(celeba_partition['train'], celeba_labels, self.modelSettings.celeba_params)
-            self.SetupAndTrain(celeb_a_model, training_gen, features, self.modelSettings.celeba_params)
+            self.SetupAndTrain(model, training_gen, features, self.modelSettings.celeba_params, labels)
     
         #train kdef
         (kdef_partition, kdef_labels) = self.reader.read_kdef()
-        training_gen = DataGenerator(kdef_partition['train'], kdef_labels, self.modelSettings.kdef_params)
-        kdef_model = self.SetupAndTrain(celeb_a_model, training_gen, features, self.modelSettings.kdef_params, True)
+        kdef_labels = tf.placeholder(tf.float32, [None, self.modelSettings.kdef_params[self.ParameterConstants.NumberOfClasses]], name="predictions")
 
-    def Test(self, model, features, labels, settings):
+        if (not self.reader.weights_exist(self.modelSettings.kdef_params[self.ParameterConstants.WeightPath] + '.meta')):
+            training_gen = DataGenerator(kdef_partition['train'], kdef_labels, self.modelSettings.kdef_params)
+            model = self.SetupAndTrain(model, training_gen, features, self.modelSettings.kdef_params, labels, True)    
 
-        test_gen = DataGenerator(features['test'], labels, settings)     
-
-        mean = Metrics().calculate_mean(model) 
-
-        print(mean)      
+        #test kdef
+        test_generator = DataGenerator(kdef_partition['test'], kdef_labels, self.modelSettings.kdef_params)
+        kdef_accuracy = Metrics().kdef_accuracy(kdef_labels, model, self.modelSettings.kdef_params[self.ParameterConstants.BatchSize]) 
+        self.modelEngine.test(features, kdef_labels, model, kdef_accuracy, test_generator, self.modelSettings.kdef_params)
 
 orchestrator = LogProxy(Orchestrator())
 orchestrator.Run()
-
 
 #try mworks2, 4
