@@ -44,7 +44,7 @@ class ModelEngine():
 
                 return output
 
-        def fit_with_save(self, x, y, accuracy, training_generator, cost, modelSettings, prediction, restore=False):
+        def fit_with_save(self, x, y, accuracy, training_generator, validation_gen, cost, modelSettings, prediction, restore=False):
 
                 optimiser = tf.train.AdamOptimizer(learning_rate=modelSettings[self.ParameterConstants.LearningRate]).minimize(cost)
                 optimiser2 = tf.train.AdamOptimizer(learning_rate=0.00005).minimize(cost)
@@ -77,26 +77,46 @@ class ModelEngine():
                                         _, batch_loss = sess.run([optimiser, cost], feed_dict={x: batch_x, y: batch_y})
                                         epoch_avg_loss += batch_loss
 
-                                        #print("Actual:", batch_y)
-                                        #pred = sess.run(prediction, feed_dict={x: batch_x})
-                                        #print("Prediction", pred)
-                                        #dif = sess.run(tf.abs(tf.subtract(batch_y, pred)))
-                                        #print("Difference", dif)
-                                        #print("summation", sess.run(tf.reduce_sum(dif, axis=0)))
-
-                                        print("On batch:", batch, "of", batches, "for epoch:", (epoch + 1), "of", modelSettings[self.ParameterConstants.NumberOfEpochs], 
-                                        "accuracy: ", sess.run(accuracy, feed_dict={x: batch_x, y: batch_y}))
+                                        batch_accuracy = sess.run(accuracy, feed_dict={x: batch_x, y: batch_y})
+                                        self.Logger.Info("On batch: " + str(batch) + " of " + str(batches) + " for epoch: " + str((epoch + 1)) + " of " + str(modelSettings[self.ParameterConstants.NumberOfEpochs]) + 
+                                        " accuracy: " + str(batch_accuracy))
 
                                         mape = sess.run(MAPE, feed_dict={x: batch_x, y: batch_y})
 
-                                        print('Validation mean absolute percent error:', mape)
-                                        print('****************')
-
-                                #print("Epoch:", (epoch + 1), "average cost =", "{:.3f}".format(epoch_avg_loss / batches), "\n")
+                                        self.Logger.Info('mean absolute percent error: ' + str(mape))
                         
                                 if (epoch == 10):
                                         self.Logger.Info("Changing to new optimiser")
                                         optimiser = optimiser2
+
+                                #run validation for early stopping condition evaluation
+                                if (validation_gen is not None):
+
+                                        epoch_count_with_higher_mape = 0
+                                        mape = 0
+
+                                        validation_batches = len(validation_gen)
+
+                                        for batch in range(validation_batches):
+                                                batch_x, batch_y = validation_gen.__getitem__(batch)
+                                                mape += sess.run(MAPE, feed_dict={ x: batch_x, y: batch_y })
+
+                                        self.Logger.Info('validation mean absolute percent error: ' + mape)
+
+                                        #save off first mape value
+                                        if (epoch == 0):
+                                                lowest_mape = mape
+
+                                        if (mape < lowest_mape):
+                                                self.Logger.Info('saving new lowest mape value')
+                                                lowest_mape = mape
+                                        else:
+                                                epoch_count_with_higher_mape += 1 
+
+                                        #stop training if validation error is getting worse after n epochs
+                                        if (epoch_count_with_higher_mape > 10):
+                                                self.Logger.Warn("Stopping learning after " + epoch + " epochs with a MAPE value of " + mape)
+                                                break              
 
                         print("\nTraining complete!")
                         saver.save(sess, modelSettings[self.ParameterConstants.WeightPath])     
@@ -106,7 +126,7 @@ class ModelEngine():
         def test(self, x, y, model, accuracy, test_generator, modelSettings):
 
                 with tf.Session() as sess:
-
+                        sess.run(tf.global_variables_initializer())
                         batches = len(test_generator)
 
                         for batch in range(batches):

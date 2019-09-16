@@ -93,7 +93,7 @@ class DataReader():
             labels_dict[imagePath] = labels
             labels = []
 
-        return ({ 'train' : images[:int(len(images) * .70)], 'validation': images[int(len(images) * .71) : int(len(images) * .90)] }, labels_dict)
+        return ({ 'train' : images[:int(len(images) * .70)], 'validation': images[int(len(images) * .71) : int(len(images) * .90)], 'test' : images[int(len(images) * 0.91) : int(len(images))] }, labels_dict)
 
     def weights_exist(self, file_path):
         return os.path.exists(file_path)
