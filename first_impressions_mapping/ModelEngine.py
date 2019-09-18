@@ -54,6 +54,8 @@ class ModelEngine():
                 if (any(self.Saveables)):
                         self.Logger.Info("Saving variables: " + str(self.Saveables))
                         saver = tf.train.Saver(var_list=self.Saveables)
+                else:
+                        saver = tf.train.Saver()
                         
                 with tf.Session() as sess:
 
@@ -101,7 +103,8 @@ class ModelEngine():
                                                 batch_x, batch_y = validation_gen.__getitem__(batch)
                                                 mape += sess.run(MAPE, feed_dict={ x: batch_x, y: batch_y })
 
-                                        self.Logger.Info('validation mean absolute percent error: ' + mape)
+                                        self.Logger.Info("Validating on batch: " + str(batch) + " of " + str(batches) + " accuracy: " + str(batch_accuracy))
+                                        self.Logger.Info('validation mean absolute percent error: ' + str(mape))
 
                                         #save off first mape value
                                         if (epoch == 0):
@@ -110,12 +113,13 @@ class ModelEngine():
                                         if (mape < lowest_mape):
                                                 self.Logger.Info('saving new lowest mape value')
                                                 lowest_mape = mape
+                                                epoch_count_with_higher_mape = 0
                                         else:
                                                 epoch_count_with_higher_mape += 1 
 
                                         #stop training if validation error is getting worse after n epochs
-                                        if (epoch_count_with_higher_mape > 10):
-                                                self.Logger.Warn("Stopping learning after " + epoch + " epochs with a MAPE value of " + mape)
+                                        if (epoch_count_with_higher_mape > 5):
+                                                self.Logger.Warn("Stopping learning after " + str(epoch) + " epochs with a MAPE value of " + str(mape))
                                                 break              
 
                         print("\nTraining complete!")
@@ -125,7 +129,18 @@ class ModelEngine():
 
         def test(self, x, y, model, accuracy, test_generator, modelSettings):
 
+                if (any(self.Saveables)):
+                        self.Logger.Info("Saving variables: " + str(self.Saveables))
+                        saver = tf.train.Saver(var_list=self.Saveables)
+                else:
+                        saver = tf.train.Saver()
+
                 with tf.Session() as sess:
+
+                        weight_path = modelSettings[self.ParameterConstants.WeightPath]
+                        self.Logger.Info("Restoring model weights from " + str(weight_path))
+                        saver.restore(sess, weight_path)
+
                         sess.run(tf.global_variables_initializer())
                         batches = len(test_generator)
 
