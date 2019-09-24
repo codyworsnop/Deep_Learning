@@ -1,6 +1,7 @@
 import os 
 from termcolor import colored
 from datetime import datetime
+import sys
 
 LogDirectory = "./logs/"
 LogFileName = "log.txt"
@@ -39,10 +40,11 @@ class Logger():
         f.write(message + '\n')
         f.close()
 
-    def Info(self, message):
+    def Info(self, message, end='\n'):
 
         self.WriteToLog(message)
-        print(colored(message, 'green'))
+        print(colored(message, 'green'), end=end)
+        sys.stdout.flush()
 
     def Warn(self, message):
 
