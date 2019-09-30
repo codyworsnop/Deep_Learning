@@ -9,6 +9,7 @@ from Logger import Logger
 classes = { 'T':0, 'D':1, 'A':2 }
 number_of_Classes = 3 
 BaseDirectory = os.getcwd() 
+SPLIT_LIST = ['split_labels/kdef_split_one.csv', 'split_labels/kdef_split_two.csv', 'split_labels/kdef_split_three.csv', 'split_labels/kdef_split_four.csv', 'split_labels/kdef_split_five.csv' ]
 
 class DataReader():
 
@@ -94,6 +95,67 @@ class DataReader():
             labels = []
 
         return ({ 'train' : images[:int(len(images) * .70)], 'validation': images[int(len(images) * .71) : int(len(images) * .90)], 'test' : images[int(len(images) * 0.91) : int(len(images))] }, labels_dict)
+
+    def Read_Splits(self):
+        global split_count
+        global VALNAMES
+        global TRAINNAMES
+        global VALLABELS
+        global TRAINLABELS
+
+        VALNAMES = []
+        TRAINNAMES = []
+
+        VALLABELS = []
+        TRAINLABELS = []
+
+        IMGNAMES = []
+        LABELS = []
+        for i in range(5):
+            if SPLIT_LIST[i] != SPLIT_LIST[split_count]:
+                f = open(SPLIT_LIST[i],'r')
+                for line in f:
+                    line = line.strip().split(',')
+                    temp = line[0].replace('.jpg','.JPG')
+                    IMGNAMES.append(temp)
+                    LABELS.append(line[5])
+                    LABELS.append(line[6])
+                    LABELS.append(line[7])
+                f.close
+
+        LABELS = np.asarray(LABELS)
+        LABELS = np.reshape(LABELS,(-1,3))
+
+        for i in range(len(LABELS)):
+            TRAINNAMES.append(IMGNAMES[i])
+            TRAINLABELS.append(LABELS[i])
+
+
+        # Read in validation data
+        IMGNAMES = []
+        LABELS = []
+
+
+        f = open(SPLIT_LIST[split_count],'r')
+        for line in f:
+            line = line.strip().split(',')
+            temp = line[0].replace('.jpg','.JPG')
+            IMGNAMES.append(temp)
+            LABELS.append(line[5])
+            LABELS.append(line[6])
+            LABELS.append(line[7])
+        f.close
+
+        LABELS = np.asarray(LABELS)
+        LABELS = np.reshape(LABELS,(-1,3))
+
+        for i in range(len(LABELS)):
+            VALNAMES.append(IMGNAMES[i])
+            VALLABELS.append(LABELS[i])
+
+
+
+
 
     def weights_exist(self, file_path):
         return os.path.exists(file_path)

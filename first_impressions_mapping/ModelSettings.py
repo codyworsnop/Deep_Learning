@@ -15,7 +15,7 @@ class ModelParameters():
                     'learningRate': 0.0001,
                     'output_activation': None,
                     'weight_path': "./kdef_weights.ckpt",
-                    'number_of_epochs': 8,
+                    'number_of_epochs': 5,
                     'min' : 1.00,
                     'max' : 7.00,
                     'dropout_rate' : 0.5,

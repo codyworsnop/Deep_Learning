@@ -9,9 +9,12 @@ from ModelSettings import ModelParameters
 from Metrics import Metrics
 from tensorflow import keras
 from Logger import Logger
+from ModelSettings import ModelParameterConstants
 import ApplicationConstants
 import time
 from tensorflow import keras 
+import cv2
+from ModelType import ModelType
 
 #some code reused from https://adventuresinmachinelearning.com/convolutional-neural-networks-tutorial-tensorflow/
 
@@ -25,90 +28,27 @@ class ModelEngine():
                 self.Saveables = []
                 self.Learnable_weights = [] 
                 self.Logger = Logger(ApplicationConstants.LoggingFilePath, ApplicationConstants.LoggingFileName)
-
-        def CreateModel_mobileNet(self, inputs, num_classes, is_train=True, reuse=False):
-                exp = 6  # expansion ratio
-                with tf.variable_scope('mobilenetv2'):
-                        net = self.conv2d_block(inputs, 32, 3, 2, is_train, name='conv1_1')  # size/2
-
-                        net = self.res_block(net, 1, 16, 1, is_train, name='res2_1')
-
-                        net = self.res_block(net, exp, 24, 2, is_train, name='res3_1')  # size/4
-                        net = self.res_block(net, exp, 24, 1, is_train, name='res3_2')
-
-                        net = self.res_block(net, exp, 32, 2, is_train, name='res4_1')  # size/8
-                        net = self.res_block(net, exp, 32, 1, is_train, name='res4_2')
-                        net = self.res_block(net, exp, 32, 1, is_train, name='res4_3')
-
-                        net = self.res_block(net, exp, 64, 2, is_train, name='res5_1')
-                        net = self.res_block(net, exp, 64, 1, is_train, name='res5_2')
-                        net = self.res_block(net, exp, 64, 1, is_train, name='res5_3')
-                        net = self.res_block(net, exp, 64, 1, is_train, name='res5_4')
-
-                        net = self.res_block(net, exp, 96, 1, is_train, name='res6_1')  # size/16
-                        net = self.res_block(net, exp, 96, 1, is_train, name='res6_2')
-                        net = self.res_block(net, exp, 96, 1, is_train, name='res6_3')
-
-                        net = self.res_block(net, exp, 160, 2, is_train, name='res7_1')  # size/32
-                        net = self.res_block(net, exp, 160, 1, is_train, name='res7_2')
-                        net = self.res_block(net, exp, 160, 1, is_train, name='res7_3')
-
-                        net = self.res_block(net, exp, 320, 1, is_train, name='res8_1', shortcut=False)
-
-                        net = self.pwise_block(net, 1280, is_train, name='conv9_1')
-                        net = self.global_avg(net)
-
-                        self.outputConvLayer = net
-                        
-                        logits = self.flatten(self.conv_1x1(net, num_classes, name='logits'))
-
-                        pred = tf.nn.sigmoid(logits, name='prob')
-                        return pred
-
-                                
-        def CreateModel(self, features, modelSettings):
-
-                features = tf.reshape(features, shape=[-1, modelSettings[self.ParameterConstants.Dimension][0],
-                                                                   modelSettings[self.ParameterConstants.Dimension][1], 
-                                                                   modelSettings[self.ParameterConstants.NumberOfChannels]])                                                   
-
-                layer1 = self.create_conv_layer(features, modelSettings[self.ParameterConstants.NumberOfChannels], 64, [5, 5], [2, 2], name='layer1')
-                layer2 = self.create_conv_layer(layer1, 64, 64, [5, 5], [2, 2], name='layer2')
-                layer3 = self.create_conv_layer(layer2, 64, 128, [5, 5], [2, 2], name='layer3')
-                layer4 = self.create_conv_layer(layer3, 128, 128, [5, 5], [2, 2], name='layer4')
-                layer5 = self.create_conv_layer(layer4, 128, 256, [5, 5], [2, 2], name='layer5')
-                layer6 = self.create_conv_layer(layer5, 256, 512, [5, 5], [2, 2], name='layer6')
-
-                self.outputConvLayer = layer6
          
-                output_dimension = self.outputConvLayer.shape[1] * self.outputConvLayer.shape[2] * self.outputConvLayer.shape[3]
-                flattened = tf.reshape(self.outputConvLayer, [-1, output_dimension.value])
+                                
+        def CreateModel(self, features, modelSettings, modelType):
 
-                wd1 = tf.Variable(tf.truncated_normal([output_dimension.value, 1024], stddev=0.03), name='wd1')
-                bd1 = tf.Variable(tf.truncated_normal([1024], stddev=0.01), name='bd1')
-                self.Saveables.append(wd1)
-                self.Saveables.append(bd1)
+                if (modelType == ModelType.Basic):
+                        return self.Basic_Model(features, modelSettings)
+                elif (modelType == ModelType.MobileNetV2):
+                        return self.CreateModel_mobileNet(features, modelSettings[ModelParameterConstants.NumberOfClasses])
 
-                fc = tf.nn.relu(tf.matmul(flattened, wd1) + bd1)
-                fc = tf.nn.dropout(fc, rate=modelSettings[self.ParameterConstants.DropoutRate])
 
-                w_out = tf.Variable(tf.truncated_normal([1024, modelSettings[self.ParameterConstants.NumberOfClasses]], stddev=0.03), name='wd1')
-                b_out = tf.Variable(tf.truncated_normal([modelSettings[self.ParameterConstants.NumberOfClasses]], stddev=0.01), name='bd1')
-
-                output = tf.nn.sigmoid(tf.matmul(fc, w_out) + b_out)
-
-                return output
-
-        def fit_with_save(self, x, y, accuracy, training_generator, validation_gen, test_generator, cost, modelSettings, prediction, isKdef=False):
+        def fit_with_save(self, x, y, accuracy, training_generator, validation_gen, test_generator, cost, modelSettings, prediction, isKdef=False, validation_accuracy=None):
 
                 optimiser = tf.train.AdamOptimizer(learning_rate=modelSettings[self.ParameterConstants.LearningRate]).minimize(cost)
-
-                mean_absolute_percent_error = tf.abs(y - prediction)/y
-                MAPE = tf.reduce_mean(mean_absolute_percent_error)
                 epoch_count_with_higher_accuracy = 0
+
+                if (validation_accuracy is None):
+                        validation_accuracy = accuracy
                 
                 if (any(self.Saveables)):
                         celeba_saver = tf.train.Saver(var_list=self.Saveables)
+
                 with tf.Session() as sess:
 
                         if (isKdef):
@@ -116,9 +56,7 @@ class ModelEngine():
                                 weight_path = self.GlobalModelSettings.celeba_params[self.ParameterConstants.WeightPath]
                                 self.Logger.Info("Restoring model weights from " + str(weight_path))
                                 celeba_saver.restore(sess, weight_path)
-                                
-                        self.Logger.Info("Starting training with step size " + str(modelSettings[self.ParameterConstants.LearningRate]))
-
+                        
                         #init variables
                         sess.run(tf.global_variables_initializer())
 
@@ -129,6 +67,7 @@ class ModelEngine():
 
                                 for batch in range(batches):
                                         batch_x, batch_y = training_generator.__getitem__(batch)
+
                                         _, batch_loss = sess.run([optimiser, cost], feed_dict={x: batch_x, y: batch_y})
                                         epoch_avg_loss += batch_loss
 
@@ -140,78 +79,84 @@ class ModelEngine():
                                         #self.Logger.Info("y: " + str(batch_y))
                                         #pred = sess.run(prediction, feed_dict={x: batch_x})
                                         #self.Logger.Info('pred: ' + str(pred))
-                                        #mape = sess.run(MAPE, feed_dict={x: batch_x, y: batch_y})
-                                        #self.Logger.Info('mean absolute percent error: ' + str(mape))
+                                        #diff = tf.abs(tf.subtract(pred, y))
+                                        #trust_diff_sum = tf.reduce_sum(diff, axis=0)
+                                        #print(str(sess.run(trust_diff_sum, feed_dict={x: batch_x, y:batch_y})))
 
                                 #run validation for early stopping condition evaluation
-
-                                if (validation_gen is not None):
-                                        validation_batches = len(validation_gen)
-                                        validation_accuracy = 0 
-                                        for batch in range(validation_batches):
-                                                batch_x, batch_y = validation_gen.__getitem__(validation_batches)
-                                                
-                                                if (isKdef):
-                                                        validation_accuracy += sess.run(MAPE, feed_dict={ x: batch_x, y: batch_y })
-                                                else:
-                                                        validation_accuracy += sess.run(accuracy, feed_dict={x: batch_x, y: batch_y})
-
-                                                #pred = sess.run(prediction, feed_dict={x: batch_x})
-
-                                                #self.Logger.Info('pred: ' + str(pred) + '\nMape: ' + str(mape))
-                                                self.Logger.Info("Validating on batch: " + str(batch) + " of " + str(validation_batches) + 'validation accuracy: ' + str(validation_accuracy))
-                                        
-                                        #save off first mape value
-                                        if (epoch == 0):
-                                                lowest_accuracy = validation_accuracy
-
-                                        elif (validation_accuracy < lowest_accuracy):
-                                                self.Logger.Info('saving new lowest mape value')
-                                                lowest_accuracy = validation_accuracy
-                                                epoch_count_with_higher_accuracy = 0
-                                        else:
-                                                self.Logger.Info('incrementing higher mape count')
-                                                epoch_count_with_higher_accuracy += 1 
-
-                                        #stop training if validation error is getting worse after n epochs
-                                        if (epoch_count_with_higher_accuracy > 5):
-                                                self.Logger.Warn("Stopping learning after " + str(epoch) + " epochs with a MAPE value of " + str(validation_accuracy))
-                                                break
-
-                                        self.Logger.Info('\nvalidation total mean absolute percent error: ' + str(validation_accuracy))
+                                stop = self.training_validation(sess, validation_gen, x, y, epoch, validation_accuracy, epoch_count_with_higher_accuracy)
+                                if (stop):
+                                        break 
 
                         self.Logger.Info("\n******\nTraining complete!\n******\n\nStarting Testing\n")
+  
+                        self.training_test(sess, test_generator, accuracy, x, y, prediction, isKdef)
 
                         if (isKdef):
                                 kdef_saver.save(sess, modelSettings[self.ParameterConstants.WeightPath])                       
                                 
                         else:
                                 celeba_saver.save(sess, modelSettings[self.ParameterConstants.WeightPath])  
-                        total_accuracy = 0
-                        test_batches = len(test_generator)
-
-                        for batch in range(test_batches):
-
-                                batch_x, batch_y = test_generator.__getitem__(batch)
-                                mape = sess.run(MAPE, feed_dict={x: batch_x, y: batch_y})
-                                batch_accuracy = sess.run(accuracy, feed_dict={x: batch_x, y: batch_y})
-
-                                #self.Logger.Info('validation mean absolute percent error: ' + str(mape))
-                                self.Logger.Info("Testing on batch: " + str(batch) + " of " + str(test_batches) + " accuracy: " + str(batch_accuracy))
-
-                                #pred = sess.run(prediction, feed_dict={x: batch_x})
-                                #dif = sess.run(tf.abs(tf.subtract(batch_y, pred)))
-                                #print("Difference", dif)
-                                #print("summation", sess.run(tf.reduce_sum(dif, axis=0)))
-                                total_accuracy += batch_accuracy
-
-                        total = total_accuracy / test_batches
-                        if (isKdef):
-                                self.Logger.Info('Total accuracy is: trust ' +  str(total[0]) + ', domiance: ' + str(total[1]) + ", attraction: " + str(total[2]))
-
-                        self.Logger.Info("\nDone testing")      
 
                         return prediction 
+
+        def training_validation(self, sess, validation_gen, x, y, epoch, accuracy, epoch_count_with_higher_accuracy):
+
+                if (validation_gen is not None):
+                        
+                        shouldStop = False
+                        validation_batches = len(validation_gen)
+                        validation_accuracy = 0 
+                        for batch in range(validation_batches):
+                                batch_x, batch_y = validation_gen.__getitem__(validation_batches)
+                                
+       
+                                validation_accuracy += sess.run(accuracy, feed_dict={x: batch_x, y: batch_y})
+
+                                self.Logger.Info("Validating on batch: " + str(batch) + " of " + str(validation_batches) + 'validation accuracy: ' + str(validation_accuracy))
+                        
+                        #save off first mape value
+                        if (epoch == 0):
+                                lowest_accuracy = validation_accuracy
+                        elif (validation_accuracy < lowest_accuracy):
+                                self.Logger.Info('saving new lowest mape value')
+                                lowest_accuracy = validation_accuracy
+                                epoch_count_with_higher_accuracy = 0
+                        else:
+                                self.Logger.Info('incrementing higher mape count')
+                                epoch_count_with_higher_accuracy += 1 
+
+                        #stop training if validation error is getting worse after n epochs
+                        if (epoch_count_with_higher_accuracy > 5):
+                                self.Logger.Warn("Stopping learning after " + str(epoch) + " epochs with a MAPE value of " + str(validation_accuracy))
+                                shouldStop = True
+
+                        self.Logger.Info('\nvalidation total mean absolute percent error: ' + str(validation_accuracy))
+                
+                        return shouldStop 
+
+        def training_test(self, sess, test_generator, accuracy, x, y, prediction, isKdef):
+
+                total_accuracy = 0
+                test_batches = len(test_generator)
+
+                for batch in range(test_batches):
+
+                        batch_x, batch_y = test_generator.__getitem__(batch)
+                        batch_accuracy = sess.run(accuracy, feed_dict={x: batch_x, y: batch_y})
+
+                        self.Logger.Info("Testing on batch: " + str(batch) + " of " + str(test_batches) + " accuracy: " + str(batch_accuracy))
+                        pred = sess.run(prediction, feed_dict={x: batch_x})
+                        dif = sess.run(tf.abs(tf.subtract(batch_y, pred)))
+                        print("Difference", dif)
+                        print("summation", sess.run(tf.reduce_sum(dif, axis=0)))
+                        total_accuracy += batch_accuracy
+
+                total = total_accuracy / test_batches
+                if (isKdef):
+                        self.Logger.Info('Total accuracy is: trust ' +  str(total[0]) + ', domiance: ' + str(total[1]) + ", attraction: " + str(total[2]))
+
+                self.Logger.Info("\nDone testing")    
 
         def test(self, x, y, prediction, accuracy, test_generator, modelSettings):
 
@@ -294,12 +239,82 @@ class ModelEngine():
 
                 return out_layer
 
+        def Basic_Model(self, features, modelSettings):
 
+                features = tf.reshape(features, shape=[-1, modelSettings[self.ParameterConstants.Dimension][0],
+                                                           modelSettings[self.ParameterConstants.Dimension][1], 
+                                                           modelSettings[self.ParameterConstants.NumberOfChannels]])                                                   
+
+                layer1 = self.create_conv_layer(features, modelSettings[self.ParameterConstants.NumberOfChannels], 64, [5, 5], [2, 2], name='layer1')
+                layer2 = self.create_conv_layer(layer1, 64, 64, [5, 5], [2, 2], name='layer2')
+                layer3 = self.create_conv_layer(layer2, 64, 128, [5, 5], [2, 2], name='layer3')
+                layer4 = self.create_conv_layer(layer3, 128, 128, [5, 5], [2, 2], name='layer4')
+                layer5 = self.create_conv_layer(layer4, 128, 256, [5, 5], [2, 2], name='layer5')
+                layer6 = self.create_conv_layer(layer5, 256, 512, [5, 5], [2, 2], name='layer6')
+
+                self.outputConvLayer = layer6
+         
+                output_dimension = self.outputConvLayer.shape[1] * self.outputConvLayer.shape[2] * self.outputConvLayer.shape[3]
+                flattened = tf.reshape(self.outputConvLayer, [-1, output_dimension.value])
+
+                wd1 = tf.Variable(tf.truncated_normal([output_dimension.value, 1024], stddev=0.03), name='wd1')
+                bd1 = tf.Variable(tf.truncated_normal([1024], stddev=0.01), name='bd1')
+                self.Saveables.append(wd1)
+                self.Saveables.append(bd1)
+
+                fc = tf.nn.relu(tf.matmul(flattened, wd1) + bd1)
+                fc = tf.nn.dropout(fc, rate=modelSettings[self.ParameterConstants.DropoutRate])
+
+                w_out = tf.Variable(tf.truncated_normal([1024, modelSettings[self.ParameterConstants.NumberOfClasses]], stddev=0.03), name='wd1')
+                b_out = tf.Variable(tf.truncated_normal([modelSettings[self.ParameterConstants.NumberOfClasses]], stddev=0.01), name='bd1')
+
+                output = tf.nn.sigmoid(tf.matmul(fc, w_out) + b_out)
+
+                return output
 
 #################################################################################################################################
 #This is a MobileNetV2 implementation taken from https://github.com/neuleaf/MobileNetV2
 #################################################################################################################################
 
+        def CreateModel_mobileNet(self, inputs, num_classes, is_train=True, reuse=False):
+                exp = 6  # expansion ratio
+                with tf.variable_scope('mobilenetv2'):
+                        net = self.conv2d_block(inputs, 32, 3, 2, is_train, name='conv1_1')  # size/2
+
+                        net = self.res_block(net, 1, 16, 1, is_train, name='res2_1')
+
+                        net = self.res_block(net, exp, 24, 2, is_train, name='res3_1')  # size/4
+                        net = self.res_block(net, exp, 24, 1, is_train, name='res3_2')
+
+                        net = self.res_block(net, exp, 32, 2, is_train, name='res4_1')  # size/8
+                        net = self.res_block(net, exp, 32, 1, is_train, name='res4_2')
+                        net = self.res_block(net, exp, 32, 1, is_train, name='res4_3')
+
+                        net = self.res_block(net, exp, 64, 2, is_train, name='res5_1')
+                        net = self.res_block(net, exp, 64, 1, is_train, name='res5_2')
+                        net = self.res_block(net, exp, 64, 1, is_train, name='res5_3')
+                        net = self.res_block(net, exp, 64, 1, is_train, name='res5_4')
+
+                        net = self.res_block(net, exp, 96, 1, is_train, name='res6_1')  # size/16
+                        net = self.res_block(net, exp, 96, 1, is_train, name='res6_2')
+                        net = self.res_block(net, exp, 96, 1, is_train, name='res6_3')
+
+                        net = self.res_block(net, exp, 160, 2, is_train, name='res7_1')  # size/32
+                        net = self.res_block(net, exp, 160, 1, is_train, name='res7_2')
+                        net = self.res_block(net, exp, 160, 1, is_train, name='res7_3')
+
+                        net = self.res_block(net, exp, 320, 1, is_train, name='res8_1', shortcut=False)
+
+                        net = self.pwise_block(net, 1280, is_train, name='conv9_1')
+                        net = self.global_avg(net)
+
+                        self.outputConvLayer = net
+                        
+                        logits = self.flatten(self.conv_1x1(net, num_classes, name='logits'))
+
+                        pred = tf.nn.sigmoid(logits, name='prob')
+                        return pred
+                        
         def relu(self, x, name='relu6'):
                 return tf.nn.relu6(x, name)
 

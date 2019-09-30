@@ -18,4 +18,10 @@ class Losses():
         result = tf.reduce_mean(tf.square(pred - label), axis=-1) * tf.to_float(meaned_bucket_diff)
         return result
 
+    def Mean_Squared_Error(self, label, pred):
+        return tf.losses.mean_squared_error(labels=label, predictions=pred) 
+
+    def reduce_mean(self, labels, model):
+        return tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=model, labels=labels))
+
 #try mean, then sum 

@@ -1,10 +1,13 @@
 import numpy as np
 from tensorflow import keras
 import cv2
+from DataAugmenter import DataAugmenter
+import tensorflow as tf
+import random
 
 class DataGenerator(keras.utils.Sequence):
 
-    def __init__(self, image_names, labels, modelSettings):
+    def __init__(self, image_names, labels, modelSettings, augment):
         self.dimension = modelSettings['dimension'] 
         self.batch_size = modelSettings['batch_size']
         self.labels = labels
@@ -16,6 +19,10 @@ class DataGenerator(keras.utils.Sequence):
         self.weight_path = modelSettings['weight_path']
         self.num_epochs = modelSettings['number_of_epochs']
         self.on_epoch_end()
+        self.DataAugmentation = DataAugmenter()
+
+        #data needs to have its own class. Move out label data type, shuffle, augment data, etc into a "GenericData" class
+        self.AugmentData = augment
 
 
     def on_epoch_end(self):
@@ -27,17 +34,33 @@ class DataGenerator(keras.utils.Sequence):
     def __data_generation(self, image_names):
 
         # Initialization
-        X = np.empty((self.batch_size, *self.dimension, self.n_channels), dtype="float32")
-        y = np.empty((self.batch_size, self.n_classes), dtype=self.labelDataType)
+        if (self.AugmentData):
+            batchSize = self.batch_size * 2
+        else:
+            batchSize = self.batch_size
+
+        X = np.empty((batchSize, *self.dimension, self.n_channels), dtype="uint8")
+        y = np.empty((batchSize, self.n_classes), dtype=self.labelDataType)
 
         # Generate data
         for index, image_name in enumerate(image_names):
 
+            #AM15DIHR
             image = cv2.imread(image_name, cv2.IMREAD_COLOR)
 
             if (image is not None):
-                X[index] = np.resize(image, (self.dimension[0], self.dimension[1], self.n_channels))
-                y[index] = self.labels[image_name]
+                #image = np.resize(image, (self.dimension[0], self.dimension[1], self.n_channels))
+                image = cv2.resize(image, dsize=(self.dimension[1], self.dimension[0]), interpolation=cv2.INTER_CUBIC)
+
+                #Augment the image
+                if (self.AugmentData):
+
+                    augmented = self.DataAugmentation.augmentImage(image) 
+                    X[batchSize - index - 1] = augmented
+                    y[batchSize - index - 1] = self.labels[image_name]
+ 
+                X[index] = image
+                y[index] = self.labels[image_name]           
 
         return X, y
 
@@ -58,5 +81,17 @@ class DataGenerator(keras.utils.Sequence):
         # Generate data
         X, y = self.__data_generation(image_names_temp)
 
-    #    self.ShowImage(X[0])
+        #self.ShowImage(X[0])
         return X, y
+
+    def ShowImage(self, image):
+        cv2.imshow('image', image)
+        cv2.waitKey(0)
+        
+    def plot_images(self, images):
+
+        image = images[0]
+        for nextimg in images:
+            image = np.concatenate((image, nextimg), axis=1)
+
+        self.ShowImage(image)

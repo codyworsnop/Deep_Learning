@@ -12,6 +12,13 @@ class Metrics():
 
             return trust_diff_sum / batch_size
 
+    def MAPE(self, y, prediction):
+
+            mean_absolute_percent_error = tf.abs(y - prediction)/y
+            MAPE = tf.reduce_mean(mean_absolute_percent_error)
+
+            return MAPE 
+
     def celeba_accuracy(self, y, pred):
       
             correct_prediction = tf.equal(tf.round(pred), tf.round(y)) 
