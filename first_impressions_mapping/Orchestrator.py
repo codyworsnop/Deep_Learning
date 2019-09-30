@@ -10,10 +10,11 @@ from DataAnalytics import DataAnalytics
 
 from ModelSettings import ModelParameters
 from ModelSettings import ModelParameterConstants
-
+from Logger import Logger
 from Losses import Losses
 from ModelType import ModelType 
 from tensorflow import keras
+import ApplicationConstants
 import tensorflow as tf
 import cv2
 
@@ -25,8 +26,8 @@ class Orchestrator():
         self.reader = LogProxy(DataReader())
         self.modelEngine = ModelEngine()
         self.modelSettings = ModelParameters() 
-        self.ParameterConstants = ModelParameterConstants()
         self.Metrics = Metrics()
+        self.Logger = Logger(ApplicationConstants.LoggingFilePath, ApplicationConstants.LoggingFileName)
     
     def SetupAndTrain(self, model, generator, features, settings, labels, kdef=False, validation_gen=None, test_gen=None): 
 
@@ -34,9 +35,8 @@ class Orchestrator():
             losses = Losses(10, settings)
 
             if (kdef):
-
                 cost = losses.Mean_Squared_Error(label=labels, pred=model)
-                accuracy = self.Metrics.kdef_accuracy(labels, model, settings[self.ParameterConstants.BatchSize]) 
+                accuracy = self.Metrics.kdef_accuracy(labels, model, settings[ModelParameterConstants.BatchSize]) 
                 validation_accuracy = self.Metrics.MAPE(labels, model) 
 
             else:
@@ -47,11 +47,52 @@ class Orchestrator():
 
             return model
 
-    def Run(self):
+    def Run(self, cross_validate):
 
-        features = tf.placeholder(tf.float32, shape=[None, self.modelSettings.celeba_params[self.ParameterConstants.Dimension][0],
-                                                                self.modelSettings.celeba_params[self.ParameterConstants.Dimension][1], 
-                                                                self.modelSettings.celeba_params[self.ParameterConstants.NumberOfChannels]], name='features')
+        if (cross_validate):
+            for split in range(5):
+                
+                self.Logger.Info("\n\nBeginner " + str(split) + " split of k-fold\n\n")
+                tf.reset_default_graph()
+                (split_partition, split_labels) = self.reader.Read_Splits(split)
+                training_gen = DataGenerator(split_partition['train'], split_labels, self.modelSettings.kdef_params, False)
+                test_gen = DataGenerator(split_partition['test'], split_labels, self.modelSettings.kdef_params, False)
+
+                self.Train_KDEF(training_gen, test_gen) 
+
+        else:
+
+            (kdef_partition, kdef_labels) = self.reader.read_kdef()
+            training_gen = DataGenerator(kdef_partition['train'] + kdef_partition['validation'], kdef_labels, self.modelSettings.kdef_params, False)
+
+            #validation_gen = DataGenerator(kdef_partition['validation'], kdef_labels, self.modelSettings.kdef_params)
+            test_gen = DataGenerator(kdef_partition['test'], kdef_labels, self.modelSettings.kdef_params, False)
+
+            self.Train_KDEF(training_gen, test_gen)
+
+    def Train_KDEF(self, training_generator, test_generator): 
+
+        #defining weights for the celeba model since we're transfer learning potentially. 
+        features = tf.placeholder(tf.float32, shape=[None, self.modelSettings.celeba_params[ModelParameterConstants.Dimension][0],
+                                                           self.modelSettings.celeba_params[ModelParameterConstants.Dimension][1], 
+                                                           self.modelSettings.celeba_params[ModelParameterConstants.NumberOfChannels]], 
+                                                           name='features_celeba') 
+
+        #train celeb a first for transfer learning
+        model = self.Train_CelebA(features)
+
+        #train kdef
+        if (not self.reader.weights_exist(self.modelSettings.kdef_params[ModelParameterConstants.WeightPath] + '.meta')):
+           
+            labels = tf.placeholder(tf.float32, [None, self.modelSettings.kdef_params[ModelParameterConstants.NumberOfClasses]], name="kdef_predictions")
+            model = self.modelEngine.new_from_existing(model, self.modelSettings.kdef_params)
+
+            #Dont pass in validation gen on KDEF. we need data. 
+            model = self.SetupAndTrain(model, training_generator, features, self.modelSettings.kdef_params, labels, True, None, test_generator)   
+
+    
+    def Train_CelebA(self, features):
+
         #create new model 
         model = self.modelEngine.CreateModel(features, self.modelSettings.celeba_params, ModelType.MobileNetV2)
 
@@ -60,27 +101,15 @@ class Orchestrator():
 
             #train celeb_a
             (celeba_partition, celeba_labels) = self.reader.read_celeb_a()
-            labels = tf.placeholder(tf.float32, [None, self.modelSettings.celeba_params[self.ParameterConstants.NumberOfClasses]], name="celeba_predictions")
+            labels = tf.placeholder(tf.float32, [None, self.modelSettings.celeba_params[ModelParameterConstants.NumberOfClasses]], name="celeba_predictions")
 
             #[:int(len(celeba_partition['train']) * .10)]
             training_gen = DataGenerator(celeba_partition['train'], celeba_labels, self.modelSettings.celeba_params, True)
             validation_gen = DataGenerator(celeba_partition['validation'], celeba_labels, self.modelSettings.celeba_params, True)
             test_gen = DataGenerator(celeba_partition['test'], celeba_labels, self.modelSettings.celeba_params, False)
             self.SetupAndTrain(model, training_gen, features, self.modelSettings.celeba_params, labels, validation_gen=validation_gen, test_gen=test_gen)
-    
-        #train kdef
-        if (not self.reader.weights_exist(self.modelSettings.kdef_params[self.ParameterConstants.WeightPath] + '.meta')):
-
-            (kdef_partition, kdef_labels) = self.reader.read_kdef()
-            labels = tf.placeholder(tf.float32, [None, self.modelSettings.kdef_params[self.ParameterConstants.NumberOfClasses]], name="kdef_predictions")
-            model = self.modelEngine.new_from_existing(model, self.modelSettings.kdef_params)
-            training_gen = DataGenerator(kdef_partition['train'] + kdef_partition['validation'], kdef_labels, self.modelSettings.kdef_params, False)
-
-            #validation_gen = DataGenerator(kdef_partition['validation'], kdef_labels, self.modelSettings.kdef_params)
-            test_gen = DataGenerator(kdef_partition['test'], kdef_labels, self.modelSettings.kdef_params, False)
-
-            #Dont pass in validation gen on KDEF. we need data. 
-            model = self.SetupAndTrain(model, training_gen, features, self.modelSettings.kdef_params, labels, True, None, test_gen)    
+        
+        return model 
 
 orchestrator = LogProxy(Orchestrator())
-orchestrator.Run()
+orchestrator.Run(True)
