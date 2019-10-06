@@ -9,7 +9,7 @@ from Logger import Logger
 classes = { 'T':0, 'D':1, 'A':2 }
 number_of_Classes = 3 
 BaseDirectory = os.getcwd() 
-SPLIT_LIST = ['./split_labels/kdef_split_one.csv', './split_labels/kdef_split_two.csv', './split_labels/kdef_split_three.csv', './split_labels/kdef_split_four.csv', './split_labels/kdef_split_five.csv' ]
+SPLIT_LIST = ['./split_labels/kdef_split_one_fullPath.csv', './split_labels/kdef_split_two_fullPath.csv', './split_labels/kdef_split_three_fullPath.csv', './split_labels/kdef_split_four_fullPath.csv', './split_labels/kdef_split_five_fullPath.csv' ]
 
 class DataReader():
 
@@ -109,6 +109,8 @@ class DataReader():
         IMGNAMES = []
         LABELS = []
 
+        labels_dict = {}
+
         for i in range(5):
             if SPLIT_LIST[i] != SPLIT_LIST[split_count]:
                 f = open(SPLIT_LIST[i],'r')
@@ -127,6 +129,8 @@ class DataReader():
         for i in range(len(LABELS)):
             TRAINNAMES.append(IMGNAMES[i])
             TRAINLABELS.append(LABELS[i])
+
+            labels_dict[IMGNAMES[i]] = LABELS[i]
 
         # Read in validation data
         IMGNAMES = []
@@ -147,9 +151,27 @@ class DataReader():
 
         for i in range(len(LABELS)):
             VALNAMES.append(IMGNAMES[i])
-            VALLABELS.append(LABELS[i])    
+            VALLABELS.append(LABELS[i])   
 
-        return ({ 'train' : TRAINNAMES, 'test' : VALNAMES }, TRAINLABELS + VALLABELS)
+            labels_dict[IMGNAMES[i]] = LABELS[i] 
+
+        return ({ 'train' : TRAINNAMES, 'test' : VALNAMES }, labels_dict )
+    
+    def Fix_Paths(self):
+
+        f = open('./split_labels/kdef_split_five.csv','r')
+        fout = open('./split_labels/kdef_split_five_fullPath.csv', 'w')
+
+        for readline in f:
+            line = readline.strip().split(',')
+            imageName = line[0].replace('.jpg', '.JPG')
+            fullPath, _ = self.find(imageName, './KDEF')
+
+            newstring = readline.replace(line[0], fullPath)
+            fout.write(newstring)
+
+        f.close()
+        fout.close()
 
     def weights_exist(self, file_path):
         return os.path.exists(file_path)

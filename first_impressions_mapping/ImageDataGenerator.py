@@ -84,6 +84,67 @@ class DataGenerator(keras.utils.Sequence):
         #self.ShowImage(X[0])
         return X, y
 
+    def binary_balance(self, y_batch):
+
+
+        test = np.array([[1, 1, 0],
+                            [0, 1, 0],
+                            [1, 1, 0], 
+                            [0, 1, 0], 
+                            [1, 1, 0], 
+                            [0, 1, 0], 
+                            [1, 1, 0], 
+                            [0, 0, 1], 
+                            [1, 0, 1], 
+                            [0, 0, 1]])
+
+        y_batch = test 
+
+        target_distribution = 0.50
+
+        totals = np.sum(y_batch, axis=0)
+        distribution = totals / len(y_batch)
+        weights = np.zeros(y_batch.shape)
+
+        for index, value in enumerate(distribution):
+
+            #distributions are equal, go to next label
+            if (value == target_distribution):
+                continue
+
+            #if the value is over represented in the batch
+            if (value > target_distribution):
+                
+                self.binary_balance_helper(target_distribution, y_batch, index, value, weights, 1, 0)
+
+            #if the value is under represented in the batch 
+            elif (value < target_distribution):
+
+                self.binary_balance_helper(target_distribution, y_batch, index, value, weights, 0, 1)
+
+        return weights 
+
+
+    def binary_balance_helper(self, target_distribution, batch_labels, distribution_index, distribution_value, weights, over_represented_label, under_represented_label):
+
+        # 1. give a random subset of target_distribution 1, else 0 
+
+        #indices of postive samples
+        indices = list(np.where(batch_labels[:,distribution_index] == over_represented_label)[0])
+        indicesToUpdate = random.sample(indices, int(target_distribution * len(batch_labels)))
+
+        for index in indicesToUpdate:
+            weights[index][distribution_index] = 1
+
+        # 2. give the under represented samples target_distribution / batch_distribution weights 
+        indices = np.where(batch_labels[:,distribution_index] == under_represented_label)[0]
+        batch_density = len(indices) / len(batch_labels)
+        
+        for index in indices: 
+            weights[index][distribution_index] = (target_distribution / batch_density)
+
+
+
     def ShowImage(self, image):
         cv2.imshow('image', image)
         cv2.waitKey(0)

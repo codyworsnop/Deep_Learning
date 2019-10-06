@@ -29,7 +29,7 @@ class Orchestrator():
         self.Metrics = Metrics()
         self.Logger = Logger(ApplicationConstants.LoggingFilePath, ApplicationConstants.LoggingFileName)
     
-    def SetupAndTrain(self, model, generator, features, settings, labels, kdef=False, validation_gen=None, test_gen=None): 
+    def SetupAndTrain(self, model, generator, features, settings, labels, kdef=False, validation_gen=None, test_gen=None, save=True): 
 
             validation_accuracy = None
             losses = Losses(10, settings)
@@ -43,22 +43,31 @@ class Orchestrator():
                 cost = losses.reduce_mean(labels, model)
                 accuracy = Metrics().celeba_accuracy(labels, model)
 
-            self.modelEngine.fit_with_save(features, labels, accuracy, generator, validation_gen, test_gen, cost, settings, model, kdef, validation_accuracy)
+            return self.modelEngine.fit_with_save(features, labels, accuracy, generator, validation_gen, test_gen, cost, settings, model, kdef, validation_accuracy, save)
 
-            return model
+            #return model
 
     def Run(self, cross_validate):
 
         if (cross_validate):
+            split_totals = [] 
+
             for split in range(5):
                 
                 self.Logger.Info("\n\nBeginner " + str(split) + " split of k-fold\n\n")
-                tf.reset_default_graph()
                 (split_partition, split_labels) = self.reader.Read_Splits(split)
                 training_gen = DataGenerator(split_partition['train'], split_labels, self.modelSettings.kdef_params, False)
                 test_gen = DataGenerator(split_partition['test'], split_labels, self.modelSettings.kdef_params, False)
 
-                self.Train_KDEF(training_gen, test_gen) 
+                result = self.Train_KDEF(training_gen, test_gen, save=False)
+                split_totals.append(result) 
+
+                #cleanup 
+                tf.reset_default_graph()
+                self.modelEngine.Saveables = [] 
+            
+            for index, split in enumerate(split_totals):
+                print('split ' + str(index) + ' accuracy is: trust ' +  str(split[0]) + ', domiance: ' + str(split[1]) + ", attraction: " + str(split[2]))
 
         else:
 
@@ -69,8 +78,9 @@ class Orchestrator():
             test_gen = DataGenerator(kdef_partition['test'], kdef_labels, self.modelSettings.kdef_params, False)
 
             self.Train_KDEF(training_gen, test_gen)
+            
 
-    def Train_KDEF(self, training_generator, test_generator): 
+    def Train_KDEF(self, training_generator, test_generator, save=True): 
 
         #defining weights for the celeba model since we're transfer learning potentially. 
         features = tf.placeholder(tf.float32, shape=[None, self.modelSettings.celeba_params[ModelParameterConstants.Dimension][0],
@@ -88,7 +98,9 @@ class Orchestrator():
             model = self.modelEngine.new_from_existing(model, self.modelSettings.kdef_params)
 
             #Dont pass in validation gen on KDEF. we need data. 
-            model = self.SetupAndTrain(model, training_generator, features, self.modelSettings.kdef_params, labels, True, None, test_generator)   
+            result = self.SetupAndTrain(model, training_generator, features, self.modelSettings.kdef_params, labels, True, None, test_generator, save=save)   
+
+        return result 
 
     
     def Train_CelebA(self, features):
@@ -104,7 +116,7 @@ class Orchestrator():
             labels = tf.placeholder(tf.float32, [None, self.modelSettings.celeba_params[ModelParameterConstants.NumberOfClasses]], name="celeba_predictions")
 
             #[:int(len(celeba_partition['train']) * .10)]
-            training_gen = DataGenerator(celeba_partition['train'], celeba_labels, self.modelSettings.celeba_params, True)
+            training_gen = DataGenerator(celeba_partition['train'][:int(len(celeba_partition['train']) * .01)], celeba_labels, self.modelSettings.celeba_params, True)
             validation_gen = DataGenerator(celeba_partition['validation'], celeba_labels, self.modelSettings.celeba_params, True)
             test_gen = DataGenerator(celeba_partition['test'], celeba_labels, self.modelSettings.celeba_params, False)
             self.SetupAndTrain(model, training_gen, features, self.modelSettings.celeba_params, labels, validation_gen=validation_gen, test_gen=test_gen)
@@ -112,4 +124,4 @@ class Orchestrator():
         return model 
 
 orchestrator = LogProxy(Orchestrator())
-orchestrator.Run(True)
+orchestrator.Run(False)

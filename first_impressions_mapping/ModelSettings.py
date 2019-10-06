@@ -34,6 +34,8 @@ class ModelParameters():
                         'weight_path': "./celeba_weights.ckpt",
                         'number_of_epochs': 5,
                         'dropout_rate' : 0.5,
+                        'min' : None,
+                        'max' : None,
                     }
 
 class ModelParameterConstants():

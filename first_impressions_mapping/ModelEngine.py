@@ -38,7 +38,7 @@ class ModelEngine():
                         return self.CreateModel_mobileNet(features, modelSettings[ModelParameterConstants.NumberOfClasses])
 
 
-        def fit_with_save(self, x, y, accuracy, training_generator, validation_gen, test_generator, cost, modelSettings, prediction, isKdef=False, validation_accuracy=None):
+        def fit_with_save(self, x, y, accuracy, training_generator, validation_gen, test_generator, cost, modelSettings, prediction, isKdef=False, validation_accuracy=None, save=True):
 
                 optimiser = tf.train.AdamOptimizer(learning_rate=modelSettings[self.ParameterConstants.LearningRate]).minimize(cost)
                 epoch_count_with_higher_accuracy = 0
@@ -68,6 +68,8 @@ class ModelEngine():
                                 for batch in range(batches):
                                         batch_x, batch_y = training_generator.__getitem__(batch)
 
+                                        balance_weights = training_generator.binary_balance(batch_y) 
+
                                         _, batch_loss = sess.run([optimiser, cost], feed_dict={x: batch_x, y: batch_y})
                                         epoch_avg_loss += batch_loss
 
@@ -89,16 +91,17 @@ class ModelEngine():
                                         break 
 
                         self.Logger.Info("\n******\nTraining complete!\n******\n\nStarting Testing\n")
+
+                        if (save):
+                                        
+                                if (isKdef):
+                                        kdef_saver.save(sess, modelSettings[self.ParameterConstants.WeightPath])                       
+                                        
+                                else:
+                                        celeba_saver.save(sess, modelSettings[self.ParameterConstants.WeightPath])  
   
-                        self.training_test(sess, test_generator, accuracy, x, y, prediction, isKdef)
+                        return self.training_test(sess, test_generator, accuracy, x, y, prediction, isKdef)
 
-                        if (isKdef):
-                                kdef_saver.save(sess, modelSettings[self.ParameterConstants.WeightPath])                       
-                                
-                        else:
-                                celeba_saver.save(sess, modelSettings[self.ParameterConstants.WeightPath])  
-
-                        return prediction 
 
         def training_validation(self, sess, validation_gen, x, y, epoch, accuracy, epoch_count_with_higher_accuracy):
 
@@ -108,6 +111,7 @@ class ModelEngine():
                         validation_batches = len(validation_gen)
                         validation_accuracy = 0 
                         for batch in range(validation_batches):
+
                                 batch_x, batch_y = validation_gen.__getitem__(validation_batches)
                                 
        
@@ -146,10 +150,10 @@ class ModelEngine():
                         batch_accuracy = sess.run(accuracy, feed_dict={x: batch_x, y: batch_y})
 
                         self.Logger.Info("Testing on batch: " + str(batch) + " of " + str(test_batches) + " accuracy: " + str(batch_accuracy))
-                        pred = sess.run(prediction, feed_dict={x: batch_x})
-                        dif = sess.run(tf.abs(tf.subtract(batch_y, pred)))
-                        print("Difference", dif)
-                        print("summation", sess.run(tf.reduce_sum(dif, axis=0)))
+                        #pred = sess.run(prediction, feed_dict={x: batch_x})
+                        #dif = sess.run(tf.abs(tf.subtract(batch_y, pred)))
+                        #print("Difference", dif)
+                        #print("summation", sess.run(tf.reduce_sum(dif, axis=0)))
                         total_accuracy += batch_accuracy
 
                 total = total_accuracy / test_batches
@@ -157,6 +161,8 @@ class ModelEngine():
                         self.Logger.Info('Total accuracy is: trust ' +  str(total[0]) + ', domiance: ' + str(total[1]) + ", attraction: " + str(total[2]))
 
                 self.Logger.Info("\nDone testing")    
+                
+                return total
 
         def test(self, x, y, prediction, accuracy, test_generator, modelSettings):
 
@@ -271,6 +277,9 @@ class ModelEngine():
                 output = tf.nn.sigmoid(tf.matmul(fc, w_out) + b_out)
 
                 return output
+                
+                
+
 
 #################################################################################################################################
 #This is a MobileNetV2 implementation taken from https://github.com/neuleaf/MobileNetV2
