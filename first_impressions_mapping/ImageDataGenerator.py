@@ -86,20 +86,6 @@ class DataGenerator(keras.utils.Sequence):
 
     def binary_balance(self, y_batch):
 
-
-        test = np.array([[1, 1, 0],
-                            [0, 1, 0],
-                            [1, 1, 0], 
-                            [0, 1, 0], 
-                            [1, 1, 0], 
-                            [0, 1, 0], 
-                            [1, 1, 0], 
-                            [0, 0, 1], 
-                            [1, 0, 1], 
-                            [0, 0, 1]])
-
-        y_batch = test 
-
         target_distribution = 0.50
 
         totals = np.sum(y_batch, axis=0)
@@ -127,19 +113,24 @@ class DataGenerator(keras.utils.Sequence):
 
     def binary_balance_helper(self, target_distribution, batch_labels, distribution_index, distribution_value, weights, over_represented_label, under_represented_label):
 
-        # 1. give a random subset of target_distribution 1, else 0 
+        # 1. Give a random subset of target_distribution 1, else 0 
 
-        #indices of postive samples
+        #Indices of over represented attributes
         indices = list(np.where(batch_labels[:,distribution_index] == over_represented_label)[0])
         indicesToUpdate = random.sample(indices, int(target_distribution * len(batch_labels)))
 
         for index in indicesToUpdate:
             weights[index][distribution_index] = 1
 
-        # 2. give the under represented samples target_distribution / batch_distribution weights 
+        # 2. Give the under represented samples target_distribution / batch_distribution weights 
+
+        #Indices of negative examples
         indices = np.where(batch_labels[:,distribution_index] == under_represented_label)[0]
+
+        #The batch density of the under represented attributes
         batch_density = len(indices) / len(batch_labels)
-        
+
+        #update each under represented label to have a higher weight. Pt(a) / Pb(a) 
         for index in indices: 
             weights[index][distribution_index] = (target_distribution / batch_density)
 

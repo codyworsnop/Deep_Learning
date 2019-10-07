@@ -15,6 +15,7 @@ import time
 from tensorflow import keras 
 import cv2
 from ModelType import ModelType
+import sys 
 
 #some code reused from https://adventuresinmachinelearning.com/convolutional-neural-networks-tutorial-tensorflow/
 
@@ -38,10 +39,11 @@ class ModelEngine():
                         return self.CreateModel_mobileNet(features, modelSettings[ModelParameterConstants.NumberOfClasses])
 
 
-        def fit_with_save(self, x, y, accuracy, training_generator, validation_gen, test_generator, cost, modelSettings, prediction, isKdef=False, validation_accuracy=None, save=True):
+        def fit_with_save(self, x, y, accuracy, training_generator, validation_gen, test_generator, cost, modelSettings, prediction, isKdef=False, validation_accuracy=None, save=True, label_weights=None):
 
                 optimiser = tf.train.AdamOptimizer(learning_rate=modelSettings[self.ParameterConstants.LearningRate]).minimize(cost)
                 epoch_count_with_higher_accuracy = 0
+                lowest_accuracy = sys.maxsize
 
                 if (validation_accuracy is None):
                         validation_accuracy = accuracy
@@ -68,9 +70,13 @@ class ModelEngine():
                                 for batch in range(batches):
                                         batch_x, batch_y = training_generator.__getitem__(batch)
 
-                                        balance_weights = training_generator.binary_balance(batch_y) 
+                                        if (not isKdef):
+                                                balance_weights = training_generator.binary_balance(batch_y) 
 
-                                        _, batch_loss = sess.run([optimiser, cost], feed_dict={x: batch_x, y: batch_y})
+                                                _, batch_loss = sess.run([optimiser, cost], feed_dict={x: batch_x, y: batch_y, label_weights: balance_weights})
+                                        else:
+                                                _, batch_loss = sess.run([optimiser, cost], feed_dict={x: batch_x, y: batch_y})   
+
                                         epoch_avg_loss += batch_loss
 
                                         batch_accuracy = sess.run(accuracy, feed_dict={x: batch_x, y: batch_y})
@@ -86,7 +92,7 @@ class ModelEngine():
                                         #print(str(sess.run(trust_diff_sum, feed_dict={x: batch_x, y:batch_y})))
 
                                 #run validation for early stopping condition evaluation
-                                stop = self.training_validation(sess, validation_gen, x, y, epoch, validation_accuracy, epoch_count_with_higher_accuracy)
+                                (lowest_accuracy, stop) = self.training_validation(sess, validation_gen, x, y, epoch, validation_accuracy, epoch_count_with_higher_accuracy, lowest_accuracy)
                                 if (stop):
                                         break 
 
@@ -103,7 +109,7 @@ class ModelEngine():
                         return self.training_test(sess, test_generator, accuracy, x, y, prediction, isKdef)
 
 
-        def training_validation(self, sess, validation_gen, x, y, epoch, accuracy, epoch_count_with_higher_accuracy):
+        def training_validation(self, sess, validation_gen, x, y, epoch, accuracy, epoch_count_with_higher_accuracy, lowest_accuracy):
 
                 if (validation_gen is not None):
                         
@@ -120,9 +126,8 @@ class ModelEngine():
                                 self.Logger.Info("Validating on batch: " + str(batch) + " of " + str(validation_batches) + 'validation accuracy: ' + str(validation_accuracy))
                         
                         #save off first mape value
-                        if (epoch == 0):
-                                lowest_accuracy = validation_accuracy
-                        elif (validation_accuracy < lowest_accuracy):
+
+                        if (validation_accuracy < lowest_accuracy):
                                 self.Logger.Info('saving new lowest mape value')
                                 lowest_accuracy = validation_accuracy
                                 epoch_count_with_higher_accuracy = 0
@@ -137,7 +142,9 @@ class ModelEngine():
 
                         self.Logger.Info('\nvalidation total mean absolute percent error: ' + str(validation_accuracy))
                 
-                        return shouldStop 
+                        return (lowest_accuracy, shouldStop) 
+                
+                return (lowest_accuracy, False)
 
         def training_test(self, sess, test_generator, accuracy, x, y, prediction, isKdef):
 
@@ -279,8 +286,6 @@ class ModelEngine():
                 return output
                 
                 
-
-
 #################################################################################################################################
 #This is a MobileNetV2 implementation taken from https://github.com/neuleaf/MobileNetV2
 #################################################################################################################################
@@ -327,7 +332,6 @@ class ModelEngine():
         def relu(self, x, name='relu6'):
                 return tf.nn.relu6(x, name)
 
-
         def batch_norm(self, x, momentum=0.9, epsilon=1e-5, train=True, name='bn'):
                 return tf.layers.batch_normalization(x,
                                 momentum=momentum,
@@ -335,7 +339,6 @@ class ModelEngine():
                                 scale=True,
                                 training=train,
                                 name=name)
-
 
         def conv2d(self, input_, output_dim, k_h, k_w, d_h, d_w, stddev=0.02, name='conv2d', bias=False):
                 with tf.variable_scope(name):
@@ -352,14 +355,12 @@ class ModelEngine():
 
                 return conv
 
-
         def conv2d_block(self, input, out_dim, k, s, is_train, name):
                 with tf.name_scope(name), tf.variable_scope(name):
                         net = self.conv2d(input, out_dim, k, k, s, s, name='conv2d')
                         net = self.batch_norm(net, train=is_train, name='bn')
                         net = self.relu(net)
                         return net
-
 
         def conv_1x1(self, input, output_dim, name, bias=False):
                 with tf.name_scope(name):
@@ -371,7 +372,6 @@ class ModelEngine():
                         out=self.batch_norm(out, train=is_train, name='bn')
                         out=self.relu(out)
                         return out
-
 
         def dwise_conv(self, input, k_h=3, k_w=3, channel_multiplier= 1, strides=[1,1,1,1],
                 padding='SAME', stddev=0.02, name='dwise_conv', bias=False):
@@ -389,7 +389,6 @@ class ModelEngine():
                                 conv = tf.nn.bias_add(conv, biases)
 
                         return conv
-
 
         def res_block(self, input, expansion_ratio, output_dim, stride, is_train, name, bias=False, shortcut=True):
                 with tf.name_scope(name), tf.variable_scope(name):
@@ -417,7 +416,6 @@ class ModelEngine():
 
                         return net
 
-
         def separable_conv(self, input, k_size, output_dim, stride, pad='SAME', channel_multiplier=1, name='sep_conv', bias=False):
                 with tf.name_scope(name), tf.variable_scope(name):
                         in_channel = input.get_shape().as_list()[-1]
@@ -436,17 +434,14 @@ class ModelEngine():
                                 conv = tf.nn.bias_add(conv, biases)
                         return conv
 
-
         def global_avg(self, x):
                 with tf.name_scope('global_avg'):
                         net=tf.layers.average_pooling2d(x, x.get_shape()[1:-1], 1)
                         return net
 
-
         def flatten(self, x):
         #flattened=tf.reshape(input,[x.get_shape().as_list()[0], -1])  # or, tf.layers.flatten(x)
                 return tf.contrib.layers.flatten(x)
-
 
         def pad2d(self, inputs, pad=(0, 0), mode='CONSTANT'):
                 paddings = [[0, 0], [pad[0], pad[0]], [pad[1], pad[1]], [0, 0]]

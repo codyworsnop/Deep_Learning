@@ -40,10 +40,11 @@ class Orchestrator():
                 validation_accuracy = self.Metrics.MAPE(labels, model) 
 
             else:
-                cost = losses.reduce_mean(labels, model)
+                label_weights = tf.placeholder(tf.float32, shape=labels.shape)
+                cost = losses.reduce_mean2(labels, model, label_weights)
                 accuracy = Metrics().celeba_accuracy(labels, model)
 
-            return self.modelEngine.fit_with_save(features, labels, accuracy, generator, validation_gen, test_gen, cost, settings, model, kdef, validation_accuracy, save)
+            return self.modelEngine.fit_with_save(features, labels, accuracy, generator, validation_gen, test_gen, cost, settings, model, kdef, validation_accuracy, save, label_weights)
 
             #return model
 
@@ -116,10 +117,10 @@ class Orchestrator():
             labels = tf.placeholder(tf.float32, [None, self.modelSettings.celeba_params[ModelParameterConstants.NumberOfClasses]], name="celeba_predictions")
 
             #[:int(len(celeba_partition['train']) * .10)]
-            training_gen = DataGenerator(celeba_partition['train'][:int(len(celeba_partition['train']) * .01)], celeba_labels, self.modelSettings.celeba_params, True)
-            validation_gen = DataGenerator(celeba_partition['validation'], celeba_labels, self.modelSettings.celeba_params, True)
+            training_gen = DataGenerator(celeba_partition['train'][:int(len(celeba_partition['train']) * .01)], celeba_labels, self.modelSettings.celeba_params, False)
+            validation_gen = DataGenerator(celeba_partition['validation'], celeba_labels, self.modelSettings.celeba_params, False)
             test_gen = DataGenerator(celeba_partition['test'], celeba_labels, self.modelSettings.celeba_params, False)
-            self.SetupAndTrain(model, training_gen, features, self.modelSettings.celeba_params, labels, validation_gen=validation_gen, test_gen=test_gen)
+            self.SetupAndTrain(model, training_gen, features, self.modelSettings.celeba_params, labels, validation_gen=None, test_gen=test_gen)
         
         return model 
 
