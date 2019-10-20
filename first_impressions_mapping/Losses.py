@@ -25,5 +25,5 @@ class Losses():
         return tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=model, labels=labels))
 
     def reduce_mean2(self, labels, label_weight, model):
-        labels = labels * label_weight
-        return tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=model, labels=labels))
+        loss = tf.nn.sigmoid_cross_entropy_with_logits(logits=model, labels=labels)
+        return tf.reduce_mean(loss * label_weight)

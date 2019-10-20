@@ -84,7 +84,7 @@ class DataGenerator(keras.utils.Sequence):
         #self.ShowImage(X[0])
         return X, y
 
-    def binary_balance(self, y_batch):
+    def binary_balance(self, y_batch): 
 
         target_distribution = 0.50
 
@@ -94,7 +94,7 @@ class DataGenerator(keras.utils.Sequence):
 
         for index, value in enumerate(distribution):
 
-            #distributions are equal, go to next label
+            #distributiddons are equal, go to next label
             if (value == target_distribution):
                 continue
 
@@ -131,10 +131,49 @@ class DataGenerator(keras.utils.Sequence):
         batch_density = len(indices) / len(batch_labels)
 
         #update each under represented label to have a higher weight. Pt(a) / Pb(a) 
-        for index in indices: 
+        for index in indices:  
             weights[index][distribution_index] = (target_distribution / batch_density)
 
+    def Jeremy_balance(self, labels):
+        
+        labels = np.asarray(labels, dtype=int)
+        self.attribute_count = labels.shape[1]
+        self.P_T = np.ones(self.attribute_count) * 0.5
+        
+        mask = np.ones(labels.shape)
+        sum_labs = np.sum(labels, 0)
+        P_B = sum_labs / float(self.batch_size)
+        weight_neg = (1 - self.P_T) / (1 - P_B)
+        weight_neg[np.isinf(weight_neg)] = 1
+        weight_pos = self.P_T / P_B
+        weight_pos[np.isinf(weight_pos)] = 1
 
+        for idx in range(self.attribute_count):
+            new_lab = np.ones(self.batch_size)
+            if P_B[idx] > self.P_T[idx]:
+                pos_idxs = np.where(labels[:,idx] == 1)[0]
+                np.random.shuffle(pos_idxs)
+                num_keep = int(self.P_T[idx] * self.batch_size)
+                one_pos_idxs = pos_idxs[0:num_keep]
+                zeroed_pos_idxs = pos_idxs[num_keep:sum_labs[idx]]
+                new_lab[zeroed_pos_idxs] = 0
+                new_lab *= weight_neg[idx]
+                new_lab[one_pos_idxs] = 1
+                mask[:, idx] = new_lab
+
+            elif P_B[idx] < self.P_T[idx]:
+                neg_idxs = np.where(labels[:,idx] == 0)[0]
+                np.random.shuffle(neg_idxs)
+                num_neg = self.batch_size - sum_labs[idx]
+                num_keep = int((1 - self.P_T[idx]) * self.batch_size)
+                one_neg_idxs = neg_idxs[0:num_keep]
+                zeroed_neg_idxs = neg_idxs[num_keep:num_neg]
+                new_lab[zeroed_neg_idxs] = 0
+                new_lab *= weight_pos[idx]
+                new_lab[one_neg_idxs] = 1
+                mask[:, idx] = new_lab
+
+        return mask 
 
     def ShowImage(self, image):
         cv2.imshow('image', image)

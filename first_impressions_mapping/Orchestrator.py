@@ -38,6 +38,7 @@ class Orchestrator():
                 cost = losses.Mean_Squared_Error(label=labels, pred=model)
                 accuracy = self.Metrics.kdef_accuracy(labels, model, settings[ModelParameterConstants.BatchSize]) 
                 validation_accuracy = self.Metrics.MAPE(labels, model) 
+                label_weights = None
 
             else:
                 label_weights = tf.placeholder(tf.float32, shape=labels.shape)
@@ -117,7 +118,7 @@ class Orchestrator():
             labels = tf.placeholder(tf.float32, [None, self.modelSettings.celeba_params[ModelParameterConstants.NumberOfClasses]], name="celeba_predictions")
 
             #[:int(len(celeba_partition['train']) * .10)]
-            training_gen = DataGenerator(celeba_partition['train'][:int(len(celeba_partition['train']) * .01)], celeba_labels, self.modelSettings.celeba_params, False)
+            training_gen = DataGenerator(celeba_partition['train'], celeba_labels, self.modelSettings.celeba_params, False)
             validation_gen = DataGenerator(celeba_partition['validation'], celeba_labels, self.modelSettings.celeba_params, False)
             test_gen = DataGenerator(celeba_partition['test'], celeba_labels, self.modelSettings.celeba_params, False)
             self.SetupAndTrain(model, training_gen, features, self.modelSettings.celeba_params, labels, validation_gen=None, test_gen=test_gen)

@@ -70,10 +70,11 @@ class ModelEngine():
                                 for batch in range(batches):
                                         batch_x, batch_y = training_generator.__getitem__(batch)
 
-                                        if (not isKdef):
+                                        if (label_weights is not None):
+                                                jeremy_weights = training_generator.Jeremy_balance(batch_y)
+                                                #result = sess.run(jeremy_weights, feed_dict={y: batch_y})
                                                 balance_weights = training_generator.binary_balance(batch_y) 
-
-                                                _, batch_loss = sess.run([optimiser, cost], feed_dict={x: batch_x, y: batch_y, label_weights: balance_weights})
+                                                _, batch_loss = sess.run([optimiser, cost], feed_dict={x: batch_x, y: batch_y, label_weights: jeremy_weights})
                                         else:
                                                 _, batch_loss = sess.run([optimiser, cost], feed_dict={x: batch_x, y: batch_y})   
 
