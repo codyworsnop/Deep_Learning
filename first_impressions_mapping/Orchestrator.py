@@ -7,7 +7,9 @@ from Proxy import Proxy as LogProxy
 from Logger import Logger
 from Metrics import Metrics
 from DataAnalytics import DataAnalytics
-
+import matplotlib.pyplot as plt
+from skimage.feature import hog
+from skimage import data, exposure
 from ModelSettings import ModelParameters
 from ModelSettings import ModelParameterConstants
 from Logger import Logger
@@ -17,6 +19,7 @@ from tensorflow import keras
 import ApplicationConstants
 import tensorflow as tf
 import cv2
+#from SVMEngine import Svm
 
 #tf.enable_eager_execution()
 
@@ -26,7 +29,6 @@ class Orchestrator():
         self.reader = LogProxy(DataReader())
         self.modelEngine = ModelEngine()
         self.modelSettings = ModelParameters() 
-        self.Metrics = Metrics()
         self.Logger = Logger(ApplicationConstants.LoggingFilePath, ApplicationConstants.LoggingFileName)
     
     def SetupAndTrain(self, model, generator, features, settings, labels, kdef=False, validation_gen=None, test_gen=None, save=True): 
@@ -35,21 +37,22 @@ class Orchestrator():
             losses = Losses(10, settings)
 
             if (kdef):
+                metrics = Metrics(6, settings)
                 cost = losses.Mean_Squared_Error(label=labels, pred=model)
-                accuracy = self.Metrics.kdef_accuracy(labels, model, settings[ModelParameterConstants.BatchSize]) 
-                validation_accuracy = self.Metrics.MAPE(labels, model) 
+                accuracy = metrics.kdef_accuracy(labels, model, settings[ModelParameterConstants.BatchSize]) 
+                validation_accuracy = metrics.MAPE(labels, model) 
                 label_weights = None
 
             else:
                 label_weights = tf.placeholder(tf.float32, shape=labels.shape)
                 cost = losses.reduce_mean2(labels, model, label_weights)
-                accuracy = Metrics().celeba_accuracy(labels, model)
+                accuracy = Metrics(6, settings).celeba_accuracy(labels, model)
 
             return self.modelEngine.fit_with_save(features, labels, accuracy, generator, validation_gen, test_gen, cost, settings, model, kdef, validation_accuracy, save, label_weights)
 
             #return model
 
-    def Run(self, cross_validate):
+    def Run_DL(self, cross_validate):
 
         if (cross_validate):
             split_totals = [] 
@@ -125,5 +128,35 @@ class Orchestrator():
         
         return model 
 
+    def Run_SVM(self):
+        (kdef_partition, kdef_labels) = self.reader.read_kdef()
+        image_file_path = kdef_partition['train'][0] 
+        image = cv2.imread(image_file_path, cv2.IMREAD_COLOR)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
+        fd, hog_image = hog(image, orientations=8, pixels_per_cell=(16, 16),
+                    cells_per_block=(1, 1), visualize=True, multichannel=True)
+
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 4), sharex=True, sharey=True)
+
+        ax1.axis('off')
+        ax1.imshow(image)
+
+        ax1.set_title('Input image')
+
+        # Rescale histogram for better display
+        hog_image_rescaled = exposure.rescale_intensity(hog_image, in_range=(0, 10))
+
+        ax2.axis('off')
+        ax2.imshow(hog_image_rescaled, cmap=plt.cm.gray)
+        ax2.set_title('Histogram of Oriented Gradients')
+    
+        plt.show()
+
+    def ShowImage(self, image):
+        cv2.imshow('image', image)
+        cv2.waitKey(0)
+
+
 orchestrator = LogProxy(Orchestrator())
-orchestrator.Run(False)
+orchestrator.Run_SVM()

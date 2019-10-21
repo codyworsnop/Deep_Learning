@@ -54,6 +54,9 @@ class ModelEngine():
                 with tf.Session() as sess:
 
                         if (isKdef):
+                                metrics = Metrics(6, modelSettings)
+                                bin_accuracy = metrics.kdef_thresholding(y, prediction)
+                                
                                 kdef_saver = tf.train.Saver()
                                 weight_path = self.GlobalModelSettings.celeba_params[self.ParameterConstants.WeightPath]
                                 self.Logger.Info("Restoring model weights from " + str(weight_path))
@@ -71,10 +74,8 @@ class ModelEngine():
                                         batch_x, batch_y = training_generator.__getitem__(batch)
 
                                         if (label_weights is not None):
-                                                jeremy_weights = training_generator.Jeremy_balance(batch_y)
-                                                #result = sess.run(jeremy_weights, feed_dict={y: batch_y})
                                                 balance_weights = training_generator.binary_balance(batch_y) 
-                                                _, batch_loss = sess.run([optimiser, cost], feed_dict={x: batch_x, y: batch_y, label_weights: jeremy_weights})
+                                                _, batch_loss = sess.run([optimiser, cost], feed_dict={x: batch_x, y: batch_y, label_weights: balance_weights})
                                         else:
                                                 _, batch_loss = sess.run([optimiser, cost], feed_dict={x: batch_x, y: batch_y})   
 
@@ -85,6 +86,14 @@ class ModelEngine():
                                         " accuracy: " + str(batch_accuracy))
 
                                 
+                                        #bin accuracy 
+                                        if (isKdef):
+                                                pred = sess.run(prediction, feed_dict={x: batch_x})
+                                                bin_acc = metrics.kdef_binary_bin(batch_y, pred)
+                                                bin_accuracy_result = sess.run(bin_accuracy, feed_dict={x: batch_x, y: batch_y})
+                                                print("threshold:", str(bin_accuracy_result))
+                                                print("correct:", str(bin_acc))
+
                                         #self.Logger.Info("y: " + str(batch_y))
                                         #pred = sess.run(prediction, feed_dict={x: batch_x})
                                         #self.Logger.Info('pred: ' + str(pred))
@@ -107,7 +116,7 @@ class ModelEngine():
                                 else:
                                         celeba_saver.save(sess, modelSettings[self.ParameterConstants.WeightPath])  
   
-                        return self.training_test(sess, test_generator, accuracy, x, y, prediction, isKdef)
+                        return self.training_test(sess, test_generator, accuracy, bin_accuracy, x, y, prediction, isKdef, modelSettings)
 
 
         def training_validation(self, sess, validation_gen, x, y, epoch, accuracy, epoch_count_with_higher_accuracy, lowest_accuracy):
@@ -120,8 +129,6 @@ class ModelEngine():
                         for batch in range(validation_batches):
 
                                 batch_x, batch_y = validation_gen.__getitem__(validation_batches)
-                                
-       
                                 validation_accuracy += sess.run(accuracy, feed_dict={x: batch_x, y: batch_y})
 
                                 self.Logger.Info("Validating on batch: " + str(batch) + " of " + str(validation_batches) + 'validation accuracy: ' + str(validation_accuracy))
@@ -147,26 +154,40 @@ class ModelEngine():
                 
                 return (lowest_accuracy, False)
 
-        def training_test(self, sess, test_generator, accuracy, x, y, prediction, isKdef):
+        def training_test(self, sess, test_generator, accuracy, bin_accuracy, x, y, prediction, isKdef, settings):
 
                 total_accuracy = 0
+                total_bin_accuracy = 0
+                total_correct_bin_accuracy = 0
                 test_batches = len(test_generator)
+                metrics = Metrics(6, settings)
 
                 for batch in range(test_batches):
 
                         batch_x, batch_y = test_generator.__getitem__(batch)
                         batch_accuracy = sess.run(accuracy, feed_dict={x: batch_x, y: batch_y})
+                        bin_accuracy_result = sess.run(bin_accuracy, feed_dict={x: batch_x, y: batch_y})
+
+                        pred = sess.run(prediction, feed_dict={x: batch_x})
+                        bin_correct_accuracy = metrics.kdef_binary_bin(batch_y, pred)
 
                         self.Logger.Info("Testing on batch: " + str(batch) + " of " + str(test_batches) + " accuracy: " + str(batch_accuracy))
                         #pred = sess.run(prediction, feed_dict={x: batch_x})
                         #dif = sess.run(tf.abs(tf.subtract(batch_y, pred)))
                         #print("Difference", dif)
                         #print("summation", sess.run(tf.reduce_sum(dif, axis=0)))
+                        total_bin_accuracy += bin_accuracy_result
                         total_accuracy += batch_accuracy
+                        total_correct_bin_accuracy += bin_correct_accuracy
 
                 total = total_accuracy / test_batches
+                total2 = total_bin_accuracy / test_batches
+                total3 = total_correct_bin_accuracy / test_batches
+
                 if (isKdef):
                         self.Logger.Info('Total accuracy is: trust ' +  str(total[0]) + ', domiance: ' + str(total[1]) + ", attraction: " + str(total[2]))
+                        self.Logger.Info('Total bin accuracy: trust ' +  str(total2[0]) + ', domiance: ' + str(total2[1]) + ", attraction: " + str(total2[2]))
+                        self.Logger.Info('Total correct bin accuracy: trust ' +  str(total3[0]) + ', domiance: ' + str(total3[1]) + ", attraction: " + str(total3[2]))
 
                 self.Logger.Info("\nDone testing")    
                 
