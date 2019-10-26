@@ -8,8 +8,7 @@ from Logger import Logger
 from Metrics import Metrics
 from DataAnalytics import DataAnalytics
 import matplotlib.pyplot as plt
-from skimage.feature import hog
-from skimage import data, exposure
+
 from ModelSettings import ModelParameters
 from ModelSettings import ModelParameterConstants
 from Logger import Logger
@@ -19,7 +18,7 @@ from tensorflow import keras
 import ApplicationConstants
 import tensorflow as tf
 import cv2
-#from SVMEngine import Svm
+from SVMEngine import SvmEngine
 
 #tf.enable_eager_execution()
 
@@ -27,7 +26,7 @@ class Orchestrator():
     
     def __init__(self):
         self.reader = LogProxy(DataReader())
-        self.modelEngine = ModelEngine()
+        self.modelEngine = ModelEngine()        
         self.modelSettings = ModelParameters() 
         self.Logger = Logger(ApplicationConstants.LoggingFilePath, ApplicationConstants.LoggingFileName)
     
@@ -129,29 +128,17 @@ class Orchestrator():
         return model 
 
     def Run_SVM(self):
+
         (kdef_partition, kdef_labels) = self.reader.read_kdef()
-        image_file_path = kdef_partition['train'][0] 
-        image = cv2.imread(image_file_path, cv2.IMREAD_COLOR)
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        training_gen = DataGenerator(kdef_partition['train'], kdef_labels, self.modelSettings.kdef_params, False, True)
+        test_gen = DataGenerator(kdef_partition['test'], kdef_labels, self.modelSettings.kdef_params, False, True)
 
-        fd, hog_image = hog(image, orientations=8, pixels_per_cell=(16, 16),
-                    cells_per_block=(1, 1), visualize=True, multichannel=True)
+        model = SvmEngine(self.modelSettings.kdef_params)
 
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 4), sharex=True, sharey=True)
+        model.Build_SVM()
+        model.Fit(training_gen)
 
-        ax1.axis('off')
-        ax1.imshow(image)
-
-        ax1.set_title('Input image')
-
-        # Rescale histogram for better display
-        hog_image_rescaled = exposure.rescale_intensity(hog_image, in_range=(0, 10))
-
-        ax2.axis('off')
-        ax2.imshow(hog_image_rescaled, cmap=plt.cm.gray)
-        ax2.set_title('Histogram of Oriented Gradients')
-    
-        plt.show()
+        model.Predict(test_gen)
 
     def ShowImage(self, image):
         cv2.imshow('image', image)

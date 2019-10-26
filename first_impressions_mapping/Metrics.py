@@ -11,20 +11,28 @@ class Metrics():
         self.Min = settings[ModelParameterConstants.DatasetRangeMinimum]
         self.Max = settings[ModelParameterConstants.DatasetRangeMaximum]
 
-        bins = np.zeros(self.NumberOfBins + 1)
+        if (numberOfBins != 0):
+            bins = np.zeros(self.NumberOfBins + 1)
 
-        stepSize = (self.Max - self.Min) / self.NumberOfBins
-        current = self.Min
-        for bin_index in range(0, len(bins)):
-            bins[bin_index] = current
-            current = current + stepSize
-        
-        self.Bins = bins
+            stepSize = (self.Max - self.Min) / self.NumberOfBins
+            current = self.Min
+            for bin_index in range(0, len(bins)):
+                bins[bin_index] = current
+                current = current + stepSize
+            
+            self.Bins = bins
     
     def kdef_accuracy(self, y, pred, batch_size): 
       
         diff = tf.abs(tf.subtract(pred, y))
         trust_diff_sum = tf.reduce_sum(diff, axis=0)
+
+        return trust_diff_sum / batch_size
+    
+    def kdef_accuracy_SVM(self, labels, prediction, batch_size):
+
+        diff = np.absolute(np.subtract(prediction, labels))
+        trust_diff_sum = np.sum(diff, axis=0)
 
         return trust_diff_sum / batch_size
 

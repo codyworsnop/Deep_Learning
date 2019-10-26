@@ -4,10 +4,12 @@ import cv2
 from DataAugmenter import DataAugmenter
 import tensorflow as tf
 import random
+from skimage.feature import hog
+from skimage import data, exposure
 
 class DataGenerator(keras.utils.Sequence):
 
-    def __init__(self, image_names, labels, modelSettings, augment):
+    def __init__(self, image_names, labels, modelSettings, augment=False, useHog=False):
         self.dimension = modelSettings['dimension'] 
         self.batch_size = modelSettings['batch_size']
         self.labels = labels
@@ -23,6 +25,7 @@ class DataGenerator(keras.utils.Sequence):
 
         #data needs to have its own class. Move out label data type, shuffle, augment data, etc into a "GenericData" class
         self.AugmentData = augment
+        self.Hog = useHog 
 
 
     def on_epoch_end(self):
@@ -38,9 +41,12 @@ class DataGenerator(keras.utils.Sequence):
             batchSize = self.batch_size * 2
         else:
             batchSize = self.batch_size
-
+            
         X = np.empty((batchSize, *self.dimension, self.n_channels), dtype="uint8")
         y = np.empty((batchSize, self.n_classes), dtype=self.labelDataType)
+
+        if (self.Hog):
+            X = np.empty((batchSize, self.dimension[0] * self.dimension[1]), dtype="uint8")
 
         # Generate data
         for index, image_name in enumerate(image_names):
@@ -58,7 +64,14 @@ class DataGenerator(keras.utils.Sequence):
                     augmented = self.DataAugmentation.augmentImage(image) 
                     X[batchSize - index - 1] = augmented
                     y[batchSize - index - 1] = self.labels[image_name]
+
+                #self.ShowImage(image)
+                if (self.Hog):
+
+                    _, image = hog(image, orientations=8, pixels_per_cell=(8, 8), cells_per_block=(1, 1), visualize=True, multichannel=True)
+                    image = image.flatten() 
  
+                #self.ShowImage(image)
                 X[index] = image
                 y[index] = self.labels[image_name]           
 
@@ -133,6 +146,7 @@ class DataGenerator(keras.utils.Sequence):
         #update each under represented label to have a higher weight. Pt(a) / Pb(a) 
         for index in indices:  
             weights[index][distribution_index] = (target_distribution / batch_density)
+        
 
     def ShowImage(self, image):
         cv2.imshow('image', image)
