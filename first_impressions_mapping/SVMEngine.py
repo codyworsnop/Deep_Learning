@@ -5,6 +5,7 @@ from Logger import Logger
 from ModelSettings import ModelParameterConstants
 import ApplicationConstants
 import numpy as np
+import cv2
 
 class SvmEngine():
 
@@ -31,7 +32,6 @@ class SvmEngine():
 
             batch_x_all = np.concatenate((batch_x_all, batch_x), axis=0)
             batch_y_all = np.concatenate((batch_y_all, batch_y), axis=0)
-            print("batch:", str(batch))
 
         #fit model 
         self.Model.fit(batch_x_all, batch_y_all)
@@ -55,13 +55,16 @@ class SvmEngine():
 
             batch_x_all = np.concatenate((batch_x_all, batch_x), axis=0)
             batch_y_all = np.concatenate((batch_y_all, batch_y), axis=0)
-            print("batch:", str(batch))
 
         prediction = self.Model.predict(batch_x_all)
 
         accuracy = self.Metrics.kdef_accuracy_SVM(batch_y_all, prediction, len(test_gen) * self.Settings[ModelParameterConstants.BatchSize])
 
         self.Logger.Info('test accuracy: ' + str(accuracy))
+    
+    def ShowImage(self, image):
+        cv2.imshow('image', image)
+        cv2.waitKey(0)
 
 
 

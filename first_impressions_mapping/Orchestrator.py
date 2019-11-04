@@ -8,6 +8,8 @@ from Logger import Logger
 from Metrics import Metrics
 from DataAnalytics import DataAnalytics
 import matplotlib.pyplot as plt
+from HogDetails import HogDetails
+from LbpDetails import LbpDetails
 
 from ModelSettings import ModelParameters
 from ModelSettings import ModelParameterConstants
@@ -120,18 +122,22 @@ class Orchestrator():
             labels = tf.placeholder(tf.float32, [None, self.modelSettings.celeba_params[ModelParameterConstants.NumberOfClasses]], name="celeba_predictions")
 
             #[:int(len(celeba_partition['train']) * .10)]
-            training_gen = DataGenerator(celeba_partition['train'], celeba_labels, self.modelSettings.celeba_params, False)
-            validation_gen = DataGenerator(celeba_partition['validation'], celeba_labels, self.modelSettings.celeba_params, False)
-            test_gen = DataGenerator(celeba_partition['test'], celeba_labels, self.modelSettings.celeba_params, False)
+            training_gen = DataGenerator(celeba_partition['train'], celeba_labels, self.modelSettings.celeba_params, augment=False)
+            validation_gen = DataGenerator(celeba_partition['validation'], celeba_labels, self.modelSettings.celeba_params, augment=False)
+            test_gen = DataGenerator(celeba_partition['test'], celeba_labels, self.modelSettings.celeba_params, augment=False)
             self.SetupAndTrain(model, training_gen, features, self.modelSettings.celeba_params, labels, validation_gen=None, test_gen=test_gen)
         
         return model 
 
     def Run_SVM(self):
 
+        hog_params = HogDetails(8, (16, 16), (1, 1), True, False, False) 
+        lbp_details = LbpDetails(3, 24)
+
         (kdef_partition, kdef_labels) = self.reader.read_kdef()
-        training_gen = DataGenerator(kdef_partition['train'], kdef_labels, self.modelSettings.kdef_params, False, True)
-        test_gen = DataGenerator(kdef_partition['test'], kdef_labels, self.modelSettings.kdef_params, False, True)
+
+        training_gen = DataGenerator(kdef_partition['train'][:int(len(kdef_partition['train']) * .10)], kdef_labels, self.modelSettings.kdef_params, lbpDetails=lbp_details, hogDetails=hog_params)
+        test_gen = DataGenerator(kdef_partition['test'][:int(len(kdef_partition['test']) * .10)], kdef_labels, self.modelSettings.kdef_params, lbpDetails=lbp_details)
 
         model = SvmEngine(self.modelSettings.kdef_params)
 

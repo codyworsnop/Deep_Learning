@@ -1,15 +1,13 @@
 import numpy as np
 from tensorflow import keras
 import cv2
-from DataAugmenter import DataAugmenter
 import tensorflow as tf
 import random
-from skimage.feature import hog
-from skimage import data, exposure
+from ImageAugmentor import ImageAugmentor
 
 class DataGenerator(keras.utils.Sequence):
 
-    def __init__(self, image_names, labels, modelSettings, augment=False, useHog=False):
+    def __init__(self, image_names, labels, modelSettings, hogDetails=None, lbpDetails=None, augment=False):
         self.dimension = modelSettings['dimension'] 
         self.batch_size = modelSettings['batch_size']
         self.labels = labels
@@ -21,11 +19,8 @@ class DataGenerator(keras.utils.Sequence):
         self.weight_path = modelSettings['weight_path']
         self.num_epochs = modelSettings['number_of_epochs']
         self.on_epoch_end()
-        self.DataAugmentation = DataAugmenter()
 
-        #data needs to have its own class. Move out label data type, shuffle, augment data, etc into a "GenericData" class
-        self.AugmentData = augment
-        self.Hog = useHog 
+        self.Augmentor = ImageAugmentor(augment, hogDetails, lbpDetails)
 
 
     def on_epoch_end(self):
@@ -35,18 +30,9 @@ class DataGenerator(keras.utils.Sequence):
 
 
     def __data_generation(self, image_names):
-
-        # Initialization
-        if (self.AugmentData):
-            batchSize = self.batch_size * 2
-        else:
-            batchSize = self.batch_size
             
-        X = np.empty((batchSize, *self.dimension, self.n_channels), dtype="uint8")
-        y = np.empty((batchSize, self.n_classes), dtype=self.labelDataType)
-
-        if (self.Hog):
-            X = np.empty((batchSize, self.dimension[0] * self.dimension[1]), dtype="uint8")
+        x_images = []
+        y_labels = [] 
 
         # Generate data
         for index, image_name in enumerate(image_names):
@@ -57,23 +43,17 @@ class DataGenerator(keras.utils.Sequence):
             if (image is not None):
                 #image = np.resize(image, (self.dimension[0], self.dimension[1], self.n_channels))
                 image = cv2.resize(image, dsize=(self.dimension[1], self.dimension[0]), interpolation=cv2.INTER_CUBIC)
+            #    x_images.append(image)
+             #   y_labels.append(self.labels[image_name])
 
-                #Augment the image
-                if (self.AugmentData):
+                augmented_images = self.Augmentor.Augment(image)
+                
+                for image in augmented_images:
+                    x_images.append(image)
+                    y_labels.append(self.labels[image_name])
 
-                    augmented = self.DataAugmentation.augmentImage(image) 
-                    X[batchSize - index - 1] = augmented
-                    y[batchSize - index - 1] = self.labels[image_name]
-
-                #self.ShowImage(image)
-                if (self.Hog):
-
-                    _, image = hog(image, orientations=8, pixels_per_cell=(8, 8), cells_per_block=(1, 1), visualize=True, multichannel=True)
-                    image = image.flatten() 
- 
-                #self.ShowImage(image)
-                X[index] = image
-                y[index] = self.labels[image_name]           
+        X = np.asarray(x_images)   
+        y = np.asarray(y_labels)   
 
         return X, y
 
