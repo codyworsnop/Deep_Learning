@@ -129,22 +129,28 @@ class Orchestrator():
         
         return model 
 
-    def Run_SVM(self):
+    def Run_SVM(self, cross_validate):
 
-        hog_params = HogDetails(8, (16, 16), (1, 1), True, False, False) 
-        lbp_details = LbpDetails(3, 24)
+        hog_params = HogDetails(8, (16, 16), (1, 1), True, False, True) 
+        lbp_details = LbpDetails(3, 24, True)
 
-        (kdef_partition, kdef_labels) = self.reader.read_kdef()
+        if (cross_validate):
+            split_totals = [] 
 
-        training_gen = DataGenerator(kdef_partition['train'][:int(len(kdef_partition['train']) * .10)], kdef_labels, self.modelSettings.kdef_params, lbpDetails=lbp_details, hogDetails=hog_params)
-        test_gen = DataGenerator(kdef_partition['test'][:int(len(kdef_partition['test']) * .10)], kdef_labels, self.modelSettings.kdef_params, lbpDetails=lbp_details)
+            for split in range(5):
 
-        model = SvmEngine(self.modelSettings.kdef_params)
+                self.Logger.Info("\n\nBeginner " + str(split) + " split of k-fold\n\n")
+                (split_partition, split_labels) = self.reader.Read_Splits(split)
 
-        model.Build_SVM()
-        model.Fit(training_gen)
+                training_gen = DataGenerator(split_partition['train'], split_labels, self.modelSettings.kdef_params, lbpDetails=lbp_details, hogDetails=hog_params)
+                test_gen = DataGenerator(split_partition['test'], split_labels, self.modelSettings.kdef_params, lbpDetails=lbp_details)
 
-        model.Predict(test_gen)
+                model = SvmEngine(self.modelSettings.kdef_params)
+
+                model.Build_SVM()
+                model.Fit(training_gen)
+
+                model.Predict(test_gen)
 
     def ShowImage(self, image):
         cv2.imshow('image', image)
@@ -152,4 +158,4 @@ class Orchestrator():
 
 
 orchestrator = LogProxy(Orchestrator())
-orchestrator.Run_SVM()
+orchestrator.Run_SVM(True)

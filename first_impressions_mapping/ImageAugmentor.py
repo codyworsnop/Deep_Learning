@@ -40,6 +40,9 @@ class ImageAugmentor():
 
             for image in self.__splitChannels(image):
                 lbp = local_binary_pattern(image, self.LbpDetails.NumberOfPoints, self.LbpDetails.Radius)
+
+                if (self.LbpDetails.ShouldFlatten):
+                    lbp = lbp.flatten()
                 images.append(lbp) 
 
         return images
