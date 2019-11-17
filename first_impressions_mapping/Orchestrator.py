@@ -140,7 +140,7 @@ class Orchestrator():
             for split in range(5):
 
                 self.Logger.Info("\n\nBeginner " + str(split) + " split of k-fold\n\n")
-                (split_partition, split_labels) = self.reader.Read_Splits(split)
+                (split_partition, split_labels) = self.reader.read_kdef()
 
                 training_gen = DataGenerator(split_partition['train'], split_labels, self.modelSettings.kdef_params, lbpDetails=lbp_details, hogDetails=hog_params)
                 test_gen = DataGenerator(split_partition['test'], split_labels, self.modelSettings.kdef_params, lbpDetails=lbp_details, hogDetails=hog_params)
@@ -149,8 +149,12 @@ class Orchestrator():
 
                 model.Build_SVM()
                 model.Fit(training_gen)
+                prediction_accuracy = model.Predict(test_gen)
 
-                model.Predict(test_gen)
+                split_totals.append((split, prediction_accuracy))
+        
+        for split, accuracy in split_totals:
+            self.Logger.Info("accuracy on split " + str(split) + " " + str(accuracy))
 
     def ShowImage(self, image):
         cv2.imshow('image', image)

@@ -52,7 +52,7 @@ class ImageAugmentor():
                 lbp_images.append(lbp) 
 
             averaged_image = self.__average_image(lbp_images)
-            
+
             if (self.LbpDetails.ShouldFlatten):
                 averaged_image = averaged_image.flatten() 
 
