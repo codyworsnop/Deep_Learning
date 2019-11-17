@@ -434,6 +434,7 @@ class ModelEngine():
                                         ins=self.conv_1x1(input, output_dim, name='ex_dim')
                                         net=ins+net
                                 else:
+                                        
                                         net=input+net
 
                         return net

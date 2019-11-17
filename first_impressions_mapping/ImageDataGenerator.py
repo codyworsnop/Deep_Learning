@@ -7,7 +7,7 @@ from ImageAugmentor import ImageAugmentor
 
 class DataGenerator(keras.utils.Sequence):
 
-    def __init__(self, image_names, labels, modelSettings, hogDetails=None, lbpDetails=None, augment=False):
+    def __init__(self, image_names, labels, modelSettings, hogDetails=None, lbpDetails=None, augment=False, flattenImage=False):
         self.dimension = modelSettings['dimension'] 
         self.batch_size = modelSettings['batch_size']
         self.labels = labels
@@ -19,6 +19,7 @@ class DataGenerator(keras.utils.Sequence):
         self.weight_path = modelSettings['weight_path']
         self.num_epochs = modelSettings['number_of_epochs']
         self.on_epoch_end()
+        self.flatten = flattenImage
 
         self.Augmentor = ImageAugmentor(augment, hogDetails, lbpDetails)
 
@@ -43,12 +44,18 @@ class DataGenerator(keras.utils.Sequence):
             if (image is not None):
                 #image = np.resize(image, (self.dimension[0], self.dimension[1], self.n_channels))
                 image = cv2.resize(image, dsize=(self.dimension[1], self.dimension[0]), interpolation=cv2.INTER_CUBIC)
-            #    x_images.append(image)
-             #   y_labels.append(self.labels[image_name])
 
                 augmented_images = self.Augmentor.Augment(image)
                 
-                for image in augmented_images:
+                if (len(augmented_images) > 0):
+                    for image in augmented_images:
+                        x_images.append(image)
+                        y_labels.append(self.labels[image_name])
+                else:
+                    if (self.flatten):
+                        image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+                        image = image.flatten() 
+
                     x_images.append(image)
                     y_labels.append(self.labels[image_name])
 

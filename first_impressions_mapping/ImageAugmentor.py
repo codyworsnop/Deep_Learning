@@ -31,7 +31,6 @@ class ImageAugmentor():
 
             _, hog_result_image = hog(image, orientations=self.HogDetails.Orientations, pixels_per_cell=self.HogDetails.PixelsPerCell, cells_per_block=self.HogDetails.CellsPerBlock, visualize= self.HogDetails.Visualize, multichannel=True)
 
-
             if (self.HogDetails.ShouldFlatten):
                 hog_result_image = hog_result_image.flatten() 
             images.append(hog_result_image)

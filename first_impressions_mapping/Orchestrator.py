@@ -130,8 +130,9 @@ class Orchestrator():
         return model 
 
     def Run_SVM(self, cross_validate):
-
-        hog_params = HogDetails(8, (16, 16), (1, 1), True, False, True) 
+        ''' Runs an SVM model against KDEF'''
+        
+        hog_params = HogDetails(8, (8, 8), (1, 1), True, False, True) 
         lbp_details = LbpDetails(3, 24, True)
 
         if (cross_validate):
@@ -140,17 +141,21 @@ class Orchestrator():
             for split in range(5):
 
                 self.Logger.Info("\n\nBeginner " + str(split) + " split of k-fold\n\n")
-                (split_partition, split_labels) = self.reader.Read_Splits(split)
+                (split_partition, split_labels) = self.reader.read_kdef()
 
-                training_gen = DataGenerator(split_partition['train'], split_labels, self.modelSettings.kdef_params, lbpDetails=lbp_details, hogDetails=hog_params)
-                test_gen = DataGenerator(split_partition['test'], split_labels, self.modelSettings.kdef_params, lbpDetails=lbp_details)
+                training_gen = DataGenerator(split_partition['train'][:int(len(split_partition['train']) * .10)], split_labels, self.modelSettings.kdef_params, lbpDetails=lbp_details, hogDetails=hog_params)
+                test_gen = DataGenerator(split_partition['test'][:int(len(split_partition['test']) * .10)], split_labels, self.modelSettings.kdef_params, flattenImage=True)
 
                 model = SvmEngine(self.modelSettings.kdef_params)
 
                 model.Build_SVM()
                 model.Fit(training_gen)
+                prediction_accuracy = model.Predict(test_gen)
 
-                model.Predict(test_gen)
+                split_totals.append((split, prediction_accuracy))
+        
+        for split, accuracy in split_totals:
+            self.Logger.Info("accuracy on split " + str(split) + " " + str(accuracy))
 
     def ShowImage(self, image):
         cv2.imshow('image', image)
