@@ -7,6 +7,10 @@ import random
 from skimage.feature import hog
 from skimage import data, exposure
 from skimage.feature import local_binary_pattern
+import os
+import numpy
+import PIL 
+from PIL import Image 
 
 class ImageAugmentor(): 
 
@@ -27,23 +31,32 @@ class ImageAugmentor():
         #self.ShowImage(image)
         if (self.HogDetails is not None):
 
-            #for image in self.__splitChannels(image):
+            hog_images = [] 
+            for split_image in self.__splitChannels(image):
+                _, hog_result_image = hog(split_image, orientations=self.HogDetails.Orientations, pixels_per_cell=self.HogDetails.PixelsPerCell, cells_per_block=self.HogDetails.CellsPerBlock, visualize= self.HogDetails.Visualize, multichannel=False)
+                hog_images.append(hog_result_image)
 
-            _, hog_result_image = hog(image, orientations=self.HogDetails.Orientations, pixels_per_cell=self.HogDetails.PixelsPerCell, cells_per_block=self.HogDetails.CellsPerBlock, visualize= self.HogDetails.Visualize, multichannel=True)
-
+            averaged_image = self.__average_image(hog_images)
 
             if (self.HogDetails.ShouldFlatten):
-                hog_result_image = hog_result_image.flatten() 
-            images.append(hog_result_image)
+                averaged_image = averaged_image.flatten()
+
+            images.append(averaged_image)
 
         if (self.LbpDetails is not None):
 
-            for image in self.__splitChannels(image):
-                lbp = local_binary_pattern(image, self.LbpDetails.NumberOfPoints, self.LbpDetails.Radius)
+            lbp_images = [] 
 
-                if (self.LbpDetails.ShouldFlatten):
-                    lbp = lbp.flatten()
-                images.append(lbp) 
+            for split_image in self.__splitChannels(image):
+                lbp = local_binary_pattern(split_image, self.LbpDetails.NumberOfPoints, self.LbpDetails.Radius)
+                lbp_images.append(lbp) 
+
+            averaged_image = self.__average_image(lbp_images)
+            
+            if (self.LbpDetails.ShouldFlatten):
+                averaged_image = averaged_image.flatten() 
+
+            images.append(averaged_image)
 
         return images
 
@@ -79,6 +92,16 @@ class ImageAugmentor():
         Trans_M = np.float32([[1,0,tr_x],[0,1,tr_y]])
 
         return cv2.warpAffine(image,Trans_M,(cols,rows))
+
+    def __average_image(self, images):
+
+        N = len(images)
+        averaged_image = numpy.zeros(images[0].shape, numpy.float)
+
+        for image in images: 
+            averaged_image += image / N
+
+        return averaged_image 
 
     def __AugmentImage(self, image):
 

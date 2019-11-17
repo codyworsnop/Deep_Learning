@@ -2,14 +2,14 @@ import numpy as np
 
 from ImageDataGenerator import DataGenerator
 from DataReader import DataReader
-from ModelEngine import ModelEngine
+from Engines.ModelEngine import ModelEngine
 from Proxy import Proxy as LogProxy
 from Logger import Logger
 from Metrics import Metrics
 from DataAnalytics import DataAnalytics
 import matplotlib.pyplot as plt
-from HogDetails import HogDetails
-from LbpDetails import LbpDetails
+from AugmentationDetails.HogDetails import HogDetails
+from AugmentationDetails.LbpDetails import LbpDetails
 
 from ModelSettings import ModelParameters
 from ModelSettings import ModelParameterConstants
@@ -20,7 +20,7 @@ from tensorflow import keras
 import ApplicationConstants
 import tensorflow as tf
 import cv2
-from SVMEngine import SvmEngine
+from Engines.SVMEngine import SvmEngine
 
 #tf.enable_eager_execution()
 
@@ -131,7 +131,7 @@ class Orchestrator():
 
     def Run_SVM(self, cross_validate):
 
-        hog_params = HogDetails(8, (16, 16), (1, 1), True, False, True) 
+        hog_params = HogDetails(4, (8, 8), (1, 1), True, False, True) 
         lbp_details = LbpDetails(3, 24, True)
 
         if (cross_validate):
@@ -143,7 +143,7 @@ class Orchestrator():
                 (split_partition, split_labels) = self.reader.Read_Splits(split)
 
                 training_gen = DataGenerator(split_partition['train'], split_labels, self.modelSettings.kdef_params, lbpDetails=lbp_details, hogDetails=hog_params)
-                test_gen = DataGenerator(split_partition['test'], split_labels, self.modelSettings.kdef_params, lbpDetails=lbp_details)
+                test_gen = DataGenerator(split_partition['test'], split_labels, self.modelSettings.kdef_params, lbpDetails=lbp_details, hogDetails=hog_params)
 
                 model = SvmEngine(self.modelSettings.kdef_params)
 

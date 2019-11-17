@@ -1,0 +1,305 @@
+Log file creation
+11:31:14	Calling method: Run_SVM
+11:31:18	
+
+Beginner 0 split of k-fold
+
+
+11:31:18	Calling method: Read_Splits
+11:31:18	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+11:38:18	Calling method: Run_SVM
+11:38:19	
+
+Beginner 0 split of k-fold
+
+
+11:38:19	Calling method: Read_Splits
+11:38:19	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+11:38:31	Error occured while running method: Only images with 2 spatial dimensions are supported. If using with color/multichannel images, specify `multichannel=True`.
+11:38:48	Calling method: Run_SVM
+11:38:48	
+
+Beginner 0 split of k-fold
+
+
+11:38:48	Calling method: Read_Splits
+11:38:48	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+11:40:42	Calling method: Run_SVM
+11:40:42	
+
+Beginner 0 split of k-fold
+
+
+11:40:42	Calling method: Read_Splits
+11:40:42	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+11:41:04	Error occured while running method: 'numpy.ndarray' object has no attribute 'read'
+11:41:43	Calling method: Run_SVM
+11:41:43	
+
+Beginner 0 split of k-fold
+
+
+11:41:43	Calling method: Read_Splits
+11:41:43	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+11:42:07	Calling method: Run_SVM
+11:42:07	
+
+Beginner 0 split of k-fold
+
+
+11:42:07	Calling method: Read_Splits
+11:42:07	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+11:42:39	Calling method: Run_SVM
+11:42:39	
+
+Beginner 0 split of k-fold
+
+
+11:42:39	Calling method: Read_Splits
+11:42:39	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+11:43:02	Error occured while running method: 'int' object is not iterable
+11:43:37	Calling method: Run_SVM
+11:43:37	
+
+Beginner 0 split of k-fold
+
+
+11:43:37	Calling method: Read_Splits
+11:43:37	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+11:46:17	Calling method: Run_SVM
+11:46:17	
+
+Beginner 0 split of k-fold
+
+
+11:46:17	Calling method: Read_Splits
+11:46:17	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+11:47:06	Error occured while running method: operands could not be broadcast together with shapes (178,218,3) (218,178) 
+11:47:53	Calling method: Run_SVM
+11:47:53	
+
+Beginner 0 split of k-fold
+
+
+11:47:53	Calling method: Read_Splits
+11:47:53	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+11:48:08	Error occured while running method: not enough image data
+11:50:01	Calling method: Run_SVM
+11:50:01	
+
+Beginner 0 split of k-fold
+
+
+11:50:01	Calling method: Read_Splits
+11:50:01	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+11:51:05	Calling method: Run_SVM
+11:51:05	
+
+Beginner 0 split of k-fold
+
+
+11:51:05	Calling method: Read_Splits
+11:51:06	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+11:55:47	Calling method: Run_SVM
+11:55:47	
+
+Beginner 0 split of k-fold
+
+
+11:55:47	Calling method: Read_Splits
+11:55:47	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+11:55:59	Error occured while running method: too many indices for array
+11:56:14	Calling method: Run_SVM
+11:56:14	
+
+Beginner 0 split of k-fold
+
+
+11:56:14	Calling method: Read_Splits
+11:56:14	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+11:57:28	Calling method: Run_SVM
+11:57:28	
+
+Beginner 0 split of k-fold
+
+
+11:57:28	Calling method: Read_Splits
+11:57:28	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+11:58:52	Calling method: Run_SVM
+11:58:52	
+
+Beginner 0 split of k-fold
+
+
+11:58:52	Calling method: Read_Splits
+11:58:52	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+12:09:49	Calling method: Run_SVM
+12:09:49	
+
+Beginner 0 split of k-fold
+
+
+12:09:49	Calling method: Read_Splits
+12:09:49	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+12:12:18	Calling method: Run_SVM
+12:12:18	
+
+Beginner 0 split of k-fold
+
+
+12:12:18	Calling method: Read_Splits
+12:12:18	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+12:14:10	Calling method: Run_SVM
+12:14:10	
+
+Beginner 0 split of k-fold
+
+
+12:14:10	Calling method: Read_Splits
+12:14:10	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+12:14:58	Calling method: Run_SVM
+12:14:58	
+
+Beginner 0 split of k-fold
+
+
+12:14:58	Calling method: Read_Splits
+12:14:58	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+12:20:23	Calling method: Run_SVM
+12:20:23	
+
+Beginner 0 split of k-fold
+
+
+12:20:23	Calling method: Read_Splits
+12:20:23	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+12:20:34	Calling method: Run_SVM
+12:20:34	
+
+Beginner 0 split of k-fold
+
+
+12:20:34	Calling method: Read_Splits
+12:20:34	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+12:21:19	Calling method: Run_SVM
+12:21:19	
+
+Beginner 0 split of k-fold
+
+
+12:21:19	Calling method: Read_Splits
+12:21:20	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+12:23:25	Calling method: Run_SVM
+12:23:25	
+
+Beginner 0 split of k-fold
+
+
+12:23:25	Calling method: Read_Splits
+12:23:25	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+12:25:25	Calling method: Run_SVM
+12:25:25	
+
+Beginner 0 split of k-fold
+
+
+12:25:25	Calling method: Read_Splits
+12:25:25	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+12:25:56	Calling method: Run_SVM
+12:25:56	
+
+Beginner 0 split of k-fold
+
+
+12:25:56	Calling method: Read_Splits
+12:25:57	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+12:26:37	Calling method: Run_SVM
+12:26:37	
+
+Beginner 0 split of k-fold
+
+
+12:26:37	Calling method: Read_Splits
+12:26:37	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+12:27:34	Calling method: Run_SVM
+12:27:34	
+
+Beginner 0 split of k-fold
+
+
+12:27:34	Calling method: Read_Splits
+12:27:34	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+12:27:58	Calling method: Run_SVM
+12:27:58	
+
+Beginner 0 split of k-fold
+
+
+12:27:58	Calling method: Read_Splits
+12:27:58	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+12:29:10	Calling method: Run_SVM
+12:29:10	
+
+Beginner 0 split of k-fold
+
+
+12:29:10	Calling method: Read_Splits
+12:29:10	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+12:30:46	Calling method: Run_SVM
+12:30:46	
+
+Beginner 0 split of k-fold
+
+
+12:30:46	Calling method: Read_Splits
+12:30:46	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+12:33:13	Calling method: Run_SVM
+12:33:13	
+
+Beginner 0 split of k-fold
+
+
+12:33:13	Calling method: Read_Splits
+12:33:13	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+12:33:29	Calling method: Run_SVM
+12:33:29	
+
+Beginner 0 split of k-fold
+
+
+12:33:29	Calling method: Read_Splits
+12:33:29	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+12:33:55	Calling method: Run_SVM
+12:33:55	
+
+Beginner 0 split of k-fold
+
+
+12:33:55	Calling method: Read_Splits
+12:33:55	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+12:34:28	Calling method: Run_SVM
+12:34:28	
+
+Beginner 0 split of k-fold
+
+
+12:34:28	Calling method: Read_Splits
+12:34:28	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+12:36:48	Calling method: Run_SVM
+12:36:48	
+
+Beginner 0 split of k-fold
+
+
+12:36:48	Calling method: Read_Splits
+12:36:48	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+12:41:32	Error occured while running method: Found array with dim 3. Estimator expected <= 2.
+12:41:54	Calling method: Run_SVM
+12:41:54	
+
+Beginner 0 split of k-fold
+
+
+12:41:54	Calling method: Read_Splits
+12:41:54	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
+13:03:18	Error occured while running method: ufunc 'subtract' did not contain a loop with signature matching types dtype('<U32') dtype('<U32') dtype('<U32')

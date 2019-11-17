@@ -31,7 +31,7 @@ class Metrics():
     
     def kdef_accuracy_SVM(self, labels, prediction, batch_size):
 
-        diff = np.absolute(np.subtract(prediction, labels))
+        diff = np.absolute(np.subtract(prediction.astype(float), labels.astype(float)))
         trust_diff_sum = np.sum(diff, axis=0)
 
         return trust_diff_sum / batch_size
