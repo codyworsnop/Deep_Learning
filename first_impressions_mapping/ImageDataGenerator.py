@@ -42,22 +42,20 @@ class DataGenerator(keras.utils.Sequence):
             image = cv2.imread(image_name, cv2.IMREAD_COLOR)
 
             if (image is not None):
-                #image = np.resize(image, (self.dimension[0], self.dimension[1], self.n_channels))
                 image = cv2.resize(image, dsize=(self.dimension[1], self.dimension[0]), interpolation=cv2.INTER_CUBIC)
 
-                augmented_images = self.Augmentor.Augment(image)
-                
-                if (len(augmented_images) > 0):
-                    for image in augmented_images:
-                        x_images.append(image)
-                        y_labels.append(self.labels[image_name])
-                else:
-                    if (self.flatten):
-                        image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-                        image = image.flatten() 
+                augmented_image = self.Augmentor.Augment(image)
 
-                    x_images.append(image)
-                    y_labels.append(self.labels[image_name])
+                #only care about the augmented image
+                if (augmented_image is not None):
+                    image = augmented_image
+
+                if (self.flatten):
+                    #image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+                    image = image.flatten() 
+
+                x_images.append(image)
+                y_labels.append(self.labels[image_name])
 
         X = np.asarray(x_images)   
         y = np.asarray(y_labels)   

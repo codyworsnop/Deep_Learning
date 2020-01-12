@@ -117,6 +117,7 @@ class Orchestrator():
          #train celeb_a if no weights exist for it 
         if (not self.reader.weights_exist(self.modelSettings.celeba_params['weight_path'] + '.meta')):
 
+
             #train celeb_a
             (celeba_partition, celeba_labels) = self.reader.read_celeb_a()
             labels = tf.placeholder(tf.float32, [None, self.modelSettings.celeba_params[ModelParameterConstants.NumberOfClasses]], name="celeba_predictions")
@@ -131,8 +132,8 @@ class Orchestrator():
 
     def Run_SVM(self, cross_validate):
 
-        hog_params = HogDetails(4, (8, 8), (1, 1), True, False, True) 
-        lbp_details = LbpDetails(3, 24, True)
+        hog_params = HogDetails(orientations = 8, pixelsPerCell = (16, 16), cellsPerBlock = (1, 1), shouldVisualize = True, multichannel = False) 
+        lbp_details = LbpDetails(3, 24)
 
         if (cross_validate):
             split_totals = [] 
@@ -142,8 +143,8 @@ class Orchestrator():
                 self.Logger.Info("\n\nBeginner " + str(split) + " split of k-fold\n\n")
                 (split_partition, split_labels) = self.reader.read_kdef()
 
-                training_gen = DataGenerator(split_partition['train'], split_labels, self.modelSettings.kdef_params, lbpDetails=lbp_details, hogDetails=hog_params)
-                test_gen = DataGenerator(split_partition['test'], split_labels, self.modelSettings.kdef_params, lbpDetails=lbp_details, hogDetails=hog_params)
+                training_gen = DataGenerator(split_partition['train'], split_labels, self.modelSettings.kdef_params, lbpDetails=lbp_details, hogDetails=hog_params, augment=False, flattenImage = True)
+                test_gen = DataGenerator(split_partition['test'], split_labels, self.modelSettings.kdef_params, lbpDetails=lbp_details, hogDetails=hog_params, augment=False, flattenImage = True)
 
                 model = SvmEngine(self.modelSettings.kdef_params)
 

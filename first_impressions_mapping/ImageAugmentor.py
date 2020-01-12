@@ -20,49 +20,58 @@ class ImageAugmentor():
         self.LbpDetails = lbpDetails
     
     def Augment(self, image):
-
-        images = []
         
+        augmented_image = None 
+
         #Augment the image
         if (self.shouldAugmentGeneric):
-            augmented = self.__AugmentImage(image) 
-            images.append(augmented)
+            augmented_image = self.__AugmentImage(image)
 
-        #self.ShowImage(image)
         if (self.HogDetails is not None):
 
-            hog_images = [] 
-            for split_image in self.__splitChannels(image):
-                _, hog_result_image = hog(split_image, orientations=self.HogDetails.Orientations, pixels_per_cell=self.HogDetails.PixelsPerCell, cells_per_block=self.HogDetails.CellsPerBlock, visualize= self.HogDetails.Visualize, multichannel=False)
-                hog_images.append(hog_result_image)
-
-            averaged_image = self.__average_image(hog_images)
-
-            if (self.HogDetails.ShouldFlatten):
-                averaged_image = averaged_image.flatten()
-
-            images.append(averaged_image)
-
+            hog_result = self.__AugmentHog(image)
+            
+            if (augmented_image is not None):
+                augmented_image = np.concatenate([augmented_image, hog_result])
+            else: 
+                augmented_image = hog_result
+        
         if (self.LbpDetails is not None):
 
-            lbp_images = [] 
+            lbp_result = self.__AugmentLBP(image)
 
-            for split_image in self.__splitChannels(image):
-                lbp = local_binary_pattern(split_image, self.LbpDetails.NumberOfPoints, self.LbpDetails.Radius)
-                lbp_images.append(lbp) 
+            if (augmented_image is not None):
+                augmented_image = np.concatenate([augmented_image, lbp_result])
+            else:
+                augmented_image = lbp_result
 
-            averaged_image = self.__average_image(lbp_images)
-
-            if (self.LbpDetails.ShouldFlatten):
-                averaged_image = averaged_image.flatten() 
-
-            images.append(averaged_image)
-
-        return images
+        return augmented_image
 
     def ShowImage(self, image):
         cv2.imshow('image', image)
         cv2.waitKey(0)
+
+    def __AugmentHog(self, image):
+        hog_images = [] 
+        for split_image in self.__splitChannels(image):
+            _, hog_result_image = hog(split_image, orientations=self.HogDetails.Orientations, pixels_per_cell=self.HogDetails.PixelsPerCell, cells_per_block=self.HogDetails.CellsPerBlock, visualize= self.HogDetails.Visualize, multichannel=False)
+            hog_images.append(hog_result_image)
+
+        averaged_image = self.__average_image(hog_images)   
+
+        return averaged_image      
+
+    def __AugmentLBP(self, image):
+
+        lbp_images = [] 
+
+        for split_image in self.__splitChannels(image):
+            lbp = local_binary_pattern(split_image, self.LbpDetails.NumberOfPoints, self.LbpDetails.Radius)
+            lbp_images.append(lbp) 
+
+        averaged_image = self.__average_image(lbp_images)
+
+        return averaged_image
 
     def __splitChannels(self, image):
         red = image[:,:,2]
