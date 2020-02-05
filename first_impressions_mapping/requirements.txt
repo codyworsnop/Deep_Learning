@@ -1,0 +1,8 @@
+cmake
+termcolor
+numpy
+opencv-python
+scikit-image
+python-interface
+scikit-learn
+dlib

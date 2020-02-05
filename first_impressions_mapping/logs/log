@@ -303,3 +303,197 @@ Beginner 0 split of k-fold
 12:41:54	Calling method: Read_Splits
 12:41:54	Method returned: ({'train': ['./KDEF/AF30/AF30DIS.JPG', './KDEF/AM35/AM35HAFL.JPG', './KDEF/...
 13:03:18	Error occured while running method: ufunc 'subtract' did not contain a loop with signature matching types dtype('<U32') dtype('<U32') dtype('<U32')
+Log file creation
+Log file creation
+18:12:09	Calling method: read_kdef
+18:12:09	Reading KDEF images from: /home/codyworsnop/Desktop/research/Deep_Learning/first_impressions_mapping/KDEF
+18:12:11	The image path was None while reading kdef data: AF31SAHL.JPG
+18:12:13	Method returned: ({'train': ['/home/codyworsnop/Desktop/research/Deep_Learning/first_impress...
+Log file creation
+18:12:40	Calling method: read_kdef
+18:12:40	Reading KDEF images from: /home/codyworsnop/Desktop/research/Deep_Learning/first_impressions_mapping/KDEF
+18:12:42	The image path was None while reading kdef data: AF31SAHL.JPG
+18:12:44	Method returned: ({'train': ['/home/codyworsnop/Desktop/research/Deep_Learning/first_impress...
+18:13:13	Calling method: read_kdef
+18:13:13	Reading KDEF images from: /home/codyworsnop/Desktop/research/Deep_Learning/first_impressions_mapping/KDEF
+18:13:15	The image path was None while reading kdef data: AF31SAHL.JPG
+18:13:17	Method returned: ({'train': ['/home/codyworsnop/Desktop/research/Deep_Learning/first_impress...
+18:13:20	On batch: 0 of 80
+18:14:08	Calling method: read_kdef
+18:14:08	Reading KDEF images from: /home/codyworsnop/Desktop/research/Deep_Learning/first_impressions_mapping/KDEF
+18:14:09	The image path was None while reading kdef data: AF31SAHL.JPG
+18:14:11	Method returned: ({'train': ['/home/codyworsnop/Desktop/research/Deep_Learning/first_impress...
+18:14:12	On batch: 0 of 80
+18:17:55	Calling method: read_kdef
+18:17:55	Reading KDEF images from: /home/codyworsnop/Desktop/research/Deep_Learning/first_impressions_mapping/KDEF
+18:17:57	The image path was None while reading kdef data: AF31SAHL.JPG
+18:17:59	Method returned: ({'train': ['/home/codyworsnop/Desktop/research/Deep_Learning/first_impress...
+18:18:00	On batch: 0 of 80
+18:18:00	On batch: 1 of 80
+18:18:00	On batch: 2 of 80
+18:18:00	On batch: 3 of 80
+18:18:00	On batch: 4 of 80
+18:18:01	On batch: 5 of 80
+18:18:01	On batch: 6 of 80
+18:18:01	On batch: 7 of 80
+18:18:01	On batch: 8 of 80
+18:18:01	On batch: 9 of 80
+18:18:01	On batch: 10 of 80
+18:18:01	On batch: 11 of 80
+18:18:01	On batch: 12 of 80
+18:18:01	On batch: 13 of 80
+18:18:01	On batch: 14 of 80
+18:18:01	On batch: 15 of 80
+18:18:02	On batch: 16 of 80
+18:18:02	On batch: 17 of 80
+18:18:02	On batch: 18 of 80
+18:18:02	On batch: 19 of 80
+18:18:02	On batch: 20 of 80
+18:18:02	On batch: 21 of 80
+18:18:02	On batch: 22 of 80
+18:18:02	On batch: 23 of 80
+18:18:02	On batch: 24 of 80
+18:18:02	On batch: 25 of 80
+18:18:02	On batch: 26 of 80
+18:18:02	On batch: 27 of 80
+18:18:03	On batch: 28 of 80
+18:18:03	On batch: 29 of 80
+18:18:03	On batch: 30 of 80
+18:18:03	On batch: 31 of 80
+18:18:03	On batch: 32 of 80
+18:18:03	On batch: 33 of 80
+18:18:03	On batch: 34 of 80
+18:18:03	On batch: 35 of 80
+18:18:03	On batch: 36 of 80
+18:18:03	On batch: 37 of 80
+18:18:03	On batch: 38 of 80
+18:18:04	On batch: 39 of 80
+18:18:04	On batch: 40 of 80
+18:18:04	On batch: 41 of 80
+18:18:04	On batch: 42 of 80
+18:18:04	On batch: 43 of 80
+18:18:04	On batch: 44 of 80
+18:18:04	On batch: 45 of 80
+18:18:04	On batch: 46 of 80
+18:18:04	On batch: 47 of 80
+18:18:04	On batch: 48 of 80
+18:18:04	On batch: 49 of 80
+18:18:04	On batch: 50 of 80
+18:18:05	On batch: 51 of 80
+18:18:05	On batch: 52 of 80
+18:18:05	On batch: 53 of 80
+18:18:05	On batch: 54 of 80
+18:18:05	On batch: 55 of 80
+18:18:05	On batch: 56 of 80
+18:18:05	On batch: 57 of 80
+18:18:05	On batch: 58 of 80
+18:18:05	On batch: 59 of 80
+18:18:05	On batch: 60 of 80
+18:18:05	On batch: 61 of 80
+18:18:06	On batch: 62 of 80
+18:18:06	On batch: 63 of 80
+18:18:06	On batch: 64 of 80
+18:18:06	On batch: 65 of 80
+18:18:06	On batch: 66 of 80
+18:18:06	On batch: 67 of 80
+18:18:06	On batch: 68 of 80
+18:18:06	On batch: 69 of 80
+18:18:06	On batch: 70 of 80
+18:18:06	On batch: 71 of 80
+18:18:06	On batch: 72 of 80
+18:18:06	On batch: 73 of 80
+18:18:07	On batch: 74 of 80
+18:18:07	On batch: 75 of 80
+18:18:07	On batch: 76 of 80
+18:18:07	On batch: 77 of 80
+18:18:07	On batch: 78 of 80
+18:18:07	On batch: 79 of 80
+18:18:29	Calling method: read_kdef
+18:18:29	Reading KDEF images from: /home/codyworsnop/Desktop/research/Deep_Learning/first_impressions_mapping/KDEF
+18:18:31	The image path was None while reading kdef data: AF31SAHL.JPG
+18:18:33	Method returned: ({'train': ['/home/codyworsnop/Desktop/research/Deep_Learning/first_impress...
+18:18:39	On batch: 0 of 80
+18:20:47	Calling method: read_kdef
+18:20:47	Reading KDEF images from: /home/codyworsnop/Desktop/research/Deep_Learning/first_impressions_mapping/KDEF
+18:20:49	The image path was None while reading kdef data: AF31SAHL.JPG
+18:20:51	Method returned: ({'train': ['/home/codyworsnop/Desktop/research/Deep_Learning/first_impress...
+18:20:55	On batch: 0 of 80
+18:30:30	On batch: 1 of 80
+18:30:30	On batch: 2 of 80
+18:30:30	On batch: 3 of 80
+18:30:31	On batch: 4 of 80
+18:30:31	On batch: 5 of 80
+18:30:31	On batch: 6 of 80
+18:30:31	On batch: 7 of 80
+18:30:31	On batch: 8 of 80
+18:30:31	On batch: 9 of 80
+18:30:31	On batch: 10 of 80
+18:30:31	On batch: 11 of 80
+18:30:31	On batch: 12 of 80
+18:30:31	On batch: 13 of 80
+18:30:31	On batch: 14 of 80
+18:30:31	On batch: 15 of 80
+18:30:32	On batch: 16 of 80
+18:30:32	On batch: 17 of 80
+18:30:32	On batch: 18 of 80
+18:30:32	On batch: 19 of 80
+18:30:32	On batch: 20 of 80
+18:30:32	On batch: 21 of 80
+18:30:32	On batch: 22 of 80
+18:30:32	On batch: 23 of 80
+18:30:32	On batch: 24 of 80
+18:30:32	On batch: 25 of 80
+18:30:32	On batch: 26 of 80
+18:30:33	On batch: 27 of 80
+18:30:33	On batch: 28 of 80
+18:30:33	On batch: 29 of 80
+18:30:33	On batch: 30 of 80
+18:30:33	On batch: 31 of 80
+18:30:33	On batch: 32 of 80
+18:30:33	On batch: 33 of 80
+18:30:33	On batch: 34 of 80
+18:30:33	On batch: 35 of 80
+18:30:33	On batch: 36 of 80
+18:30:33	On batch: 37 of 80
+18:30:33	On batch: 38 of 80
+18:30:34	On batch: 39 of 80
+18:30:34	On batch: 40 of 80
+18:30:34	On batch: 41 of 80
+18:30:34	On batch: 42 of 80
+18:30:34	On batch: 43 of 80
+18:30:34	On batch: 44 of 80
+18:30:34	On batch: 45 of 80
+18:30:34	On batch: 46 of 80
+18:30:34	On batch: 47 of 80
+18:30:34	On batch: 48 of 80
+18:30:34	On batch: 49 of 80
+18:30:35	On batch: 50 of 80
+18:30:35	On batch: 51 of 80
+18:30:35	On batch: 52 of 80
+18:30:35	On batch: 53 of 80
+18:30:35	On batch: 54 of 80
+18:30:35	On batch: 55 of 80
+18:30:35	On batch: 56 of 80
+18:30:35	On batch: 57 of 80
+18:30:35	On batch: 58 of 80
+18:30:35	On batch: 59 of 80
+18:30:35	On batch: 60 of 80
+18:30:35	On batch: 61 of 80
+18:30:36	On batch: 62 of 80
+18:30:36	On batch: 63 of 80
+18:30:36	On batch: 64 of 80
+18:30:36	On batch: 65 of 80
+18:30:36	On batch: 66 of 80
+18:30:36	On batch: 67 of 80
+18:30:36	On batch: 68 of 80
+18:30:36	On batch: 69 of 80
+18:30:36	On batch: 70 of 80
+18:30:36	On batch: 71 of 80
+18:30:36	On batch: 72 of 80
+18:30:37	On batch: 73 of 80
+18:30:37	On batch: 74 of 80
+18:30:37	On batch: 75 of 80
+18:30:37	On batch: 76 of 80
+18:30:37	On batch: 77 of 80
+18:30:37	On batch: 78 of 80
+18:30:37	On batch: 79 of 80

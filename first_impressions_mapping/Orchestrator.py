@@ -2,7 +2,7 @@ import numpy as np
 
 from ImageDataGenerator import DataGenerator
 from DataReader import DataReader
-from Engines.ModelEngine import ModelEngine
+from Models.Tensorflow import ModelEngine
 from Proxy import Proxy as LogProxy
 from Logger import Logger
 from Metrics import Metrics
@@ -13,7 +13,6 @@ from AugmentationDetails.LbpDetails import LbpDetails
 
 from ModelSettings import ModelParameters
 from ModelSettings import ModelParameterConstants
-from Logger import Logger
 from Losses import Losses
 from ModelType import ModelType 
 from tensorflow import keras
