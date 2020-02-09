@@ -50,12 +50,10 @@ class Landmarks():
         landmarks = self.get_landmarks(training_gen) 
 
         #run against models 
-       # models = [NN()] #expand for SVM, KNN, whatever else
+        models = [NN()] #expand for SVM, KNN, whatever else
 
-       # for model in models:
-
-       #     model.Train(landmarks)
-
+        for model in models:
+            model.Train(landmarks) #most scikit models don't have a partial fit, which is why we have to pass in all the data at once :( 
 
 if __name__ == "__main__":
     
