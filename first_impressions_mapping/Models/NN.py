@@ -6,7 +6,7 @@ def warn(*args, **kwargs):
 import warnings
 warnings.warn = warn
 
-from sklearn.neural_network import MLPClassifier
+from sklearn.neural_network import MLPRegressor
 
 class NN(implements(IModel)):
 
@@ -15,11 +15,11 @@ class NN(implements(IModel)):
 
     def Build_Model(self):
 
-        model = MLPClassifier(hidden_layer_sizes=(195,))
+        model = MLPRegressor()
         return model 
 
     def Train(self, train_features, train_labels, validation_features, validation_labels):
-        self.Model.fit(trainFeatures, trainLabels)
+        self.Model.fit(train_features, train_labels)
 
-    def Predict(self, features): 
-        return self.Model.predict(features) , self.Model.predict_proba(features)
+    def Predict(self, features, labels): 
+        return self.Model.predict(features), self.Model.score(features, labels)
