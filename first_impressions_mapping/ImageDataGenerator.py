@@ -67,7 +67,7 @@ class DataGenerator(keras.utils.Sequence):
         'Denotes the number of batches per epoch'
         return int(np.floor(len(self.image_names) / self.batch_size))
 
-    def __getitem__(self, index):
+    def __getitem__(self, index, shouldReturnPaths = False):
 
         'Generate one batch of data'
         # Generate indexes of the batch
@@ -79,7 +79,9 @@ class DataGenerator(keras.utils.Sequence):
         # Generate data
         X, y = self.__data_generation(image_names_temp)
 
-        #self.ShowImage(X[0])
+        if (shouldReturnPaths):
+            return X, y, image_names_temp
+        
         return X, y
 
     def binary_balance(self, y_batch): 

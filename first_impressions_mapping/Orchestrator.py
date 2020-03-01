@@ -11,15 +11,15 @@ import matplotlib.pyplot as plt
 from AugmentationDetails.HogDetails import HogDetails
 from AugmentationDetails.LbpDetails import LbpDetails
 
-from ModelSettings import ModelParameters
-from ModelSettings import ModelParameterConstants
+from Models.ModelSettings import ModelParameters
+from Models.ModelSettings import ModelParameterConstants
 from Losses import Losses
 from ModelType import ModelType 
 from tensorflow import keras
 import ApplicationConstants
 import tensorflow as tf
 import cv2
-from Engines.SVMEngine import SvmEngine
+from Models.SvmEngine import SvmEngine
 
 #tf.enable_eager_execution()
 

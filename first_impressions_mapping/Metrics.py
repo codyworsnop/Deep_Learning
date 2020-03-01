@@ -1,6 +1,6 @@
 import tensorflow as tf 
 import numpy as np
-from ModelSettings import ModelParameterConstants
+from Models.ModelSettings import ModelParameterConstants
 
 trust_predictions = []
 

@@ -1,0 +1,10 @@
+Input:/home/codyworsnop/Desktop/research/Deep_Learning/first_impressions_mapping/KDEF/AF03/AF03ANFR.JPG
+Input full path:/home/codyworsnop/Desktop/research/Deep_Learning/first_impressions_mapping/KDEF/AF03/AF03ANFR.JPG
+Camera parameters:616.406,616.406,281,381
+Output csv:AF03ANFR.csv
+Gaze: 0
+AUs: 0
+Landmarks 2D: 1
+Landmarks 3D: 0
+Pose: 0
+Shape parameters: 0

@@ -21,5 +21,5 @@ class NN(implements(IModel)):
     def Train(self, train_features, train_labels, validation_features, validation_labels):
         self.Model.fit(train_features, train_labels)
 
-    def Predict(self, features, labels): 
-        return self.Model.predict(features), self.Model.score(features, labels)
+    def Predict(self, features): 
+        return self.Model.predict(features)

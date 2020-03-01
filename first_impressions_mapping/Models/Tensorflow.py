@@ -4,12 +4,12 @@ from DataReader import DataReader
 import tensorflow as tf 
 import multiprocessing
 from Losses import Losses as custom_losses
-from ModelSettings import ModelParameterConstants
-from ModelSettings import ModelParameters
+from Models.ModelSettings import ModelParameterConstants
+from Models.ModelSettings import ModelParameters
 from Metrics import Metrics
 from tensorflow import keras
 from Logger import Logger
-from ModelSettings import ModelParameterConstants
+from Models.ModelSettings import ModelParameterConstants
 import ApplicationConstants
 import time
 from tensorflow import keras 
