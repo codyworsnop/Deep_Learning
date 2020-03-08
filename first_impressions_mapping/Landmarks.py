@@ -100,27 +100,32 @@ class Landmarks():
         for model in models:
             model.Train(fl, labels, None, None) #most scikit models don't have a partial fit, which is why we have to pass in all the data at once :( 
             prediction = model.Predict(ftl)
-            accuracy = self.kdef_accuracy(prediction, test_labels, len(test_labels))
 
-            binned_accuracy_05 = self.kdef_accuracy_bin(prediction, test_labels, len(test_labels))
-            binned_accuracy_1 = self.kdef_accuracy_bin(prediction, test_labels, len(test_labels), bin_diff=1.0)
-            binned_accuracy_15 = self.kdef_accuracy_bin(prediction, test_labels, len(test_labels), bin_diff=1.5)
+            accuracy = self.kdef_accuracy(test_labels, prediction)
+            range_accuracy_05 = self.kdef_accuracy_range(test_labels, prediction)
+            range_accuracy_1 = self.kdef_accuracy_range(test_labels, prediction, range=1.0)
+            range_accuracy_15 = self.kdef_accuracy_range(test_labels, prediction, range=1.5)
+            binned_accuracy = self.kdef_accuracy_bin(test_labels, prediction)
+            binned_accuracy_6 = self.kdef_accuracy_bin(test_labels, prediction, number_of_bins=6)
 
             print('accuracy:', accuracy)
-            print('binned accuracy 0.5', binned_accuracy_05)
-            print('binned accuracy 1.0', binned_accuracy_1)
-            print('binned accuracy 1.5', binned_accuracy_15)
+            print('range accuracy 0.5', range_accuracy_05)
+            print('range accuracy 1.0', range_accuracy_1)
+            print('range accuracy 1.5', range_accuracy_15)
+            print('bin accuracy 12 bins', binned_accuracy)
+            print('bin accuracy 6 bins', binned_accuracy_6)
 
+    def kdef_accuracy(self, y, pred): 
 
-    def kdef_accuracy(self, y, pred, batch_size): 
-
+        batch_size = len(pred)
         diff = np.abs(np.subtract(pred, y))
         trust_diff_sum = np.sum(diff, axis=0)
 
         return trust_diff_sum / batch_size
 
-    def kdef_accuracy_bin(self, y, pred, batch_size, bin_diff = 0.5):
+    def kdef_accuracy_range(self, y, pred, range = 0.5):
         
+        batch_size = len(pred)
         bins = np.empty_like(pred, int)
 
         for prediction_index, prediction in enumerate(pred):
@@ -129,7 +134,7 @@ class Landmarks():
             for attribute_index, attribute_prediction in enumerate(prediction): 
                 attribute_label = label[attribute_index]
 
-                if (abs(attribute_label - attribute_prediction) <= bin_diff):
+                if (abs(attribute_label - attribute_prediction) <= range):
                     bins[prediction_index][attribute_index] = 1
                 else:
                     bins[prediction_index][attribute_index] = 0
@@ -139,16 +144,40 @@ class Landmarks():
 
         return accuracy
 
-    def get_bin_index(self, value, min_value, max_value, bin_step): 
+    def kdef_accuracy_bin(self, y, pred, number_of_bins = 12):
+
+        batch_size = len(pred)
+        bins = np.empty_like(pred, int)
+
+        for prediction_index, prediction in enumerate(pred):
+            label = y[prediction_index]
+
+            for attribute_index, attribute_prediction in enumerate(prediction): 
+                attribute_label = label[attribute_index]
+
+                #get bins
+                label_bin = self.get_bin_index(attribute_label, 1, 7, number_of_bins)
+                prediction_bin = self.get_bin_index(attribute_prediction, 1, 7, number_of_bins)
+
+                if (label_bin == prediction_bin):
+                    bins[prediction_index][attribute_index] = 1
+                else:
+                    bins[prediction_index][attribute_index] = 0
+
+        sum_predictions = np.sum(bins, axis=0)        
+        accuracy = sum_predictions / batch_size
+
+        return accuracy
+
+    def get_bin_index(self, value, min_value, max_value, num_bins): 
 
         min_value = 1
         max_value = 7 
-
         bin_step = (max_value - min_value) / num_bins
         bins = []
-
-        for index, current in enumerate(range(min_value, max_value + 1, step=bin_step)): 
-            if (value >= current and value <= current + bin_step):
+      
+        for index, current in enumerate(np.arange(min_value, max_value, bin_step)): 
+            if (value >= current and value < current + bin_step):
                 return index
 
         return -1 
